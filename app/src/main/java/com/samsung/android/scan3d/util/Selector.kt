@@ -64,14 +64,10 @@ object Selector {
         val availableCameras: MutableList<SensorDesc> = mutableListOf()
 
         // Get list of all compatible cameras
-        val cameraIds = mutableListOf<String>()
-
-        for (i in 0..100) {
-
-            val istr = i.toString()
-            if (!cameraIds.contains(istr)) {
-                cameraIds.add(istr)
-            }
+        val cameraIds = try {
+            cameraManager.cameraIdList.toList()
+        } catch (e: Exception) {
+            emptyList<String>()
         }
 
         val cameraIds2 = mutableListOf<String>()
