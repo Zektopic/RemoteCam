@@ -32,6 +32,8 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.Locale
+
 class CamEngine(val context: Context) {
 
     var http: HttpService? = null
@@ -185,7 +187,10 @@ class CamEngine(val context: Context) {
 
     suspend fun initializeCamera() {
         Log.i("CAMERA", "initializeCamera")
+        Log.i("CAMERA", "RTSP: ${viewState.rtsp}, Encoding: ${viewState.encoding}")
 
+        // TODO: Implement RTSP stream and MediaCodec configuration using viewState.encoding
+        // Currently only MJPEG over HTTP is supported.
 
         val showLiveSurface = viewState.preview && !insidePause && previewSurface != null
         isShowingPreview = showLiveSurface
@@ -301,6 +306,33 @@ class CamEngine(val context: Context) {
         cameraThread.quitSafely()
     }
 
+    private fun getSupportedEncodings(): List<String> {
+        val supported = ArrayList<String>()
+        supported.add("JPEG")
+
+        val list = MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
+        val targetTypes = mapOf(
+            "video/avc" to "H.264",
+            "video/hevc" to "H.265",
+            "video/av01" to "AV1",
+            "video/x-vnd.on2.vp9" to "VP9"
+        )
+
+        for (codec in list) {
+            if (!codec.isEncoder) continue
+            for (type in codec.supportedTypes) {
+                val lowerType = type.lowercase(Locale.ROOT)
+                if (targetTypes.containsKey(lowerType)) {
+                    val friendlyName = targetTypes[lowerType]!!
+                    if (!supported.contains(friendlyName)) {
+                        supported.add(friendlyName)
+                    }
+                }
+            }
+        }
+        return supported
+    }
+
     fun updateView() {
         val intent = Intent("UpdateFromCameraEngine") //FILTER is a string to identify this intent
         intent.putExtra(
@@ -309,7 +341,9 @@ class CamEngine(val context: Context) {
                 cameraList,
                 cameraList.find { it.cameraId == viewState.cameraId }!!,
                 resolutions = sizes,
-                resolutionSelected = viewState.resolutionIndex!!
+                resolutionSelected = viewState.resolutionIndex!!,
+                supportedEncodings = getSupportedEncodings(),
+                encodingSelected = viewState.encoding
             )
         )
         context.sendBroadcast(intent)
@@ -330,6 +364,8 @@ class CamEngine(val context: Context) {
             val sensorSelected: Selector.SensorDesc,
             val resolutions: List<Size>,
             val resolutionSelected: Int,
+            val supportedEncodings: List<String>,
+            val encodingSelected: String
         ) : Parcelable
 
         @Parcelize
