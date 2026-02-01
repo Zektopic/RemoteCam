@@ -16,4 +16,16 @@
 <resources>
     <string name="app_name">RemoteCam</string>
     <string name="capture">Capture</string>
+
+    <!-- Camera Fragment Strings -->
+    <string name="app_title">RemoteCam</string>
+    <string name="stop_button">STOP</string>
+    <string name="preview_label">Preview</string>
+    <string name="stream_label">Stream</string>
+    <string name="sensor_label">Sensor</string>
+    <string name="resolution_label">Resolution</string>
+    <string name="quality_label">Quality</string>
+    <string name="ip_label">IPs</string>
+    <string name="default_ip">0.0.0.0:8080/cam.mjpeg</string>
+    <string name="repo_url">https://github.com/Ruddle/RemoteCam</string>
 </resources>
