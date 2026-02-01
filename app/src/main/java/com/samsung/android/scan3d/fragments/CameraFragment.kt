@@ -42,6 +42,8 @@ import com.samsung.android.scan3d.databinding.FragmentCameraBinding
 import com.samsung.android.scan3d.serv.CamEngine
 import com.samsung.android.scan3d.util.ClipboardUtil
 import com.samsung.android.scan3d.util.IpUtil
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 class CameraFragment : Fragment() {
@@ -78,13 +80,17 @@ class CameraFragment : Fragment() {
         _fragmentCameraBinding = FragmentCameraBinding.inflate(inflater, container, false)
 
         // Get the local ip address
-        val localIp = IpUtil.getLocalIpAddress()
-        _fragmentCameraBinding!!.textView6.text = "$localIp:8080/cam.mjpeg"
-        _fragmentCameraBinding!!.textView6.setOnClickListener {
-            // Copy the ip address to the clipboard
-            ClipboardUtil.copyToClipboard(context, "ip", _fragmentCameraBinding!!.textView6.text.toString())
-            // Toast to notify the user
-            Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT).show()
+        viewLifecycleOwner.lifecycleScope.launch {
+            val localIp = IpUtil.getLocalIpAddress()
+            _fragmentCameraBinding?.let { binding ->
+                binding.textView6.text = "$localIp:8080/cam.mjpeg"
+                binding.textView6.setOnClickListener {
+                    // Copy the ip address to the clipboard
+                    ClipboardUtil.copyToClipboard(context, "ip", binding.textView6.text.toString())
+                    // Toast to notify the user
+                    Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         Cac = (activity as CameraActivity?)!!
