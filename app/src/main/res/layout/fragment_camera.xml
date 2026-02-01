@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
 
                         android:layout_gravity="center_vertical"
-                        android:text="RemoteCam"
+                        android:text="@string/app_title"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                     <LinearLayout
@@ -84,7 +84,7 @@
                             android:layout_weight="1"
                             android:includeFontPadding="false"
                             android:minWidth="10dp"
-                            android:text="STOP" />
+                            android:text="@string/stop_button" />
                     </LinearLayout>
 
                 </TableRow>
@@ -118,7 +118,7 @@
                         android:layout_gravity="left"
                         android:checked="true"
                         android:splitTrack="false"
-                        android:text="Preview"
+                        android:text="@string/preview_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#C1C1C1" />
 
@@ -128,7 +128,7 @@
                         android:layout_height="48dp"
                         android:layout_gravity="left"
                         android:checked="false"
-                        android:text="Stream"
+                        android:text="@string/stream_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#C1C1C1" />
                 </TableRow>
@@ -144,13 +144,14 @@
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Sensor"
+                        android:text="@string/sensor_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <Spinner
                         android:id="@+id/spinnerCam"
                         android:layout_width="131dp"
-                        android:layout_height="48dp" />
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/sensor_label" />
                 </TableRow>
 
                 <TableRow
@@ -164,13 +165,14 @@
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Resolution"
+                        android:text="@string/resolution_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <Spinner
                         android:id="@+id/spinnerRes"
                         android:layout_width="131dp"
-                        android:layout_height="48dp" />
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/resolution_label" />
 
                 </TableRow>
 
@@ -186,7 +188,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="Quality"
+                        android:text="@string/quality_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <LinearLayout
@@ -197,7 +199,8 @@
                         <Spinner
                             android:id="@+id/spinnerQua"
                             android:layout_width="95dp"
-                            android:layout_height="48dp" />
+                            android:layout_height="48dp"
+                            android:contentDescription="@string/quality_label" />
 
                         <TextView
                             android:id="@+id/qual_feedback"
@@ -220,7 +223,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="IPs" />
+                        android:text="@string/ip_label" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -231,7 +234,7 @@
                             android:id="@+id/textView6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="0.0.0.0:8080/cam.mjpeg" />
+                            android:text="@string/default_ip" />
                     </LinearLayout>
 
                 </TableRow>
@@ -253,7 +256,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="107dp"
                         android:layout_height="wrap_content"
-                        android:text="https://github.com/Ruddle/RemoteCam" />
+                        android:text="@string/repo_url" />
                 </TableRow>
 
 
