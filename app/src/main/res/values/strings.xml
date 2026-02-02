@@ -27,5 +27,6 @@
     <string name="quality_label">Quality</string>
     <string name="ip_label">IPs</string>
     <string name="default_ip">0.0.0.0:8080/cam.mjpeg</string>
+    <string name="repo_label">Source</string>
     <string name="repo_url">https://github.com/Ruddle/RemoteCam</string>
 </resources>
