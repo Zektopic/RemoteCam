@@ -17,8 +17,9 @@ class HttpService {
     fun producer(): suspend OutputStream.() -> Unit = {
         val o = this
         channel = Channel()
+        val header = "--FRAME\r\nContent-Type: image/jpeg\r\n\r\n".toByteArray()
         channel.consumeEach {
-            o.write("--FRAME\r\nContent-Type: image/jpeg\r\n\r\n".toByteArray())
+            o.write(header)
             o.write(it)
             o.flush()
         }
