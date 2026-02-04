@@ -234,6 +234,10 @@
                             android:id="@+id/textView6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:tooltipText="@string/copy_ip_tooltip"
                             android:text="@string/default_ip" />
                     </LinearLayout>
 
