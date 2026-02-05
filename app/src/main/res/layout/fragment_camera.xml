@@ -234,7 +234,13 @@
                             android:id="@+id/textView6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/default_ip" />
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="8dp"
+                            android:text="@string/default_ip"
+                            android:textColor="@color/colorLink"
+                            android:tooltipText="@string/copy_to_clipboard" />
                     </LinearLayout>
 
                 </TableRow>
@@ -260,7 +266,7 @@
                         android:layout_height="wrap_content"
                         android:autoLink="web"
                         android:text="@string/repo_url"
-                        android:textColorLink="#80D8FF" />
+                        android:textColorLink="@color/colorLink" />
                 </TableRow>
 
 
