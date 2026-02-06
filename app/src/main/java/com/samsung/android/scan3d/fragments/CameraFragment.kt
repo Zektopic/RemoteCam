@@ -141,6 +141,13 @@ class CameraFragment : Fragment() {
                     sendViewState()
                 }
             })
+            fragmentCameraBinding.switchRTSP?.setOnCheckedChangeListener(object :
+                CompoundButton.OnCheckedChangeListener {
+                override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
+                    viewState.rtsp = p1
+                    sendViewState()
+                }
+            })
 
             run {
                 val spinner = fragmentCameraBinding.spinnerCam
@@ -165,6 +172,35 @@ class CameraFragment : Fragment() {
                         viewState.cameraId = data.sensors[p2].cameraId
 
 
+                        sendViewState()
+                    }
+
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+                    }
+                }
+            }
+
+            run {
+                val spinner = fragmentCameraBinding.spinnerEncoding
+                val spinnerDataList = ArrayList<String>()
+                data.supportedEncodings.forEach { spinnerDataList.add(it) }
+                val spinnerAdapter =
+                    ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        spinnerDataList
+                    )
+                spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner?.adapter = spinnerAdapter
+
+                val selIndex = data.supportedEncodings.indexOf(viewState.encoding)
+                if (selIndex >= 0) {
+                    spinner?.setSelection(selIndex)
+                }
+
+                spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                        viewState.encoding = data.supportedEncodings[p2]
                         sendViewState()
                     }
 
@@ -342,7 +378,9 @@ class CameraFragment : Fragment() {
             var stream: Boolean,
             var cameraId: String,
             var resolutionIndex: Int?,
-            var quality: Int
+            var quality: Int,
+            var rtsp: Boolean = false,
+            var encoding: String = "JPEG"
         ) : Parcelable
 
     }

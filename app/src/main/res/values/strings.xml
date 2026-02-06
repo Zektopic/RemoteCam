@@ -22,6 +22,8 @@
     <string name="stop_button">STOP</string>
     <string name="preview_label">Preview</string>
     <string name="stream_label">Stream</string>
+    <string name="rtsp_label">RTSP</string>
+    <string name="encoding_label">Encoding</string>
     <string name="sensor_label">Sensor</string>
     <string name="resolution_label">Resolution</string>
     <string name="quality_label">Quality</string>

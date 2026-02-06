@@ -131,6 +131,38 @@
                         android:text="@string/stream_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="#C1C1C1" />
+
+                    <Switch
+                        android:id="@+id/switchRTSP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="left"
+                        android:checked="false"
+                        android:text="@string/rtsp_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#C1C1C1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:background="#393939"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/textViewEncoding"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/encoding_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <Spinner
+                        android:id="@+id/spinnerEncoding"
+                        android:layout_width="131dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/encoding_label" />
+
                 </TableRow>
 
                 <TableRow
