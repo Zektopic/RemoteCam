@@ -30,4 +30,5 @@
     <string name="copy_ip_tooltip">Copy IP to clipboard</string>
     <string name="repo_label">Source</string>
     <string name="repo_url">https://github.com/Ruddle/RemoteCam</string>
+    <string name="copy_to_clipboard">Copy to clipboard</string>
 </resources>

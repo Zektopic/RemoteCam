@@ -239,6 +239,10 @@
                             android:focusable="true"
                             android:tooltipText="@string/copy_ip_tooltip"
                             android:text="@string/default_ip" />
+                            android:padding="8dp"
+                            android:text="@string/default_ip"
+                            android:textColor="@color/colorLink"
+                            android:tooltipText="@string/copy_to_clipboard" />
                     </LinearLayout>
 
                 </TableRow>
@@ -264,7 +268,7 @@
                         android:layout_height="wrap_content"
                         android:autoLink="web"
                         android:text="@string/repo_url"
-                        android:textColorLink="#80D8FF" />
+                        android:textColorLink="@color/colorLink" />
                 </TableRow>
 
 
