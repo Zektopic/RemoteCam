@@ -3,3 +3,7 @@
 ## 2025-10-21 - Legacy TableLayout & Accessibility
 **Learning:** This app uses `TableLayout` for general UI structure, not tabular data. This disconnects labels (TextViews) from their controls (Spinners) in the accessibility tree, as they are just siblings in a TableRow.
 **Action:** When encountering TableLayout-based forms, always verify that inputs have explicit `contentDescription` or `labelFor` attributes, as the visual proximity in a TableRow is not semantically sufficient for screen readers.
+
+## 2025-10-21 - Hidden Interactions
+**Learning:** Found critical functionality (IP address copy) hidden behind a plain TextView with no visual affordance. Users likely didn't know it was clickable.
+**Action:** When auditing legacy Android apps, check `setOnClickListener` usage in code against the layout XML. If an element has a listener but no `clickable`, `background` (ripple), or `focusable` attributes, it's a hidden interaction that needs a UX upgrade.
