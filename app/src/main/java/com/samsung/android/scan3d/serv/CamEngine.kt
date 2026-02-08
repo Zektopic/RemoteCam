@@ -24,8 +24,9 @@ import android.view.Surface
 import com.samsung.android.scan3d.fragments.CameraFragment
 import com.samsung.android.scan3d.http.HttpService
 import com.samsung.android.scan3d.util.Selector
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 import kotlinx.parcelize.Parcelize
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -125,9 +126,9 @@ class CamEngine(val context: Context) {
         }
     }
 
-    fun restart() {
+    suspend fun restart() {
         stopRunning()
-        runBlocking { initializeCamera() }
+        initializeCamera()
 
     }
 
@@ -185,7 +186,7 @@ class CamEngine(val context: Context) {
         }, handler)
     }
 
-    suspend fun initializeCamera() {
+    suspend fun initializeCamera() = withContext(Dispatchers.IO) {
         Log.i("CAMERA", "initializeCamera")
         Log.i("CAMERA", "RTSP: ${viewState.rtsp}, Encoding: ${viewState.encoding}")
 
