@@ -32,6 +32,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -323,9 +324,16 @@ class CameraFragment : Fragment() {
 
         Log.i("CAMMM", "fragmentCameraBinding.buttonKill " + fragmentCameraBinding.buttonKill)
         fragmentCameraBinding.buttonKill.setOnClickListener {
-            Log.i("CameraFrag", "KILL")
-            val intent = Intent("KILL") //FILTER is a string to identify this intent
-            context?.sendBroadcast(intent)
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.stop_camera_dialog_title)
+                .setMessage(R.string.stop_camera_dialog_message)
+                .setPositiveButton(R.string.stop_button) { _, _ ->
+                    Log.i("CameraFrag", "KILL")
+                    val intent = Intent("KILL") //FILTER is a string to identify this intent
+                    context?.sendBroadcast(intent)
+                }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
         }
 
         fragmentCameraBinding.viewFinder.holder.addCallback(object : SurfaceHolder.Callback {
