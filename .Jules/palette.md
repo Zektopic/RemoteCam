@@ -10,3 +10,6 @@
 ## 2025-10-21 - Hidden Interactions
 **Learning:** Found critical actions (copy IP) implemented on plain TextViews with no visual cues (ripple, color, tooltip), making features undiscoverable despite existing backing logic.
 **Action:** Always check `setOnClickListener` usage in Fragments to find hidden interactive elements and upgrade them with standard accessibility/interaction attributes (`selectableItemBackground`, `focusable`, `tooltipText`).
+## 2025-10-21 - Destructive Action Safety
+**Learning:** The "STOP" button immediately killed the service without confirmation, leading to potential accidental stream termination. Destructive actions in mobile apps, especially those with significant consequences (stopping a live stream), require a confirmation step.
+**Action:** Always wrap destructive actions like "Stop", "Delete", or "Reset" with an `AlertDialog` to confirm intent, preventing accidental data loss or service interruption.
