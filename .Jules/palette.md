@@ -10,3 +10,7 @@
 ## 2025-10-21 - Hidden Interactions
 **Learning:** Found critical actions (copy IP) implemented on plain TextViews with no visual cues (ripple, color, tooltip), making features undiscoverable despite existing backing logic.
 **Action:** Always check `setOnClickListener` usage in Fragments to find hidden interactive elements and upgrade them with standard accessibility/interaction attributes (`selectableItemBackground`, `focusable`, `tooltipText`).
+
+## 2025-10-21 - Destructive Actions Without Confirmation
+**Learning:** The "STOP" button (killing the server) was a single click away, leading to potential accidental service interruptions.
+**Action:** Always implement a confirmation dialog (`AlertDialog`) for actions that stop services or delete data, especially when the control is visually adjacent to non-destructive controls.

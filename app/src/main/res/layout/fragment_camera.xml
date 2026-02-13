@@ -155,6 +155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/encoding_label"
+                        android:labelFor="@+id/spinnerEncoding"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <Spinner
@@ -177,6 +178,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/sensor_label"
+                        android:labelFor="@+id/spinnerCam"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <Spinner
@@ -198,6 +200,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/resolution_label"
+                        android:labelFor="@+id/spinnerRes"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <Spinner
@@ -221,6 +224,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="@string/quality_label"
+                        android:labelFor="@+id/spinnerQua"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <LinearLayout
@@ -255,6 +259,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:labelFor="@+id/textView6"
                         android:text="@string/ip_label" />
 
                     <LinearLayout
