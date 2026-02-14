@@ -10,3 +10,7 @@
 ## 2025-10-21 - Hidden Interactions
 **Learning:** Found critical actions (copy IP) implemented on plain TextViews with no visual cues (ripple, color, tooltip), making features undiscoverable despite existing backing logic.
 **Action:** Always check `setOnClickListener` usage in Fragments to find hidden interactive elements and upgrade them with standard accessibility/interaction attributes (`selectableItemBackground`, `focusable`, `tooltipText`).
+
+## 2025-10-21 - Destructive Action Confirmation
+**Learning:** The "STOP" button in the camera interface immediately killed the process without confirmation, which is a risky pattern for a primary action button placed near the title.
+**Action:** Implement standard `AlertDialog` confirmation flows for any action that terminates the app or service to prevent accidental stops.
