@@ -33,4 +33,8 @@
     <string name="repo_label">Source</string>
     <string name="repo_url">https://github.com/Ruddle/RemoteCam</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
+    <string name="stop_confirmation_title">Stop Camera?</string>
+    <string name="stop_confirmation_message">This will stop the stream and close the application.</string>
+    <string name="stop_confirmation_confirm">Stop</string>
+    <string name="stop_confirmation_cancel">Cancel</string>
 </resources>
