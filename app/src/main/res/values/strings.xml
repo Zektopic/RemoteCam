@@ -39,4 +39,9 @@
     <string name="stop_confirmation_message">This will stop the camera stream and close the application.</string>
     <string name="stop_confirmation_positive">Stop</string>
     <string name="stop_confirmation_negative">Cancel</string>
+
+    <!-- Accessibility Strings -->
+    <string name="camera_preview_description">Camera viewfinder</string>
+    <string name="bitrate_description_template">Bitrate: %1$d kilobytes per second</string>
+    <string name="frametime_description_template">Frame time: %1$d milliseconds</string>
 </resources>

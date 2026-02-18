@@ -88,6 +88,8 @@ class CameraFragment : Fragment() {
                 binding.textView6.setOnClickListener {
                     // Copy the ip address to the clipboard
                     ClipboardUtil.copyToClipboard(context, "ip", binding.textView6.text.toString())
+                    // Perform haptic feedback
+                    binding.textView6.performHapticFeedback(android.view.HapticFeedbackConstants.CONTEXT_CLICK)
                     // Toast to notify the user
                     Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT).show()
                 }
@@ -108,8 +110,12 @@ class CameraFragment : Fragment() {
                     // Stuff that updates the UI
                     fragmentCameraBinding.qualFeedback?.text =
                         " " + this.rateKbs + "kB/sec"
+                    fragmentCameraBinding.qualFeedback?.contentDescription =
+                        getString(R.string.bitrate_description_template, this.rateKbs)
                     fragmentCameraBinding.ftFeedback?.text =
                         " " + this.ms + "ms"
+                    fragmentCameraBinding.ftFeedback?.contentDescription =
+                        getString(R.string.frametime_description_template, this.ms)
                 })
 
             }
