@@ -20,3 +20,6 @@
 ## 2025-10-21 - Destructive Action Confirmation
 **Learning:** The "STOP" button terminated the camera stream and app immediately without confirmation, posing a risk of accidental interruption.
 **Action:** Always wrap destructive actions (like stopping a server or deleting data) in a confirmation dialog (e.g., `AlertDialog`) to prevent data loss or unintended service stoppage.
+## 2024-05-23 - [Dynamic Metric Accessibility]
+**Learning:** Dense technical metrics (like '33ms' or '500kB/s') in tight layouts are often inaccessible to screen readers because they lack context labels. Adding visible labels would break the layout.
+**Action:** Use programmatic `contentDescription` updates in the data binding loop (e.g., 'Frame time: 33 milliseconds') to provide rich context to screen readers without altering the visual design.
