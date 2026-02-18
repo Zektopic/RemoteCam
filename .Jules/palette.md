@@ -14,3 +14,6 @@
 ## 2025-10-21 - Destructive Actions Without Confirmation
 **Learning:** The "STOP" button (killing the server) was a single click away, leading to potential accidental service interruptions.
 **Action:** Always implement a confirmation dialog (`AlertDialog`) for actions that stop services or delete data, especially when the control is visually adjacent to non-destructive controls.
+## 2025-10-21 - Destructive Action Confirmation
+**Learning:** The "STOP" button terminated the camera stream and app immediately without confirmation, posing a risk of accidental interruption.
+**Action:** Always wrap destructive actions (like stopping a server or deleting data) in a confirmation dialog (e.g., `AlertDialog`) to prevent data loss or unintended service stoppage.
