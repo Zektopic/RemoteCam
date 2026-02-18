@@ -101,6 +101,7 @@
                         android:layout_marginTop="0pt"
                         android:layout_marginBottom="4pt"
                         android:background="#FFAA00"
+                        android:importantForAccessibility="no"
                         android:paddingTop="5pt" />
 
                 </TableRow>

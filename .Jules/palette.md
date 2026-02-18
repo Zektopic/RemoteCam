@@ -11,6 +11,9 @@
 **Learning:** Found critical actions (copy IP) implemented on plain TextViews with no visual cues (ripple, color, tooltip), making features undiscoverable despite existing backing logic.
 **Action:** Always check `setOnClickListener` usage in Fragments to find hidden interactive elements and upgrade them with standard accessibility/interaction attributes (`selectableItemBackground`, `focusable`, `tooltipText`).
 
+## 2025-05-18 - Semantic Label Association
+**Learning:** While `contentDescription` on inputs helps, explicitly linking `TextView` labels to controls using `android:labelFor` creates a stronger semantic bond for screen readers, allowing "click to focus" behavior on the label.
+**Action:** Prefer `android:labelFor` on labels over duplicating text in `contentDescription` on inputs where possible.
 ## 2025-10-21 - Destructive Actions Without Confirmation
 **Learning:** The "STOP" button (killing the server) was a single click away, leading to potential accidental service interruptions.
 **Action:** Always implement a confirmation dialog (`AlertDialog`) for actions that stop services or delete data, especially when the control is visually adjacent to non-destructive controls.
