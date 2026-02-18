@@ -17,13 +17,23 @@ import com.samsung.android.scan3d.CameraActivity
 import com.samsung.android.scan3d.R
 import com.samsung.android.scan3d.fragments.CameraFragment
 import com.samsung.android.scan3d.http.HttpService
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 
 class Cam : Service() {
     var engine: CamEngine? = null
     var http: HttpService? = null
     val CHANNEL_ID = "REMOTE_CAM"
+
+    private val serviceScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    private val cameraMutex = Mutex()
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -81,11 +91,14 @@ class Cam : Service() {
             }
 
             "onPause" -> {
-                engine?.insidePause = true
-                if (engine?.isShowingPreview == true) {
-                    engine?.restart()
+                serviceScope.launch {
+                    cameraMutex.withLock {
+                        engine?.insidePause = true
+                        if (engine?.isShowingPreview == true) {
+                            engine?.restart()
+                        }
+                    }
                 }
-
             }
 
             "onResume" -> {
@@ -93,30 +106,49 @@ class Cam : Service() {
             }
 
             "start_camera_engine" -> {
-                engine = CamEngine(this)
-                engine?.http = http
-                runBlocking { engine?.initializeCamera() }
+                serviceScope.launch {
+                    cameraMutex.withLock {
+                        val newEngine = withContext(Dispatchers.IO) {
+                            CamEngine(this@Cam)
+                        }
+                        newEngine.http = http
+                        engine = newEngine
+                        newEngine.initializeCamera()
+                    }
+                }
             }
 
             "new_view_state" -> {
-
-                val old = engine?.viewState!!
                 val new : CameraFragment.Companion.ViewState = intent.extras?.getParcelable("data")!!
                 Log.i("CAM", "new_view_state: " + new)
-                Log.i("CAM", "from:           " + old)
-                engine?.viewState =  new
-                if (old != new) {
-                    Log.i("CAM", "diff")
-                    engine?.restart()
+
+                serviceScope.launch {
+                    cameraMutex.withLock {
+                        val old = engine?.viewState
+                        if (old == null) {
+                            // Engine not ready or null
+                            return@withLock
+                        }
+                        Log.i("CAM", "from:           " + old)
+                        engine?.viewState = new
+                        if (old != new) {
+                            Log.i("CAM", "diff")
+                            engine?.restart()
+                        }
+                    }
                 }
             }
 
             "new_preview_surface" -> {
                 val surface: Surface? = intent.extras?.getParcelable("surface")
-                // Toast.makeText(this, "SURFACE", Toast.LENGTH_SHORT).show()
-                engine?.previewSurface = surface
-                if (engine?.viewState?.preview == true) {
-                    runBlocking { engine?.initializeCamera() }
+                serviceScope.launch {
+                    cameraMutex.withLock {
+                        // Toast.makeText(this, "SURFACE", Toast.LENGTH_SHORT).show()
+                        engine?.previewSurface = surface
+                        if (engine?.viewState?.preview == true) {
+                            engine?.initializeCamera()
+                        }
+                    }
                 }
             }
 
@@ -141,6 +173,7 @@ class Cam : Service() {
     override fun onDestroy() {
         super.onDestroy()
         Log.i("CAM", "OnDestroy")
+        serviceScope.cancel()
         kill()
     }
 
