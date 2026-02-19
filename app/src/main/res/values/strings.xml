@@ -39,4 +39,8 @@
     <string name="stop_confirmation_message">This will stop the camera stream and close the application.</string>
     <string name="stop_confirmation_positive">Stop</string>
     <string name="stop_confirmation_negative">Cancel</string>
+
+    <!-- Tooltips -->
+    <string name="bitrate_tooltip">Current streaming bitrate</string>
+    <string name="frametime_tooltip">Frame processing latency</string>
 </resources>

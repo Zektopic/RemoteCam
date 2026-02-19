@@ -108,8 +108,13 @@ class CameraFragment : Fragment() {
                     // Stuff that updates the UI
                     fragmentCameraBinding.qualFeedback?.text =
                         " " + this.rateKbs + "kB/sec"
+                    fragmentCameraBinding.qualFeedback?.contentDescription =
+                        "Bitrate: " + this.rateKbs + " kilobytes per second"
+
                     fragmentCameraBinding.ftFeedback?.text =
                         " " + this.ms + "ms"
+                    fragmentCameraBinding.ftFeedback?.contentDescription =
+                        "Frame time: " + this.ms + " milliseconds"
                 })
 
             }

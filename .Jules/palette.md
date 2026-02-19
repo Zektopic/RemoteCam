@@ -20,3 +20,7 @@
 ## 2025-10-21 - Destructive Action Confirmation
 **Learning:** The "STOP" button terminated the camera stream and app immediately without confirmation, posing a risk of accidental interruption.
 **Action:** Always wrap destructive actions (like stopping a server or deleting data) in a confirmation dialog (e.g., `AlertDialog`) to prevent data loss or unintended service stoppage.
+
+## 2025-10-22 - Dynamic Technical Metrics
+**Learning:** Displaying raw numbers (bitrate/frametime) is meaningless to many users and inaccessible if announced only as numbers by screen readers.
+**Action:** Always provide `tooltipText` for technical metrics to explain them, and use dynamic `contentDescription` updates (e.g., "Bitrate: X KB/s") to provide full context to screen reader users instead of just reading the raw text.
