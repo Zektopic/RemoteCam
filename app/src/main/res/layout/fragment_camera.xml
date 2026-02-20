@@ -74,7 +74,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start|center_vertical"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:tooltipText="@string/frame_time_tooltip" />
 
                         <Button
                             android:id="@+id/buttonKill"
@@ -101,7 +102,6 @@
                         android:layout_marginTop="0pt"
                         android:layout_marginBottom="4pt"
                         android:background="#FFAA00"
-                        android:importantForAccessibility="no"
                         android:paddingTop="5pt" />
 
                 </TableRow>
@@ -158,7 +158,6 @@
                         android:layout_height="wrap_content"
                         android:labelFor="@+id/spinnerEncoding"
                         android:text="@string/encoding_label"
-                        android:labelFor="@+id/spinnerEncoding"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <Spinner
@@ -182,7 +181,6 @@
                         android:layout_height="wrap_content"
                         android:labelFor="@+id/spinnerCam"
                         android:text="@string/sensor_label"
-                        android:labelFor="@+id/spinnerCam"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <Spinner
@@ -205,7 +203,6 @@
                         android:layout_height="wrap_content"
                         android:labelFor="@+id/spinnerRes"
                         android:text="@string/resolution_label"
-                        android:labelFor="@+id/spinnerRes"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <Spinner
@@ -230,7 +227,6 @@
                         android:layout_gravity="center_vertical"
                         android:labelFor="@+id/spinnerQua"
                         android:text="@string/quality_label"
-                        android:labelFor="@+id/spinnerQua"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <LinearLayout
@@ -249,7 +245,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:tooltipText="@string/bitrate_tooltip" />
                     </LinearLayout>
 
                 </TableRow>
