@@ -20,3 +20,7 @@
 ## 2025-10-21 - Destructive Action Confirmation
 **Learning:** The "STOP" button terminated the camera stream and app immediately without confirmation, posing a risk of accidental interruption.
 **Action:** Always wrap destructive actions (like stopping a server or deleting data) in a confirmation dialog (e.g., `AlertDialog`) to prevent data loss or unintended service stoppage.
+
+## 2025-10-21 - Legacy XML Redundancy
+**Learning:** The legacy `fragment_camera.xml` contained duplicate attributes (like `labelFor`) within `TableLayout` rows, which caused build failures when touched.
+**Action:** When modifying legacy layouts in this project, proactively check for and remove duplicate XML attributes to prevent build errors.
