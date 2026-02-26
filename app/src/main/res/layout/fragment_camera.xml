@@ -95,7 +95,6 @@
 
                     <View
                         android:id="@+id/divider"
-                        android:importantForAccessibility="no"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="0pt"
@@ -156,7 +155,6 @@
                         android:id="@+id/textViewEncoding"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:labelFor="@+id/spinnerEncoding"
                         android:text="@string/encoding_label"
                         android:labelFor="@+id/spinnerEncoding"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -180,7 +178,6 @@
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:labelFor="@+id/spinnerCam"
                         android:text="@string/sensor_label"
                         android:labelFor="@+id/spinnerCam"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -203,7 +200,6 @@
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:labelFor="@+id/spinnerRes"
                         android:text="@string/resolution_label"
                         android:labelFor="@+id/spinnerRes"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -228,7 +224,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:labelFor="@+id/spinnerQua"
                         android:text="@string/quality_label"
                         android:labelFor="@+id/spinnerQua"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -279,6 +274,9 @@
                             android:layout_height="wrap_content"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
+                            android:drawableEnd="@drawable/ic_content_copy"
+                            android:drawablePadding="8dp"
+                            android:drawableTint="@color/colorLink"
                             android:focusable="true"
                             android:padding="8dp"
                             android:text="@string/default_ip"
