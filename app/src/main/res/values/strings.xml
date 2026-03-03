@@ -39,4 +39,10 @@
     <string name="stop_confirmation_message">This will stop the camera stream and close the application.</string>
     <string name="stop_confirmation_positive">Stop</string>
     <string name="stop_confirmation_negative">Cancel</string>
+
+    <!-- Feedback Tooltips and Content Descriptions -->
+    <string name="frame_time_tooltip">Frame latency</string>
+    <string name="bitrate_tooltip">Data transfer rate</string>
+    <string name="frame_time_desc">%1$d milliseconds latency</string>
+    <string name="bitrate_desc">%1$d kilobytes per second</string>
 </resources>

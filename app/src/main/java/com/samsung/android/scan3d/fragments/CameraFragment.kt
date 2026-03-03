@@ -106,10 +106,14 @@ class CameraFragment : Fragment() {
             intent.extras?.getParcelable<CamEngine.Companion.DataQuick>("dataQuick")?.apply {
                 activity?.runOnUiThread(Runnable {
                     // Stuff that updates the UI
-                    fragmentCameraBinding.qualFeedback?.text =
-                        " " + this.rateKbs + "kB/sec"
-                    fragmentCameraBinding.ftFeedback?.text =
-                        " " + this.ms + "ms"
+                    fragmentCameraBinding.qualFeedback?.let {
+                        it.text = " $rateKbs kB/sec"
+                        it.contentDescription = context.getString(R.string.bitrate_desc, rateKbs)
+                    }
+                    fragmentCameraBinding.ftFeedback?.let {
+                        it.text = " $ms ms"
+                        it.contentDescription = context.getString(R.string.frame_time_desc, ms)
+                    }
                 })
 
             }

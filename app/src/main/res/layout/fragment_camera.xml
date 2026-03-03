@@ -74,7 +74,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start|center_vertical"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:tooltipText="@string/frame_time_tooltip" />
 
                         <Button
                             android:id="@+id/buttonKill"
@@ -244,7 +245,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:tooltipText="@string/bitrate_tooltip" />
                     </LinearLayout>
 
                 </TableRow>
