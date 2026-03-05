@@ -300,6 +300,8 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:labelFor="@+id/textView2"
                         android:text="@string/repo_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -307,7 +309,9 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:autoLink="web"
+                        android:padding="8dp"
                         android:text="@string/repo_url"
                         android:textColorLink="@color/colorLink" />
                 </TableRow>
