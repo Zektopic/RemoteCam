@@ -156,6 +156,7 @@
                         android:id="@+id/textViewEncoding"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:labelFor="@+id/spinnerEncoding"
                         android:text="@string/encoding_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -179,6 +180,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:labelFor="@+id/spinnerCam"
                         android:text="@string/sensor_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -201,6 +203,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:labelFor="@+id/spinnerRes"
                         android:text="@string/resolution_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -262,6 +265,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:labelFor="@+id/textView6"
                         android:text="@string/ip_label" />
 
@@ -300,6 +304,8 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:labelFor="@+id/textView2"
                         android:text="@string/repo_label"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -308,6 +314,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:autoLink="web"
+                        android:padding="8dp"
                         android:text="@string/repo_url"
                         android:textColorLink="@color/colorLink" />
                 </TableRow>
