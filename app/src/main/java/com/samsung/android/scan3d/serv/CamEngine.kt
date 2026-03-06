@@ -307,7 +307,7 @@ class CamEngine(val context: Context) {
         cameraThread.quitSafely()
     }
 
-    private fun getSupportedEncodings(): List<String> {
+    private val supportedEncodings: List<String> by lazy {
         val supported = ArrayList<String>()
         supported.add("JPEG")
 
@@ -331,7 +331,7 @@ class CamEngine(val context: Context) {
                 }
             }
         }
-        return supported
+        supported
     }
 
     fun updateView() {
@@ -343,7 +343,7 @@ class CamEngine(val context: Context) {
                 cameraList.find { it.cameraId == viewState.cameraId }!!,
                 resolutions = sizes,
                 resolutionSelected = viewState.resolutionIndex!!,
-                supportedEncodings = getSupportedEncodings(),
+                supportedEncodings = supportedEncodings,
                 encodingSelected = viewState.encoding
             )
         )
