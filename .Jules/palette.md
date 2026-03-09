@@ -21,6 +21,13 @@
 **Learning:** The "STOP" button terminated the camera stream and app immediately without confirmation, posing a risk of accidental interruption.
 **Action:** Always wrap destructive actions (like stopping a server or deleting data) in a confirmation dialog (e.g., `AlertDialog`) to prevent data loss or unintended service stoppage.
 
+## 2025-10-21 - Touch Target Size for Clickable Text
+**Learning:** Found an inline clickable text link (`autoLink="web"`) without padding, resulting in a touch target size smaller than recommended accessibility standards, making it hard to tap on mobile.
+**Action:** Always add at least `8dp` padding (or more to reach 48x48dp overall size) to interactive text views like links or actionable labels to ensure a sufficient touch target.
+
+## 2025-10-21 - TableLayout Label Alignment
+**Learning:** Label `TextView` elements in `TableRow` containers default to top alignment, appearing misaligned compared to taller sibling controls like Spinners or padded inputs.
+**Action:** Explicitly set `android:layout_gravity="center_vertical"` on label elements within `TableLayout` to ensure visual harmony with their corresponding controls.
 ## 2025-10-21 - Visual Alignment in TableRows
 **Learning:** In `TableLayout`, sibling controls (like labels and spinners) in a `TableRow` might not vertically align correctly if they have different heights (e.g., standard text views vs padded spinners).
 **Action:** Always verify alignment of rows and explicitly apply `android:layout_gravity="center_vertical"` to label elements to ensure they align properly with taller input controls to prevent jagged UI flow.
