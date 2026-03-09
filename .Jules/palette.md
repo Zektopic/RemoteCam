@@ -21,6 +21,9 @@
 **Learning:** The "STOP" button terminated the camera stream and app immediately without confirmation, posing a risk of accidental interruption.
 **Action:** Always wrap destructive actions (like stopping a server or deleting data) in a confirmation dialog (e.g., `AlertDialog`) to prevent data loss or unintended service stoppage.
 
+## 2025-10-21 - Touch Targets on Interactive Links
+**Learning:** Found an `autoLink` TextView containing a repository URL that lacked a minimum touch target area, making it difficult for mobile users to tap accurately. Additionally, its adjacent descriptive label was not programmatically associated with it for screen readers.
+**Action:** Always add `android:padding="8dp"` to interactive link TextViews to ensure a minimum touch target (e.g., 48dp minimum recommendation). Additionally, ensure adjacent labels are associated using `android:labelFor` to provide context for screen readers.
 ## 2024-05-15 - Android TableLayout Alignment and Link Accessibility
 **Learning:** In Android `TableLayout`s, label `TextView`s often mismatch in height with adjacent interactive elements (like `Spinner`s or text fields with padding). Additionally, `autoLink="web"` elements need minimum touch targets and explicit association with their labels.
 **Action:** Always add `android:layout_gravity="center_vertical"` to label `TextView`s in `TableLayout`s for consistent visual alignment. Ensure clickable links (`autoLink="web"`) have adequate padding (e.g., `8dp`) for touch targets, and use `android:labelFor` on the corresponding label to associate it for screen readers.
