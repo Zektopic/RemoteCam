@@ -89,7 +89,7 @@ class CameraFragment : Fragment() {
                     // Copy the ip address to the clipboard
                     ClipboardUtil.copyToClipboard(context, "ip", binding.textView6.text.toString())
                     // Toast to notify the user
-                    Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.copy_to_clipboard, Toast.LENGTH_SHORT).show()
                 }
             }
         }
