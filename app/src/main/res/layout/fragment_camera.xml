@@ -81,7 +81,7 @@
                             android:id="@+id/buttonKill"
                             android:layout_width="146dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right|fill_vertical|end"
+                            android:layout_gravity="end|fill_vertical"
                             android:layout_weight="1"
                             android:includeFontPadding="false"
                             android:minWidth="10dp"
