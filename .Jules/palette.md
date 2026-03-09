@@ -21,6 +21,9 @@
 **Learning:** The "STOP" button terminated the camera stream and app immediately without confirmation, posing a risk of accidental interruption.
 **Action:** Always wrap destructive actions (like stopping a server or deleting data) in a confirmation dialog (e.g., `AlertDialog`) to prevent data loss or unintended service stoppage.
 
+## 2025-10-21 - Visual Alignment in TableRows
+**Learning:** In `TableLayout`, sibling controls (like labels and spinners) in a `TableRow` might not vertically align correctly if they have different heights (e.g., standard text views vs padded spinners).
+**Action:** Always verify alignment of rows and explicitly apply `android:layout_gravity="center_vertical"` to label elements to ensure they align properly with taller input controls to prevent jagged UI flow.
 ## 2025-10-21 - Touch Targets on Interactive Links
 **Learning:** Found an `autoLink` TextView containing a repository URL that lacked a minimum touch target area, making it difficult for mobile users to tap accurately. Additionally, its adjacent descriptive label was not programmatically associated with it for screen readers.
 **Action:** Always add `android:padding="8dp"` to interactive link TextViews to ensure a minimum touch target (e.g., 48dp minimum recommendation). Additionally, ensure adjacent labels are associated using `android:labelFor` to provide context for screen readers.
