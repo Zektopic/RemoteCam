@@ -55,7 +55,7 @@ class PermissionsFragment : Fragment() {
                 // Takes the user to the success fragment when permission is granted
                 nativateToCamera();
             } else {
-                Toast.makeText(context, "Permission request denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, R.string.permission_denied, Toast.LENGTH_LONG).show()
             }
         }
     }
