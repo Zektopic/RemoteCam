@@ -40,6 +40,8 @@
     <string name="stop_confirmation_positive">Stop</string>
     <string name="stop_confirmation_negative">Cancel</string>
 
+    <string name="permission_denied">Permission request denied</string>
+
     <!-- Feedback Tooltips and Content Descriptions -->
     <string name="frame_time_tooltip">Frame latency</string>
     <string name="bitrate_tooltip">Data transfer rate</string>
