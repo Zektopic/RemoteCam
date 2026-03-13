@@ -56,7 +56,7 @@ class CamEngine(val context: Context) {
 
     fun getEncoder(mimeType: String, resW: Int, resH: Int): MediaCodec? {
         fun selectCodec(mimeType: String, needEncoder: Boolean): MediaCodecInfo? {
-            val list = MediaCodecList(0).getCodecInfos()
+            val list = cachedCodecInfos
             list.forEach {
                 if (it.isEncoder) {
                     Log.i(
@@ -311,7 +311,7 @@ class CamEngine(val context: Context) {
         val supported = ArrayList<String>()
         supported.add("JPEG")
 
-        val list = MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
+        val list = cachedCodecInfos
         val targetTypes = mapOf(
             "video/avc" to "H.264",
             "video/hevc" to "H.265",
@@ -359,6 +359,10 @@ class CamEngine(val context: Context) {
     }
 
     companion object {
+        val cachedCodecInfos: Array<MediaCodecInfo> by lazy {
+            MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
+        }
+
         @Parcelize
         data class Data(
             val sensors: List<Selector.SensorDesc>,
