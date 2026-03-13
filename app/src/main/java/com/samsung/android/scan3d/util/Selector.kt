@@ -128,10 +128,10 @@ object Selector {
             )!!.getOutputSizes(ImageFormat.JPEG)
 
 
-            val foaclmm = characteristics.get(
+            val focalMm = characteristics.get(
                 CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS
             )!![0]
-            val foc = ("" + foaclmm + "mm").padEnd(6, ' ')
+            val foc = ("" + focalMm + "mm").padEnd(6, ' ')
             val ape = ("f" + characteristics.get(
                 CameraCharacteristics.LENS_INFO_AVAILABLE_APERTURES
             )!![0] + "").padEnd(4, ' ')
@@ -140,7 +140,7 @@ object Selector {
                 CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE
             )!!
 
-            val vfov =(( 2.0*(180.0 / 3.141592) * atan(sensorSize.height / (2.0 * foaclmm))).roundToInt().toString()+"°").padEnd(4,' ')
+            val vfov =(( 2.0*(180.0 / 3.141592) * atan(sensorSize.height / (2.0 * focalMm))).roundToInt().toString()+"°").padEnd(4,' ')
 
             // All cameras *must* support JPEG output so we don't need to check characteristics
 
