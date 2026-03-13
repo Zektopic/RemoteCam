@@ -334,6 +334,7 @@ class CameraFragment : Fragment() {
                 .setPositiveButton(R.string.stop_confirmation_positive) { _, _ ->
                     Log.i("CameraFrag", "KILL")
                     val intent = Intent("KILL") //FILTER is a string to identify this intent
+                    intent.setPackage(context?.packageName)
                     context?.sendBroadcast(intent)
                 }
                 .setNegativeButton(R.string.stop_confirmation_negative, null)

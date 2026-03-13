@@ -41,3 +41,7 @@
 ## 2025-10-21 - Localization of Interactive Feedback
 **Learning:** Found a hardcoded string `"Copied to clipboard"` used in a Toast message for interactive feedback. Hardcoded strings cannot be localized and are not accessible to non-English screen readers.
 **Action:** Always use string resources (`R.string.*`) for all user-facing text, including Toast messages and Snackbars, to ensure proper localization and accessibility support.
+
+## 2025-10-22 - Missing Visual Focus Indicators on Custom and Interactive Elements
+**Learning:** Focusable `TextView` elements that display tooltips, and custom button background selectors, often lack explicit focus states (`android:state_focused="true"` or `?attr/selectableItemBackground`). This makes keyboard and directional pad navigation extremely difficult for users with mobility issues, as they cannot see which element is currently focused.
+**Action:** Always ensure that any element marked `android:focusable="true"` has a defined visual focus state. For standard interactive `TextView`s, use `android:background="?attr/selectableItemBackground"`. For custom button background selectors, add a specific `<item android:state_focused="true">` with clear visual styling (e.g., a thick `<stroke>`) to indicate focus clearly.
