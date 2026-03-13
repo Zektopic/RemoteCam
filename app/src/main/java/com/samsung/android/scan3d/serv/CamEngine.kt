@@ -54,10 +54,13 @@ class CamEngine(val context: Context) {
 
     val executor = Executors.newSingleThreadExecutor()
 
+    private val cachedCodecInfos: Array<MediaCodecInfo> by lazy {
+        MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
+    }
+
     fun getEncoder(mimeType: String, resW: Int, resH: Int): MediaCodec? {
         fun selectCodec(mimeType: String, needEncoder: Boolean): MediaCodecInfo? {
-            val list = MediaCodecList(0).getCodecInfos()
-            list.forEach {
+            cachedCodecInfos.forEach {
                 if (it.isEncoder) {
                     Log.i(
                         "CODECS",
@@ -311,7 +314,6 @@ class CamEngine(val context: Context) {
         val supported = ArrayList<String>()
         supported.add("JPEG")
 
-        val list = MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
         val targetTypes = mapOf(
             "video/avc" to "H.264",
             "video/hevc" to "H.265",
@@ -319,7 +321,7 @@ class CamEngine(val context: Context) {
             "video/x-vnd.on2.vp9" to "VP9"
         )
 
-        for (codec in list) {
+        for (codec in cachedCodecInfos) {
             if (!codec.isEncoder) continue
             for (type in codec.supportedTypes) {
                 val lowerType = type.lowercase(Locale.ROOT)
