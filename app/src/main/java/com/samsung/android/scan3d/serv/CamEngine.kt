@@ -55,7 +55,7 @@ class CamEngine(val context: Context) {
     val executor = Executors.newSingleThreadExecutor()
 
     fun getEncoder(mimeType: String, resW: Int, resH: Int): MediaCodec? {
-        fun selectCodec(mimeType: String, needEncoder: Boolean): MediaCodecInfo? {
+        fun selectCodec(mimeType: String): MediaCodecInfo? {
             val list = cachedCodecInfos
             list.forEach {
                 if (it.isEncoder) {
@@ -71,17 +71,16 @@ class CamEngine(val context: Context) {
             return null
         }
 
-        val colorFormat = MediaCodecInfo.CodecCapabilities.COLOR_FormatCbYCrY;
-        val codec = selectCodec("video/avc", true) ?: return null
-        val format = MediaFormat.createVideoFormat("video/avc", resW, resH)
-        format.setString(MediaFormat.KEY_MIME, "video/avc");
-        format.setInteger(MediaFormat.KEY_FRAME_RATE, 30);
-        format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 5);
-        format.setInteger(MediaFormat.KEY_BIT_RATE, 2_000_000);
-        Log.i("CODECS", "video/avc: " + codec)
-        val encoder = MediaCodec.createByCodecName(codec.getName());
-        encoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
-        encoder.start();
+        val codec = selectCodec(mimeType) ?: return null
+        val format = MediaFormat.createVideoFormat(mimeType, resW, resH)
+        format.setString(MediaFormat.KEY_MIME, mimeType)
+        format.setInteger(MediaFormat.KEY_FRAME_RATE, 30)
+        format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 5)
+        format.setInteger(MediaFormat.KEY_BIT_RATE, 2_000_000)
+        Log.i("CODECS", "$mimeType: $codec")
+        val encoder = MediaCodec.createByCodecName(codec.name)
+        encoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
+        encoder.start()
         return encoder
     }
 
@@ -242,7 +241,7 @@ class CamEngine(val context: Context) {
 
 
         var kodd = 0
-        var aquired = AtomicInteger(0)
+        val acquired = AtomicInteger(0)
         session!!.setRepeatingRequest(
             captureRequest.build(),
             object : CameraCaptureSession.CaptureCallback() {
@@ -257,14 +256,14 @@ class CamEngine(val context: Context) {
 
                     var lastImg = imageReader.acquireNextImage()
 
-                    if (aquired.get() > 1 && lastImg != null) {
+                    if (acquired.get() > 1 && lastImg != null) {
                         lastImg.close()
                         Log.i("COM", "EARLY CLOSE")
                         lastImg = null
                     }
 
                     val img = lastImg ?: return
-                    aquired.incrementAndGet()
+                    acquired.incrementAndGet()
                     var curTime = System.currentTimeMillis()
                     val delta = curTime - lastTime
                     lastTime = curTime
@@ -285,7 +284,7 @@ class CamEngine(val context: Context) {
                         }
 
                         img.close()
-                        aquired.decrementAndGet()
+                        acquired.decrementAndGet()
                         if (viewState.stream) {
 
                             http?.channel?.trySend(

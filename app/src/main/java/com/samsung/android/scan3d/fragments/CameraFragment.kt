@@ -364,11 +364,6 @@ class CameraFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        try {
-
-        } catch (exc: Throwable) {
-            Log.e(TAG, "Error closing camera", exc)
-        }
     }
 
     override fun onDestroy() {

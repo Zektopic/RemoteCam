@@ -23,13 +23,10 @@ import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.samsung.android.scan3d.databinding.ActivityCameraBinding
-import com.samsung.android.scan3d.http.HttpService
 import com.samsung.android.scan3d.serv.Cam
-import kotlinx.coroutines.channels.Channel
 
 
 class CameraActivity : AppCompatActivity() {
@@ -51,7 +48,7 @@ class CameraActivity : AppCompatActivity() {
         sendCam {
             it.action = "start"
         }
-        registerReceiver(receiver, IntentFilter("KILL"))
+        ContextCompat.registerReceiver(this, receiver, IntentFilter("KILL"), ContextCompat.RECEIVER_NOT_EXPORTED)
     }
 
     override fun onPause() {
@@ -62,7 +59,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     fun sendCam(extra: (Intent) -> Unit) {
-        var intent = Intent(this, Cam::class.java)
+        val intent = Intent(this, Cam::class.java)
         extra(intent)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(intent)

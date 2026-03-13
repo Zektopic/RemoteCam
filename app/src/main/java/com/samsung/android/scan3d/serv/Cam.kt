@@ -70,7 +70,7 @@ class Cam : Service() {
                 )
 
 
-                var builer =
+                val builder =
                     NotificationCompat.Builder(this, CHANNEL_ID)
                         .setContentTitle("RemoteCam (active)")
                         .setContentText("Click to open").setOngoing(true)
@@ -80,9 +80,9 @@ class Cam : Service() {
 
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    //      builer?.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
+                    //      builder.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
                 }
-                val notification: Notification = builer.build()
+                val notification: Notification = builder.build()
                 startForeground(123, notification) // Start the foreground service
 
                 http = HttpService()
