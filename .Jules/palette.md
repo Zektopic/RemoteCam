@@ -45,3 +45,7 @@
 ## 2025-10-21 - Custom Button Drawable Focus States
 **Learning:** Custom button drawables often lack focus states, making them inaccessible to keyboard and D-pad users who rely on visual indicators.
 **Action:** Always include `<item android:state_focused="true">` when creating custom state selectors for interactive elements to ensure accessibility.
+
+## 2026-03-15 - Interactive Tooltips require focus states and minimum touch targets
+**Learning:** TextViews acting as interactive tooltips (using `android:tooltipText` and `android:focusable="true"`) are difficult for users to access or recognize without a focus state or sufficient touch size.
+**Action:** When adding or modifying interactive tooltip views, ensure they have `android:clickable="true"`, `android:background="?attr/selectableItemBackground"`, and `android:minHeight="48dp"` for keyboard navigation visibility and touch accessibility.
