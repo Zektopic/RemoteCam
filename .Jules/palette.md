@@ -41,3 +41,7 @@
 ## 2025-10-21 - Localization of Interactive Feedback
 **Learning:** Found a hardcoded string `"Copied to clipboard"` used in a Toast message for interactive feedback. Hardcoded strings cannot be localized and are not accessible to non-English screen readers.
 **Action:** Always use string resources (`R.string.*`) for all user-facing text, including Toast messages and Snackbars, to ensure proper localization and accessibility support.
+
+## 2025-10-21 - Custom Button Drawable Focus States
+**Learning:** Custom button drawables often lack focus states, making them inaccessible to keyboard and D-pad users who rely on visual indicators.
+**Action:** Always include `<item android:state_focused="true">` when creating custom state selectors for interactive elements to ensure accessibility.
