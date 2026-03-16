@@ -45,3 +45,7 @@
 ## 2025-10-21 - Custom Button Drawable Focus States
 **Learning:** Custom button drawables often lack focus states, making them inaccessible to keyboard and D-pad users who rely on visual indicators.
 **Action:** Always include `<item android:state_focused="true">` when creating custom state selectors for interactive elements to ensure accessibility.
+
+## 2025-03-16 - Make Tooltips Accessible Touch Targets
+**Learning:** When making tooltip text views accessible touch targets (adding minHeight, clickable, and selectableItemBackground), parent container heights (like TableRow or LinearLayout) often need to be changed from fixed heights (e.g., 35dp, 48dp) to wrap_content to prevent clipping the expanded accessible touch area.
+**Action:** Always inspect the entire parent container chain when increasing minimum touch target sizes to ensure hardcoded layout constraints don't clip the new accessible dimensions.
