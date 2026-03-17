@@ -240,7 +240,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <LinearLayout
-                        android:layout_width="131dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
@@ -330,6 +330,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:autoLink="web"
+                        android:background="?attr/selectableItemBackground"
+                        android:focusable="true"
                         android:minHeight="48dp"
                         android:padding="8dp"
                         android:text="@string/repo_url"

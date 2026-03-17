@@ -49,3 +49,7 @@
 ## 2025-03-16 - Make Tooltips Accessible Touch Targets
 **Learning:** When making tooltip text views accessible touch targets (adding minHeight, clickable, and selectableItemBackground), parent container heights (like TableRow or LinearLayout) often need to be changed from fixed heights (e.g., 35dp, 48dp) to wrap_content to prevent clipping the expanded accessible touch area.
 **Action:** Always inspect the entire parent container chain when increasing minimum touch target sizes to ensure hardcoded layout constraints don't clip the new accessible dimensions.
+
+## 2026-03-17 - Dynamic Content in Fixed Width Containers
+**Learning:** Using hardcoded dimensions (e.g., `131dp`) for parent containers like `LinearLayout` inside `TableLayout` can cause adjacent dynamically generated content (like bandwidth feedback `TextViews`) to be horizontally clipped.
+**Action:** Always prefer `wrap_content` over fixed widths when parent containers hold dynamically sizing text elements, to ensure the full content is visible and accessible.
