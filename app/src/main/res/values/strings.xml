@@ -47,4 +47,7 @@
     <string name="bitrate_tooltip">Data transfer rate</string>
     <string name="frame_time_desc">%1$d milliseconds latency</string>
     <string name="bitrate_desc">%1$d kilobytes per second</string>
+
+    <string name="default_frame_time">-- ms</string>
+    <string name="default_bitrate">-- kB/sec</string>
 </resources>

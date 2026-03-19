@@ -57,7 +57,7 @@
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_width="147dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
                         android:layout_gravity="center_vertical"
@@ -82,11 +82,12 @@
                             android:background="?attr/selectableItemBackground"
                             android:minHeight="48dp"
                             android:padding="8dp"
+                            android:text="@string/default_frame_time"
                             android:tooltipText="@string/frame_time_tooltip" />
 
                         <Button
                             android:id="@+id/buttonKill"
-                            android:layout_width="146dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|fill_vertical"
                             android:layout_weight="1"
@@ -262,6 +263,7 @@
                             android:padding="8dp"
                             android:textColor="@color/colorPrimary"
                             android:textSize="12sp"
+                            android:text="@string/default_bitrate"
                             android:tooltipText="@string/bitrate_tooltip" />
                     </LinearLayout>
 

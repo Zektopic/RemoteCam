@@ -53,3 +53,11 @@
 ## 2026-03-17 - Dynamic Content in Fixed Width Containers
 **Learning:** Using hardcoded dimensions (e.g., `131dp`) for parent containers like `LinearLayout` inside `TableLayout` can cause adjacent dynamically generated content (like bandwidth feedback `TextViews`) to be horizontally clipped.
 **Action:** Always prefer `wrap_content` over fixed widths when parent containers hold dynamically sizing text elements, to ensure the full content is visible and accessible.
+
+## 2025-10-21 - Empty State Placeholders for Dynamic Content
+**Learning:** Found dynamic UI elements (frame time and bitrate feedback) that lacked initial text values, resulting in them appearing completely blank/invisible until the data stream started. Additionally, adjacent structural layouts had hardcoded fixed widths (, ) which are susceptible to text clipping during localization or text scaling.
+**Action:** Always provide default placeholder string resources (e.g., `-- ms`, `-- kB/sec`) for dynamically updating elements to prevent broken empty states, and prefer  over fixed widths to ensure responsive accessibility.
+
+## 2025-10-21 - Empty State Placeholders for Dynamic Content
+**Learning:** Found dynamic UI elements (frame time and bitrate feedback) that lacked initial text values, resulting in them appearing completely blank/invisible until the data stream started. Additionally, adjacent structural layouts had hardcoded fixed widths (`147dp`, `146dp`) which are susceptible to text clipping during localization or text scaling.
+**Action:** Always provide default placeholder string resources (e.g., `-- ms`, `-- kB/sec`) for dynamically updating elements to prevent broken empty states, and prefer `wrap_content` over fixed widths to ensure responsive accessibility.
