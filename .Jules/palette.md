@@ -61,3 +61,7 @@
 ## 2025-10-21 - Empty State Placeholders for Dynamic Content
 **Learning:** Found dynamic UI elements (frame time and bitrate feedback) that lacked initial text values, resulting in them appearing completely blank/invisible until the data stream started. Additionally, adjacent structural layouts had hardcoded fixed widths (`147dp`, `146dp`) which are susceptible to text clipping during localization or text scaling.
 **Action:** Always provide default placeholder string resources (e.g., `-- ms`, `-- kB/sec`) for dynamically updating elements to prevent broken empty states, and prefer `wrap_content` over fixed widths to ensure responsive accessibility.
+
+## 2025-10-21 - Clarity in Confirmation Feedback
+**Learning:** Found an interactive copy action that displayed an imperative "Copy to clipboard" Toast upon success, creating an ambiguous UX state (did it copy or is it telling me to copy?). Additionally, the permission denied error message was a robotic "Permission request denied".
+**Action:** Always use past-tense confirmation messages (e.g., "Copied to clipboard") for success feedback like Toasts or Snackbars to reassure users, and write actionable, explanatory error messages (e.g., "Camera permission is required to stream video") to provide clear context.

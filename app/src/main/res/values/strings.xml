@@ -32,7 +32,7 @@
     <string name="copy_ip_tooltip">Copy IP to clipboard</string>
     <string name="repo_label">Source</string>
     <string name="repo_url">https://github.com/Ruddle/RemoteCam</string>
-    <string name="copy_to_clipboard">Copy to clipboard</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
 
     <!-- Stop Confirmation Dialog -->
     <string name="stop_confirmation_title">Stop Server?</string>
@@ -40,7 +40,7 @@
     <string name="stop_confirmation_positive">Stop</string>
     <string name="stop_confirmation_negative">Cancel</string>
 
-    <string name="permission_denied">Permission request denied</string>
+    <string name="permission_denied">Camera permission is required to stream video</string>
 
     <!-- Feedback Tooltips and Content Descriptions -->
     <string name="frame_time_tooltip">Frame latency</string>
