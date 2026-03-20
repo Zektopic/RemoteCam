@@ -65,3 +65,7 @@
 ## 2025-10-21 - Clarity in Confirmation Feedback
 **Learning:** Found an interactive copy action that displayed an imperative "Copy to clipboard" Toast upon success, creating an ambiguous UX state (did it copy or is it telling me to copy?). Additionally, the permission denied error message was a robotic "Permission request denied".
 **Action:** Always use past-tense confirmation messages (e.g., "Copied to clipboard") for success feedback like Toasts or Snackbars to reassure users, and write actionable, explanatory error messages (e.g., "Camera permission is required to stream video") to provide clear context.
+
+## 2025-10-21 - Misleading Interactivity Cues on Informational Elements
+**Learning:** Providing `clickable="true"` and `selectableItemBackground` on non-interactive informative `TextView`s (simply to make them focusable for tooltips) creates misleading visual ripples and false "double tap to activate" TalkBack announcements.
+**Action:** Only apply clickability and interactive backgrounds to elements that actually trigger an action. For informational tooltips, `focusable="true"` combined with `tooltipText` is sufficient and prevents misleading screen reader feedback.
