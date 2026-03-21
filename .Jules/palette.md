@@ -65,3 +65,7 @@
 ## 2025-10-21 - Clarity in Confirmation Feedback
 **Learning:** Found an interactive copy action that displayed an imperative "Copy to clipboard" Toast upon success, creating an ambiguous UX state (did it copy or is it telling me to copy?). Additionally, the permission denied error message was a robotic "Permission request denied".
 **Action:** Always use past-tense confirmation messages (e.g., "Copied to clipboard") for success feedback like Toasts or Snackbars to reassure users, and write actionable, explanatory error messages (e.g., "Camera permission is required to stream video") to provide clear context.
+
+## 2025-10-21 - Misleading Interactive Attributes on Tooltips
+**Learning:** Adding `android:clickable="true"` and `android:background="?attr/selectableItemBackground"` to non-interactive views just to make their tooltips accessible via touch causes screen readers (like TalkBack) to misleadingly announce them as actionable ("double tap to activate").
+**Action:** For purely informational views with tooltips, use only `android:focusable="true"` and `android:tooltipText`. This ensures keyboard/D-pad users can focus the view to see the tooltip, while preventing screen readers from falsely advertising an interaction.
