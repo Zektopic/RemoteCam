@@ -107,11 +107,11 @@ class CameraFragment : Fragment() {
                 activity?.runOnUiThread(Runnable {
                     // Stuff that updates the UI
                     fragmentCameraBinding.qualFeedback?.let {
-                        it.text = " $rateKbs kB/sec"
+                        it.text = context.getString(R.string.bitrate_format, rateKbs)
                         it.contentDescription = context.getString(R.string.bitrate_desc, rateKbs)
                     }
                     fragmentCameraBinding.ftFeedback?.let {
-                        it.text = " $ms ms"
+                        it.text = context.getString(R.string.frame_time_format, ms)
                         it.contentDescription = context.getString(R.string.frame_time_desc, ms)
                     }
                 })
