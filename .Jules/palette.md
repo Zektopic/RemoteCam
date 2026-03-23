@@ -76,3 +76,6 @@
 ## 2025-10-21 - Spinner contentDescription Override
 **Learning:** Setting `contentDescription` on an Android `Spinner` causes screen readers (like TalkBack) to announce the description instead of the currently selected value. This hides the actual selected item from visually impaired users.
 **Action:** Never set `contentDescription` directly on `Spinner`s unless it dynamically includes the selected value. Instead, use an adjacent `TextView` with `android:labelFor` pointing to the Spinner ID to associate a label while preserving the announcement of the Spinner's selected content.
+## 2026-03-23 - Dynamic Accessibility Properties
+**Learning:** Added a static `android:contentDescription` to a TextView meant to display dynamic text (frame time/bitrate), which caused TalkBack to permanently read the static description instead of the updated live data.
+**Action:** Never set static `android:contentDescription` in XML for elements whose content dynamically updates. The screen reader will prioritize the static XML property over the updated text.
