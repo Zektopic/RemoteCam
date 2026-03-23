@@ -72,3 +72,7 @@
 ## 2025-10-21 - Misleading Interactive Attributes on Tooltips
 **Learning:** Adding `android:clickable="true"` and `android:background="?attr/selectableItemBackground"` to non-interactive views just to make their tooltips accessible via touch causes screen readers (like TalkBack) to misleadingly announce them as actionable ("double tap to activate").
 **Action:** For purely informational views with tooltips, use only `android:focusable="true"` and `android:tooltipText`. This ensures keyboard/D-pad users can focus the view to see the tooltip, while preventing screen readers from falsely advertising an interaction.
+
+## 2025-10-21 - Spinner contentDescription Override
+**Learning:** Setting `contentDescription` on an Android `Spinner` causes screen readers (like TalkBack) to announce the description instead of the currently selected value. This hides the actual selected item from visually impaired users.
+**Action:** Never set `contentDescription` directly on `Spinner`s unless it dynamically includes the selected value. Instead, use an adjacent `TextView` with `android:labelFor` pointing to the Spinner ID to associate a label while preserving the announcement of the Spinner's selected content.
