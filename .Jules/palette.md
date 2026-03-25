@@ -79,3 +79,7 @@
 ## 2026-03-23 - Dynamic Accessibility Properties
 **Learning:** Added a static `android:contentDescription` to a TextView meant to display dynamic text (frame time/bitrate), which caused TalkBack to permanently read the static description instead of the updated live data.
 **Action:** Never set static `android:contentDescription` in XML for elements whose content dynamically updates. The screen reader will prioritize the static XML property over the updated text.
+
+## 2025-10-21 - Maintain proper column structure in TableLayout
+**Learning:** In a `TableLayout`, if multiple interactive elements (like switches) are placed sequentially in a single `TableRow` without a spanning container, they might break the expected column structure. Similarly, full-width decorative elements (like dividers) might clip or restrict to a single column.
+**Action:** Always group related interactive sibling elements inside a spanning parent container (e.g., `LinearLayout` with `android:layout_span`) and apply `android:layout_span` to full-width decorative elements to maintain structural integrity and layout harmony in `TableLayout`.
