@@ -177,8 +177,8 @@
 
                     <Spinner
                         android:id="@+id/spinnerEncoding"
-                        android:layout_width="131dp"
-                        android:layout_height="48dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
                 </TableRow>
 
@@ -200,8 +200,8 @@
 
                     <Spinner
                         android:id="@+id/spinnerCam"
-                        android:layout_width="131dp"
-                        android:layout_height="48dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </TableRow>
 
                 <TableRow
@@ -222,8 +222,8 @@
 
                     <Spinner
                         android:id="@+id/spinnerRes"
-                        android:layout_width="131dp"
-                        android:layout_height="48dp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
                 </TableRow>
 
@@ -250,8 +250,8 @@
 
                         <Spinner
                             android:id="@+id/spinnerQua"
-                            android:layout_width="95dp"
-                            android:layout_height="48dp" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                         <TextView
                             android:id="@+id/qual_feedback"
