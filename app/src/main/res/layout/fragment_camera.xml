@@ -90,7 +90,6 @@
                             android:layout_gravity="end|fill_vertical"
                             android:layout_weight="1"
                             android:includeFontPadding="false"
-                            android:minWidth="10dp"
                             android:text="@string/stop_button" />
                     </LinearLayout>
 
@@ -177,7 +176,7 @@
 
                     <Spinner
                         android:id="@+id/spinnerEncoding"
-                        android:layout_width="131dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="48dp" />
 
                 </TableRow>
@@ -200,7 +199,7 @@
 
                     <Spinner
                         android:id="@+id/spinnerCam"
-                        android:layout_width="131dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="48dp" />
                 </TableRow>
 
@@ -222,7 +221,7 @@
 
                     <Spinner
                         android:id="@+id/spinnerRes"
-                        android:layout_width="131dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="48dp" />
 
                 </TableRow>
@@ -250,7 +249,7 @@
 
                         <Spinner
                             android:id="@+id/spinnerQua"
-                            android:layout_width="95dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="48dp" />
 
                         <TextView
