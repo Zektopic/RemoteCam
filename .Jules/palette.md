@@ -83,3 +83,6 @@
 ## 2025-10-21 - Maintain proper column structure in TableLayout
 **Learning:** In a `TableLayout`, if multiple interactive elements (like switches) are placed sequentially in a single `TableRow` without a spanning container, they might break the expected column structure. Similarly, full-width decorative elements (like dividers) might clip or restrict to a single column.
 **Action:** Always group related interactive sibling elements inside a spanning parent container (e.g., `LinearLayout` with `android:layout_span`) and apply `android:layout_span` to full-width decorative elements to maintain structural integrity and layout harmony in `TableLayout`.
+## 2026-03-28 - Hardcoded Text Colors on Switches
+**Learning:** Found hardcoded `#C1C1C1` text colors on `Switch` elements. These bypass theme attributes and can lead to poor contrast or inconsistency if the theme changes. Additionally, it clutters the XML with redundant attributes.
+**Action:** Remove hardcoded `android:textColor="#C1C1C1"` from `Switch` elements and let them inherit from the parent theme (`Theme.AppCompat.NoActionBar`) or `TextAppearance.AppCompat.Medium` for consistent and accessible text color styling.
