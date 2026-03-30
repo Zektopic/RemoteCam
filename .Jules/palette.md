@@ -83,3 +83,7 @@
 ## 2025-10-21 - Maintain proper column structure in TableLayout
 **Learning:** In a `TableLayout`, if multiple interactive elements (like switches) are placed sequentially in a single `TableRow` without a spanning container, they might break the expected column structure. Similarly, full-width decorative elements (like dividers) might clip or restrict to a single column.
 **Action:** Always group related interactive sibling elements inside a spanning parent container (e.g., `LinearLayout` with `android:layout_span`) and apply `android:layout_span` to full-width decorative elements to maintain structural integrity and layout harmony in `TableLayout`.
+
+## 2024-05-19 - Inherit Theme Colors for Better Switch Component Contrast
+**Learning:** Hardcoding `android:textColor` (e.g., `#C1C1C1`) on interactive UI components like Android `Switch` elements breaks color inheritance, causing potential contrast accessibility issues, especially on light backgrounds or when switching between system Light/Dark modes.
+**Action:** When updating Android layout XML files, prefer removing hardcoded color values on text components. Allow the components to inherit colors from parent themes or standard `TextAppearance` attributes (like `TextAppearance.AppCompat.Medium`) to guarantee visual consistency and proper contrast across varying device themes.
