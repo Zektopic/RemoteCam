@@ -133,8 +133,7 @@
                             android:checked="true"
                             android:splitTrack="false"
                             android:text="@string/preview_label"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="#C1C1C1" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                         <Switch
                             android:id="@+id/switch2"
@@ -143,8 +142,7 @@
                             android:layout_gravity="start"
                             android:checked="false"
                             android:text="@string/stream_label"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="#C1C1C1" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                         <Switch
                             android:id="@+id/switchRTSP"
@@ -153,8 +151,7 @@
                             android:layout_gravity="start"
                             android:checked="false"
                             android:text="@string/rtsp_label"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="#C1C1C1" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                     </LinearLayout>
                 </TableRow>
 
