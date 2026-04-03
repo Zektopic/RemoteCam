@@ -87,3 +87,11 @@
 ## 2026-04-02 - Text Scaling on Interactive Elements
 **Learning:** Hardcoding `android:layout_height="48dp"` on text-based interactive elements like `Switch` or `Spinner` causes vertical text clipping when users enable large font sizes in their accessibility settings, violating WCAG 1.4.4 (Resize text).
 **Action:** Always prefer `android:layout_height="wrap_content"` paired with `android:minHeight="48dp"`. This ensures text can freely expand vertically when scaled while maintaining the required 48dp minimum accessible touch target size.
+
+## 2026-04-03 - Descriptive Click Actions for TalkBack
+**Learning:** TalkBack defaults to generic announcements like 'Double tap to activate' for clickable custom views (like a TextView used as a button), which lacks context for visually impaired users.
+**Action:** Use `ViewCompat.setAccessibilityDelegate` to add an `AccessibilityNodeInfoCompat.AccessibilityActionCompat` with `ACTION_CLICK` to provide explicit context, such as 'Double tap to Copy IP to clipboard'.
+
+## 2026-04-03 - Touch Target Spacing on Sibling Controls
+**Learning:** Horizontally stacked interactive sibling controls (e.g., Switches in a LinearLayout) that lack explicit margins bleed their touch targets together, increasing the risk of accidental misclicks on touch screens.
+**Action:** Always apply adequate spacing, such as `android:layout_marginEnd="16dp"`, to separate the touch targets of horizontally adjacent interactive controls.
