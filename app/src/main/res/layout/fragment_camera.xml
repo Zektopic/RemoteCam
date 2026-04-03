@@ -128,7 +128,8 @@
                         <Switch
                             android:id="@+id/switch1"
                             android:layout_width="wrap_content"
-                            android:layout_height="48dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
                             android:layout_gravity="start"
                             android:checked="true"
                             android:splitTrack="false"
@@ -138,7 +139,8 @@
                         <Switch
                             android:id="@+id/switch2"
                             android:layout_width="wrap_content"
-                            android:layout_height="48dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
                             android:layout_gravity="start"
                             android:checked="false"
                             android:text="@string/stream_label"
@@ -147,7 +149,8 @@
                         <Switch
                             android:id="@+id/switchRTSP"
                             android:layout_width="wrap_content"
-                            android:layout_height="48dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
                             android:layout_gravity="start"
                             android:checked="false"
                             android:text="@string/rtsp_label"
@@ -174,7 +177,8 @@
                     <Spinner
                         android:id="@+id/spinnerEncoding"
                         android:layout_width="wrap_content"
-                        android:layout_height="48dp" />
+                        android:layout_height="wrap_content"
+                            android:minHeight="48dp" />
 
                 </TableRow>
 
@@ -197,7 +201,8 @@
                     <Spinner
                         android:id="@+id/spinnerCam"
                         android:layout_width="wrap_content"
-                        android:layout_height="48dp" />
+                        android:layout_height="wrap_content"
+                            android:minHeight="48dp" />
                 </TableRow>
 
                 <TableRow
@@ -219,7 +224,8 @@
                     <Spinner
                         android:id="@+id/spinnerRes"
                         android:layout_width="wrap_content"
-                        android:layout_height="48dp" />
+                        android:layout_height="wrap_content"
+                            android:minHeight="48dp" />
 
                 </TableRow>
 
@@ -247,7 +253,8 @@
                         <Spinner
                             android:id="@+id/spinnerQua"
                             android:layout_width="wrap_content"
-                            android:layout_height="48dp" />
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp" />
 
                         <TextView
                             android:id="@+id/qual_feedback"
