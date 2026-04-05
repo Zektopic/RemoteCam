@@ -33,6 +33,9 @@ import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.AccessibilityDelegateCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -91,6 +94,17 @@ class CameraFragment : Fragment() {
                     // Toast to notify the user
                     Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
                 }
+
+                ViewCompat.setAccessibilityDelegate(binding.textView6, object : AccessibilityDelegateCompat() {
+                    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                        super.onInitializeAccessibilityNodeInfo(host, info)
+                        val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                            AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
+                            getString(R.string.copy_ip_tooltip)
+                        )
+                        info.addAction(clickAction)
+                    }
+                })
             }
         }
 
