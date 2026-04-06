@@ -91,3 +91,7 @@
 ## 2025-10-21 - Custom Action Descriptions for TalkBack
 **Learning:** Generic TalkBack click announcements (e.g., "Double tap to activate") on custom clickable views (like a TextView used to copy an IP address) lack context for visually impaired users.
 **Action:** Use `ViewCompat.setAccessibilityDelegate` to override the generic click action with a descriptive custom `AccessibilityActionCompat` (e.g., "Double tap to copy IP to clipboard"), giving clear interaction context.
+
+## 2025-10-21 - Horizontal Spacing for Interactive Siblings
+**Learning:** Placing interactive elements (like `Switch` controls) directly next to each other in a horizontal `LinearLayout` without margins results in contiguous touch targets, increasing the likelihood of users accidentally tapping the wrong control, especially on mobile devices.
+**Action:** Always provide explicit spacing, such as `android:layout_marginEnd="16dp"`, between horizontally stacked interactive siblings to ensure distinct touch targets and adhere to accessibility guidelines.
