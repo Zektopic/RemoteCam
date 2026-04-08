@@ -11,6 +11,8 @@
 **Action:** Use `ViewCompat.setAccessibilityDelegate` to override the generic click action with a descriptive custom `AccessibilityActionCompat` (e.g., "Double tap to copy IP to clipboard"), giving clear interaction context.
 
 ## 2025-10-21 - Horizontal Spacing for Interactive Siblings
+**Learning:** Placing interactive sibling elements (like multiple Switches or a Spinner next to a TextView) sequentially in a horizontal `LinearLayout` without explicit margins creates a cluttered UI and violates minimum touch target spacing guidelines, leading to potential mis-taps.
+**Action:** Always add explicit spacing, such as `android:layout_marginEnd="16dp"`, to the inner sibling elements when grouping horizontally stacked interactive controls to ensure clear visual separation and accessible touch targets.
 **Learning:** Placing interactive elements (like `Switch` controls) directly next to each other in a horizontal `LinearLayout` without margins results in contiguous touch targets, increasing the likelihood of users accidentally tapping the wrong control, especially on mobile devices.
 **Action:** Always provide explicit spacing, such as `android:layout_marginEnd="16dp"`, between horizontally stacked interactive siblings to ensure distinct touch targets and adhere to accessibility guidelines.
 ## 2025-10-21 - Touch Target Spacing for Sibling Controls
