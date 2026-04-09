@@ -18,3 +18,7 @@
 ## 2025-10-21 - Touch Target Spacing for Sibling Controls
 **Learning:** Horizontally stacked interactive sibling controls (e.g., Switches inside a LinearLayout) lack inherent spacing in Android layouts, which can lead to overlapping or excessively close touch targets, increasing the risk of accidental mis-taps.
 **Action:** Always apply explicit spacing, such as `android:layout_marginEnd="16dp"`, to interactive sibling elements to ensure adequate physical separation between touch targets, particularly on touch-first interfaces.
+
+## 2025-10-21 - Accessible autoLink TextViews
+**Learning:** `TextView`s with `android:autoLink="web"` make text links interactive but may not provide proper context or affordances to screen readers on their own. They can act as opaque clickable blocks without a clear spoken description.
+**Action:** Always add `android:clickable="true"` and an informative `android:contentDescription` (e.g., "Open GitHub repository") to `autoLink` `TextView`s to ensure visually impaired users understand the link's destination and purpose.
