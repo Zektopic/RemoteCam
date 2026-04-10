@@ -97,7 +97,7 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <View
                         android:id="@+id/divider"
@@ -114,7 +114,7 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:background="#393939"
                     android:padding="4dp">
@@ -162,7 +162,7 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:background="#393939"
                     android:padding="4dp">
@@ -186,7 +186,7 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:background="#393939"
                     android:padding="4dp">
@@ -209,7 +209,7 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:background="#393939"
                     android:padding="4dp">
@@ -233,7 +233,7 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:background="#393939"
                     android:padding="4dp">
@@ -277,7 +277,7 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:background="#393939"
                     android:padding="4dp">
@@ -317,7 +317,7 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:layout_weight="1"
                     android:background="#393939"
