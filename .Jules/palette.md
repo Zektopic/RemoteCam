@@ -26,3 +26,6 @@
 ## 2025-10-21 - Universal Interaction Context via Tooltips
 **Learning:** While `contentDescription` provides crucial interaction context for TalkBack users on custom link elements (like `autoLink` TextViews), sighted users navigating via keyboard or mouse lack this context unless a visual tooltip is also provided.
 **Action:** Always pair `android:contentDescription` with an equivalent `android:tooltipText` on interactive elements that lack clear visual labels to ensure universal access to interaction context across all input modalities.
+## 2026-04-11 - Prevent unreadable hardcoded text sizing
+**Learning:** Hardcoding `android:textSize="12sp"` directly on Android TextView elements creates an accessibility barrier for users with poor vision and ignores system-level font scaling preferences, particularly for dynamic data fields like bitrate readouts.
+**Action:** Remove overly restrictive `android:textSize` attributes from informational UI elements, allowing them to inherit accessible default text sizes from the application theme.
