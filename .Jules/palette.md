@@ -22,3 +22,7 @@
 ## 2025-10-21 - Accessible autoLink TextViews
 **Learning:** `TextView`s with `android:autoLink="web"` make text links interactive but may not provide proper context or affordances to screen readers on their own. They can act as opaque clickable blocks without a clear spoken description.
 **Action:** Always add `android:clickable="true"` and an informative `android:contentDescription` (e.g., "Open GitHub repository") to `autoLink` `TextView`s to ensure visually impaired users understand the link's destination and purpose.
+
+## 2025-10-21 - Universal Interaction Context via Tooltips
+**Learning:** While `contentDescription` provides crucial interaction context for TalkBack users on custom link elements (like `autoLink` TextViews), sighted users navigating via keyboard or mouse lack this context unless a visual tooltip is also provided.
+**Action:** Always pair `android:contentDescription` with an equivalent `android:tooltipText` on interactive elements that lack clear visual labels to ensure universal access to interaction context across all input modalities.
