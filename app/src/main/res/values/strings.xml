@@ -20,6 +20,7 @@
     <!-- Camera Fragment Strings -->
     <string name="app_title">RemoteCam</string>
     <string name="stop_button">STOP</string>
+    <string name="stop_button_desc">Stop camera server</string>
     <string name="preview_label">Preview</string>
     <string name="stream_label">Stream</string>
     <string name="rtsp_label">RTSP</string>

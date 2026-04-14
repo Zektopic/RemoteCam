@@ -90,7 +90,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|fill_vertical"
                             android:includeFontPadding="false"
-                            android:text="@string/stop_button" />
+                            android:text="@string/stop_button"
+                            android:contentDescription="@string/stop_button_desc"
+                            android:tooltipText="@string/stop_button_desc" />
                     </LinearLayout>
 
                 </TableRow>

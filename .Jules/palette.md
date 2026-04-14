@@ -29,3 +29,7 @@
 ## 2026-04-11 - Prevent unreadable hardcoded text sizing
 **Learning:** Hardcoding `android:textSize="12sp"` directly on Android TextView elements creates an accessibility barrier for users with poor vision and ignores system-level font scaling preferences, particularly for dynamic data fields like bitrate readouts.
 **Action:** Remove overly restrictive `android:textSize` attributes from informational UI elements, allowing them to inherit accessible default text sizes from the application theme.
+
+## 2026-04-14 - Descriptive Labels for Brief/Destructive Actions
+**Learning:** Brief or destructive action buttons (like 'STOP') may lack context for screen reader users and sighted users hovering with a mouse, especially when the visual label is short.
+**Action:** Enhance brief or destructive buttons with `android:contentDescription` and `android:tooltipText` that explicitly describe their full outcome (e.g., 'Stop camera server') to provide clear context across input modalities.
