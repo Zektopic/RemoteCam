@@ -30,6 +30,9 @@
 **Learning:** Hardcoding `android:textSize="12sp"` directly on Android TextView elements creates an accessibility barrier for users with poor vision and ignores system-level font scaling preferences, particularly for dynamic data fields like bitrate readouts.
 **Action:** Remove overly restrictive `android:textSize` attributes from informational UI elements, allowing them to inherit accessible default text sizes from the application theme.
 
+## 2026-04-13 - Stop Button Accessibility
+**Learning:** Destructive action buttons like 'STOP' might only have a simple text label, which lacks detail for screen reader users and mouse hover contexts.
+**Action:** Add `android:contentDescription` and `android:tooltipText` with explicit consequences (e.g., 'Stop camera server') to brief action buttons.
 ## 2025-10-21 - Accessible Tooltips for Destructive Actions
 **Learning:** Action buttons like "STOP" with brief labels may not convey their full impact (e.g., stopping the stream AND exiting the server) to all users, particularly those relying on screen readers or keyboard navigation.
 **Action:** Enhance brief or destructive action buttons by providing both `android:contentDescription` and `android:tooltipText` with explicit descriptions of the outcome, ensuring clarity for assistive technologies and mouse/keyboard hover states.
