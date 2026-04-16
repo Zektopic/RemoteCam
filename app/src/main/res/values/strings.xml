@@ -20,6 +20,7 @@
     <!-- Camera Fragment Strings -->
     <string name="app_title">RemoteCam</string>
     <string name="stop_button">STOP</string>
+    <string name="stop_button_desc">Stop camera server</string>
     <string name="preview_label">Preview</string>
     <string name="stream_label">Stream</string>
     <string name="rtsp_label">RTSP</string>
@@ -32,6 +33,7 @@
     <string name="copy_ip_tooltip">Copy IP to clipboard</string>
     <string name="repo_label">Source</string>
     <string name="repo_url">https://github.com/Ruddle/RemoteCam</string>
+    <string name="repo_desc">Open GitHub repository</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
 
     <!-- Stop Confirmation Dialog -->
