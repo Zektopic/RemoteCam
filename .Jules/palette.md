@@ -39,3 +39,7 @@
 ## 2025-10-21 - Destructive Action Context for Screen Readers
 **Learning:** Brief or visually compact buttons for destructive actions (like a "STOP" button that kills a server and closes the app) lack sufficient context for visually impaired users or keyboard navigators, making accidental activation a high risk.
 **Action:** Enhance brief or destructive action buttons with explicit `android:contentDescription` and `android:tooltipText` that fully describe the action's outcome (e.g., "Stop camera server") to ensure users are fully aware of the consequences before interacting.
+
+## 2026-04-14 - Keyboard focus indicators on focusable tooltips
+**Learning:** When adding `android:focusable="true"` to informational views (like TextViews) solely to enable keyboard/D-pad access to `android:tooltipText`, the view does not automatically receive a visual focus state, violating WCAG 2.4.7 Focus Visible.
+**Action:** Always pair `android:focusable="true"` with a visual focus indicator (e.g., `android:background="?attr/selectableItemBackground"`) on informational views that present tooltips to ensure keyboard users can track their location on screen.
