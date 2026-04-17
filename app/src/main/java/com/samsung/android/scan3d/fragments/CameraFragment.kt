@@ -46,6 +46,9 @@ import com.samsung.android.scan3d.databinding.FragmentCameraBinding
 import com.samsung.android.scan3d.serv.CamEngine
 import com.samsung.android.scan3d.util.ClipboardUtil
 import com.samsung.android.scan3d.util.IpUtil
+import androidx.core.view.AccessibilityDelegateCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize

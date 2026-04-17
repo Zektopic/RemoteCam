@@ -13,8 +13,7 @@
 ## 2025-10-21 - Horizontal Spacing for Interactive Siblings
 **Learning:** Placing interactive sibling elements (like multiple Switches or a Spinner next to a TextView) sequentially in a horizontal `LinearLayout` without explicit margins creates a cluttered UI and violates minimum touch target spacing guidelines, leading to potential mis-taps.
 **Action:** Always add explicit spacing, such as `android:layout_marginEnd="16dp"`, to the inner sibling elements when grouping horizontally stacked interactive controls to ensure clear visual separation and accessible touch targets.
-**Learning:** Placing interactive elements (like `Switch` controls) directly next to each other in a horizontal `LinearLayout` without margins results in contiguous touch targets, increasing the likelihood of users accidentally tapping the wrong control, especially on mobile devices.
-**Action:** Always provide explicit spacing, such as `android:layout_marginEnd="16dp"`, between horizontally stacked interactive siblings to ensure distinct touch targets and adhere to accessibility guidelines.
+
 ## 2025-10-21 - Touch Target Spacing for Sibling Controls
 **Learning:** Horizontally stacked interactive sibling controls (e.g., Switches inside a LinearLayout) lack inherent spacing in Android layouts, which can lead to overlapping or excessively close touch targets, increasing the risk of accidental mis-taps.
 **Action:** Always apply explicit spacing, such as `android:layout_marginEnd="16dp"`, to interactive sibling elements to ensure adequate physical separation between touch targets, particularly on touch-first interfaces.
@@ -26,6 +25,7 @@
 ## 2025-10-21 - Universal Interaction Context via Tooltips
 **Learning:** While `contentDescription` provides crucial interaction context for TalkBack users on custom link elements (like `autoLink` TextViews), sighted users navigating via keyboard or mouse lack this context unless a visual tooltip is also provided.
 **Action:** Always pair `android:contentDescription` with an equivalent `android:tooltipText` on interactive elements that lack clear visual labels to ensure universal access to interaction context across all input modalities.
+
 ## 2026-04-11 - Prevent unreadable hardcoded text sizing
 **Learning:** Hardcoding `android:textSize="12sp"` directly on Android TextView elements creates an accessibility barrier for users with poor vision and ignores system-level font scaling preferences, particularly for dynamic data fields like bitrate readouts.
 **Action:** Remove overly restrictive `android:textSize` attributes from informational UI elements, allowing them to inherit accessible default text sizes from the application theme.
@@ -33,9 +33,11 @@
 ## 2026-04-13 - Stop Button Accessibility
 **Learning:** Destructive action buttons like 'STOP' might only have a simple text label, which lacks detail for screen reader users and mouse hover contexts.
 **Action:** Add `android:contentDescription` and `android:tooltipText` with explicit consequences (e.g., 'Stop camera server') to brief action buttons.
+
 ## 2025-10-21 - Accessible Tooltips for Destructive Actions
 **Learning:** Action buttons like "STOP" with brief labels may not convey their full impact (e.g., stopping the stream AND exiting the server) to all users, particularly those relying on screen readers or keyboard navigation.
 **Action:** Enhance brief or destructive action buttons by providing both `android:contentDescription` and `android:tooltipText` with explicit descriptions of the outcome, ensuring clarity for assistive technologies and mouse/keyboard hover states.
+
 ## 2025-10-21 - Destructive Action Context for Screen Readers
 **Learning:** Brief or visually compact buttons for destructive actions (like a "STOP" button that kills a server and closes the app) lack sufficient context for visually impaired users or keyboard navigators, making accidental activation a high risk.
 **Action:** Enhance brief or destructive action buttons with explicit `android:contentDescription` and `android:tooltipText` that fully describe the action's outcome (e.g., "Stop camera server") to ensure users are fully aware of the consequences before interacting.
