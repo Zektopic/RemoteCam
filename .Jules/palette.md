@@ -48,3 +48,7 @@
 ## 2026-04-14 - Keyboard focus indicators on focusable tooltips
 **Learning:** When adding `android:focusable="true"` to informational views (like TextViews) solely to enable keyboard/D-pad access to `android:tooltipText`, the view does not automatically receive a visual focus state, violating WCAG 2.4.7 Focus Visible.
 **Action:** Always pair `android:focusable="true"` with a visual focus indicator (e.g., `android:background="?attr/selectableItemBackground"`) on informational views that present tooltips to ensure keyboard users can track their location on screen.
+
+## 2025-10-21 - Accessible Formatting for Numerical Spinners
+**Learning:** Displaying raw numbers (e.g., "80") in a `Spinner` lacks context for all users, particularly screen reader users who might just hear "80" without knowing the unit or what it represents.
+**Action:** Always format numerical `Spinner` items with appropriate contextual units (e.g., using a string resource like `"%1$d%%"` to display "80%") to ensure clear visual and spoken context.

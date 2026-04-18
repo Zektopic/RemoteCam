@@ -46,9 +46,6 @@ import com.samsung.android.scan3d.databinding.FragmentCameraBinding
 import com.samsung.android.scan3d.serv.CamEngine
 import com.samsung.android.scan3d.util.ClipboardUtil
 import com.samsung.android.scan3d.util.IpUtil
-import androidx.core.view.AccessibilityDelegateCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
@@ -235,7 +232,7 @@ class CameraFragment : Fragment() {
                 val spinner = fragmentCameraBinding.spinnerQua
                 val spinnerDataList = ArrayList<Any>()
                 val quals = arrayOf(1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
-                quals.forEach { spinnerDataList.add(it.toString()) }
+                quals.forEach { spinnerDataList.add(getString(R.string.quality_format, it)) }
                 // Initialize the ArrayAdapter
                 val spinnerAdapter =
                     ArrayAdapter(
