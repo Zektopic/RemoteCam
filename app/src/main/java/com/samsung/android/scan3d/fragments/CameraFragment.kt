@@ -87,7 +87,7 @@ class CameraFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             val localIp = IpUtil.getLocalIpAddress()
             _fragmentCameraBinding?.let { binding ->
-                binding.textView6.text = "$localIp:8080/cam.mjpeg"
+                binding.textView6.text = getString(R.string.ip_format, localIp)
                 binding.textView6.setOnClickListener {
                     // Copy the ip address to the clipboard
                     ClipboardUtil.copyToClipboard(context, "ip", binding.textView6.text.toString())

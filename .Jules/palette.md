@@ -55,3 +55,7 @@
 ## 2023-10-25 - Custom Accessibility Actions for AutoLink TextViews
 **Learning:** Android's default TalkBack announcement ("Double tap to activate") is often insufficient for TextViews utilizing `android:autoLink="web"` (or custom link handlers like copying to clipboard). While these views correctly receive focus, their purpose remains ambiguous to screen reader users without contextual descriptions.
 **Action:** Always assign a custom `AccessibilityDelegateCompat` with an overridden `ACTION_CLICK` containing a descriptive label (e.g., "Double tap to open GitHub repository" or "Double tap to copy IP to clipboard") to auto-linked or interactive informational TextViews to ensure their interaction context is explicitly clear.
+
+## 2025-10-21 - Localized String Formatting for Dynamic Text
+**Learning:** Using Kotlin string templates (e.g., `"$localIp:8080/cam.mjpeg"`) for UI text updates circumvents Android's localization system, creating potential accessibility and translation issues for screen readers in different locales.
+**Action:** Always use Android string resources with format placeholders (e.g., `getString(R.string.ip_format, localIp)`) for dynamically generated UI text to guarantee proper localization and accessibility context.
