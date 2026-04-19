@@ -52,3 +52,6 @@
 ## 2025-10-21 - Accessible Formatting for Numerical Spinners
 **Learning:** Displaying raw numbers (e.g., "80") in a `Spinner` lacks context for all users, particularly screen reader users who might just hear "80" without knowing the unit or what it represents.
 **Action:** Always format numerical `Spinner` items with appropriate contextual units (e.g., using a string resource like `"%1$d%%"` to display "80%") to ensure clear visual and spoken context.
+## 2023-10-25 - Custom Accessibility Actions for AutoLink TextViews
+**Learning:** Android's default TalkBack announcement ("Double tap to activate") is often insufficient for TextViews utilizing `android:autoLink="web"` (or custom link handlers like copying to clipboard). While these views correctly receive focus, their purpose remains ambiguous to screen reader users without contextual descriptions.
+**Action:** Always assign a custom `AccessibilityDelegateCompat` with an overridden `ACTION_CLICK` containing a descriptive label (e.g., "Double tap to open GitHub repository" or "Double tap to copy IP to clipboard") to auto-linked or interactive informational TextViews to ensure their interaction context is explicitly clear.

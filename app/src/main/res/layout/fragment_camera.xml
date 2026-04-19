@@ -82,6 +82,8 @@
                             android:focusable="true"
                             android:minHeight="48dp"
                             android:padding="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/colorPrimary"
                             android:text="@string/default_frame_time"
                             android:tooltipText="@string/frame_time_tooltip" />
 
@@ -271,6 +273,7 @@
                             android:focusable="true"
                             android:minHeight="48dp"
                             android:padding="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/colorPrimary"
                             android:text="@string/default_bitrate"
                             android:tooltipText="@string/bitrate_tooltip" />
@@ -308,6 +311,7 @@
                             android:focusable="true"
                             android:minHeight="48dp"
                             android:padding="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:text="@string/default_ip"
                             android:textColor="@color/colorLink"
                             android:drawableEnd="@drawable/ic_content_copy"
@@ -348,6 +352,7 @@
                         android:tooltipText="@string/repo_desc"
                         android:minHeight="48dp"
                         android:padding="8dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:text="@string/repo_url"
                         android:textColorLink="@color/colorLink" />
                 </TableRow>

@@ -105,6 +105,17 @@ class CameraFragment : Fragment() {
                         info.addAction(clickAction)
                     }
                 })
+
+                ViewCompat.setAccessibilityDelegate(binding.textView2, object : AccessibilityDelegateCompat() {
+                    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                        super.onInitializeAccessibilityNodeInfo(host, info)
+                        val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                            AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
+                            getString(R.string.repo_desc)
+                        )
+                        info.addAction(clickAction)
+                    }
+                })
             }
         }
 
