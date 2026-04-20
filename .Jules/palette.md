@@ -59,3 +59,7 @@
 ## 2025-10-21 - Localized String Formatting for Dynamic Text
 **Learning:** Using Kotlin string templates (e.g., `"$localIp:8080/cam.mjpeg"`) for UI text updates circumvents Android's localization system, creating potential accessibility and translation issues for screen readers in different locales.
 **Action:** Always use Android string resources with format placeholders (e.g., `getString(R.string.ip_format, localIp)`) for dynamically generated UI text to guarantee proper localization and accessibility context.
+
+## 2024-04-20 - Source Repo Clickable Link
+**Learning:** The URL representing the source repository was using `android:autoLink="web"` with an overridden accessibility delegate that required an explicit `OnClickListener` in code, but no such listener was set, so users could not click the link and TalkBack's double-tap behavior would fail.
+**Action:** Always ensure that when overriding accessibility actions for autoLink text views, an explicit `OnClickListener` (e.g. `startActivity(Intent(Intent.ACTION_VIEW...))`) is provided in the code to handle the default behavior that autoLink normally handles, otherwise the link becomes unclickable.
