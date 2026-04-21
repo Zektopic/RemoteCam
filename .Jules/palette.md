@@ -59,3 +59,7 @@
 ## 2025-10-21 - Localized String Formatting for Dynamic Text
 **Learning:** Using Kotlin string templates (e.g., `"$localIp:8080/cam.mjpeg"`) for UI text updates circumvents Android's localization system, creating potential accessibility and translation issues for screen readers in different locales.
 **Action:** Always use Android string resources with format placeholders (e.g., `getString(R.string.ip_format, localIp)`) for dynamically generated UI text to guarantee proper localization and accessibility context.
+
+## 2025-10-21 - Link Actions and Intent Handling
+**Learning:** Implementing a custom TalkBack action (AccessibilityDelegateCompat with ACTION_CLICK) on a generic TextView to simulate link interaction does not automatically make the link navigable. It only provides spoken feedback. Sighted users are left without functionality, and it creates a crash vector if an implicit intent is sent without proper handling.
+**Action:** Avoid masking functionality gaps with accessibility labels. If a view needs to act as a link, ensure it has a functional setOnClickListener that safely handles intents (e.g., catching ActivityNotFoundException), and provide visual affordances (like touch ripples or link colors) to make the interactivity clear to all users.
