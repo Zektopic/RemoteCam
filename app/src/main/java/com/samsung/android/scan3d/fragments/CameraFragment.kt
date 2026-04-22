@@ -107,6 +107,11 @@ class CameraFragment : Fragment() {
                     }
                 })
 
+                binding.textView2.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(getString(R.string.repo_url)))
+                    startActivity(intent)
+                }
+
                 ViewCompat.setAccessibilityDelegate(binding.textView2, object : AccessibilityDelegateCompat() {
                     override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
                         super.onInitializeAccessibilityNodeInfo(host, info)
