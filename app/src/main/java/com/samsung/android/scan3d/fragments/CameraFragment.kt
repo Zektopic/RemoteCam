@@ -21,6 +21,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -121,6 +122,17 @@ class CameraFragment : Fragment() {
                         info.addAction(clickAction)
                     }
                 })
+
+                binding.textView2.setOnClickListener {
+                    val url = getString(R.string.repo_url)
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse(url)
+                    try {
+                        startActivity(intent)
+                    } catch (e: android.content.ActivityNotFoundException) {
+                        Toast.makeText(context, "No web browser found to open link.", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
 
