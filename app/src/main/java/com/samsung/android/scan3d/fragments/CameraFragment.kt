@@ -107,11 +107,6 @@ class CameraFragment : Fragment() {
                     }
                 })
 
-                binding.textView2.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(getString(R.string.repo_url)))
-                    startActivity(intent)
-                }
-
                 ViewCompat.setAccessibilityDelegate(binding.textView2, object : AccessibilityDelegateCompat() {
                     override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
                         super.onInitializeAccessibilityNodeInfo(host, info)
@@ -130,7 +125,7 @@ class CameraFragment : Fragment() {
                     try {
                         startActivity(intent)
                     } catch (e: android.content.ActivityNotFoundException) {
-                        Toast.makeText(context, "No web browser found to open link.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.error_no_browser), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
