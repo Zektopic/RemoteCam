@@ -24,6 +24,9 @@
     <string name="preview_label">Preview</string>
     <string name="stream_label">Stream</string>
     <string name="rtsp_label">RTSP</string>
+    <string name="preview_tooltip">Toggle local camera preview</string>
+    <string name="stream_tooltip">Toggle MJPEG video stream</string>
+    <string name="rtsp_tooltip">Toggle RTSP video stream</string>
     <string name="encoding_label">Encoding</string>
     <string name="sensor_label">Sensor</string>
     <string name="resolution_label">Resolution</string>
