@@ -36,6 +36,7 @@
     <string name="repo_url">https://github.com/Ruddle/RemoteCam</string>
     <string name="repo_desc">Open GitHub repository</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="error_no_browser">No web browser found. Please install a browser to view the repository.</string>
 
     <!-- Stop Confirmation Dialog -->
     <string name="stop_confirmation_title">Stop Server?</string>

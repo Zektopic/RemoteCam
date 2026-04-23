@@ -66,3 +66,7 @@
 ## 2025-10-21 - Link Actions and Intent Handling
 **Learning:** Implementing a custom TalkBack action (AccessibilityDelegateCompat with ACTION_CLICK) on a generic TextView to simulate link interaction does not automatically make the link navigable. It only provides spoken feedback. Sighted users are left without functionality, and it creates a crash vector if an implicit intent is sent without proper handling.
 **Action:** Avoid masking functionality gaps with accessibility labels. If a view needs to act as a link, ensure it has a functional setOnClickListener that safely handles intents (e.g., catching ActivityNotFoundException), and provide visual affordances (like touch ripples or link colors) to make the interactivity clear to all users.
+
+## 2026-04-22 - Intent Crash Prevention on Custom Links
+**Learning:** Implementing a custom link action via a generic `TextView` using `startActivity(Intent(Intent.ACTION_VIEW, ...))` can crash the app with an `ActivityNotFoundException` if the user's device lacks a registered application (like a web browser) to handle the scheme. Furthermore, if a hardcoded error message is used, it hurts localization efforts and accessibility context.
+**Action:** Always wrap implicit intent calls (e.g., opening a URL) in a `try-catch` block catching `ActivityNotFoundException`. Provide user feedback using a Toast or Snackbar that utilizes a localized string resource (e.g., `getString(R.string.error_no_browser)`) explaining the failure actionably, rather than hardcoding the string.
