@@ -70,3 +70,7 @@
 ## 2026-04-22 - Intent Crash Prevention on Custom Links
 **Learning:** Implementing a custom link action via a generic `TextView` using `startActivity(Intent(Intent.ACTION_VIEW, ...))` can crash the app with an `ActivityNotFoundException` if the user's device lacks a registered application (like a web browser) to handle the scheme. Furthermore, if a hardcoded error message is used, it hurts localization efforts and accessibility context.
 **Action:** Always wrap implicit intent calls (e.g., opening a URL) in a `try-catch` block catching `ActivityNotFoundException`. Provide user feedback using a Toast or Snackbar that utilizes a localized string resource (e.g., `getString(R.string.error_no_browser)`) explaining the failure actionably, rather than hardcoding the string.
+
+## 2026-04-23 - Switch Context Tooltips
+**Learning:** Toggle switches (`Switch`) often use very brief or acronym-based text labels (e.g., "RTSP") to save space. While screen readers will announce the label and the state, sighted keyboard/mouse users or users who aren't familiar with the acronym might lack context without further explanation.
+**Action:** Enhance brief or ambiguous toggle switches by adding an explicit `android:tooltipText` (e.g., "Toggle RTSP video stream") to provide clear interaction context on hover or long-press.
