@@ -74,3 +74,6 @@
 ## 2026-04-23 - Switch Context Tooltips
 **Learning:** Toggle switches (`Switch`) often use very brief or acronym-based text labels (e.g., "RTSP") to save space. While screen readers will announce the label and the state, sighted keyboard/mouse users or users who aren't familiar with the acronym might lack context without further explanation.
 **Action:** Enhance brief or ambiguous toggle switches by adding an explicit `android:tooltipText` (e.g., "Toggle RTSP video stream") to provide clear interaction context on hover or long-press.
+## 2026-04-25 - Dynamic ContentDescription for Interactive TextViews
+**Learning:** When a `TextView` serves dual purposes (e.g., displaying an IP address but acting as a button to copy to the clipboard) and its text is updated dynamically in Kotlin, a static `android:contentDescription` in XML is insufficient or incorrect, and setting a generic static accessibility delegate doesn't adapt to the changing content.
+**Action:** Dynamically set the `contentDescription` in Kotlin whenever the text is updated, combining the data (e.g., the IP address) with a localized, actionable string (e.g., `R.string.ip_content_desc`) to ensure screen readers provide full context.
