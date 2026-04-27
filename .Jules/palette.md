@@ -78,3 +78,7 @@
 ## 2024-04-26 - [Dynamic contentDescription for secondary action elements]
 **Learning:** When an interactive UI element displays dynamic text but performs a secondary action (e.g., a TextView showing an IP address that copies to clipboard on click), relying only on visual text or tooltip string resources might cause screen readers to miss the action context or underlying data.
 **Action:** Dynamically set its `contentDescription` in code to include both the dynamic data and a localized string describing the action (e.g., combining the IP string and `R.string.copy_ip_tooltip`) to ensure screen readers announce the full action context without losing the underlying data.
+
+## 2026-04-24 - Consistent Sibling Spacing
+**Learning:** The last horizontally stacked interactive sibling control (`switchRTSP`) was missing `android:layout_marginEnd="16dp"`, leading to inconsistent spacing and potentially affecting usability on narrow screens where elements might wrap or touch the screen edge.
+**Action:** Always ensure consistent trailing margins on all sibling elements in a horizontal layout group to guarantee uniform touch targets and visual padding.
