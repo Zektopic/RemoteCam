@@ -74,3 +74,7 @@
 ## 2026-04-23 - Switch Context Tooltips
 **Learning:** Toggle switches (`Switch`) often use very brief or acronym-based text labels (e.g., "RTSP") to save space. While screen readers will announce the label and the state, sighted keyboard/mouse users or users who aren't familiar with the acronym might lack context without further explanation.
 **Action:** Enhance brief or ambiguous toggle switches by adding an explicit `android:tooltipText` (e.g., "Toggle RTSP video stream") to provide clear interaction context on hover or long-press.
+
+## 2024-04-26 - [Dynamic contentDescription for secondary action elements]
+**Learning:** When an interactive UI element displays dynamic text but performs a secondary action (e.g., a TextView showing an IP address that copies to clipboard on click), relying only on visual text or tooltip string resources might cause screen readers to miss the action context or underlying data.
+**Action:** Dynamically set its `contentDescription` in code to include both the dynamic data and a localized string describing the action (e.g., combining the IP string and `R.string.copy_ip_tooltip`) to ensure screen readers announce the full action context without losing the underlying data.
