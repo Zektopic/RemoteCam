@@ -31,6 +31,10 @@
     <string name="sensor_label">Sensor</string>
     <string name="resolution_label">Resolution</string>
     <string name="quality_label">Quality</string>
+    <string name="encoding_tooltip">Select video encoding format</string>
+    <string name="sensor_tooltip">Select camera sensor</string>
+    <string name="resolution_tooltip">Select video resolution</string>
+    <string name="quality_tooltip">Select compression quality</string>
     <string name="ip_label">IPs</string>
     <string name="default_ip">0.0.0.0:8080/cam.mjpeg</string>
     <string name="ip_format">%1$s:8080/cam.mjpeg</string>

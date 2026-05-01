@@ -189,6 +189,7 @@
                         android:id="@+id/spinnerEncoding"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tooltipText="@string/encoding_tooltip"
                             android:minHeight="48dp" />
 
                 </TableRow>
@@ -213,6 +214,7 @@
                         android:id="@+id/spinnerCam"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tooltipText="@string/sensor_tooltip"
                             android:minHeight="48dp" />
                 </TableRow>
 
@@ -236,6 +238,7 @@
                         android:id="@+id/spinnerRes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tooltipText="@string/resolution_tooltip"
                             android:minHeight="48dp" />
 
                 </TableRow>
@@ -266,6 +269,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
+                            android:tooltipText="@string/quality_tooltip"
                             android:minHeight="48dp" />
 
                         <TextView

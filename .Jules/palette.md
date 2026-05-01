@@ -82,3 +82,7 @@
 ## 2026-04-24 - Consistent Sibling Spacing
 **Learning:** The last horizontally stacked interactive sibling control (`switchRTSP`) was missing `android:layout_marginEnd="16dp"`, leading to inconsistent spacing and potentially affecting usability on narrow screens where elements might wrap or touch the screen edge.
 **Action:** Always ensure consistent trailing margins on all sibling elements in a horizontal layout group to guarantee uniform touch targets and visual padding.
+
+## 2026-05-15 - Universal Interaction Context for Spinners
+**Learning:** Standard Android `Spinner` elements correctly associate with visual labels for TalkBack via `android:labelFor` on adjacent `TextView`s, but they inherently lack hover context for sighted users navigating via mouse or keyboard unless explicitly provided.
+**Action:** Always enhance `Spinner` elements with an explicit `android:tooltipText` pointing to a descriptive localized string resource (e.g., "Select compression quality") to provide clear interaction context for hover and long-press users, ensuring universal accessibility across all input modalities.
