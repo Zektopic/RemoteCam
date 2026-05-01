@@ -86,3 +86,7 @@
 ## 2026-05-15 - Universal Interaction Context for Spinners
 **Learning:** Standard Android `Spinner` elements correctly associate with visual labels for TalkBack via `android:labelFor` on adjacent `TextView`s, but they inherently lack hover context for sighted users navigating via mouse or keyboard unless explicitly provided.
 **Action:** Always enhance `Spinner` elements with an explicit `android:tooltipText` pointing to a descriptive localized string resource (e.g., "Select compression quality") to provide clear interaction context for hover and long-press users, ensuring universal accessibility across all input modalities.
+
+## 2026-05-18 - Mouse Hover States for Custom Selectors
+**Learning:** Custom drawable selectors (like `btn_ios_background.xml`) on Android often define `state_pressed` and `state_focused` but omit `state_hovered`. This strips visual feedback for users navigating with pointer devices (mice, trackpads) on environments like Chromebooks or Samsung DeX, degrading the user experience compared to native components.
+**Action:** Always include `android:state_hovered="true"` alongside focus and pressed states in custom interactive background selectors to ensure universal visual feedback across all input methods.
