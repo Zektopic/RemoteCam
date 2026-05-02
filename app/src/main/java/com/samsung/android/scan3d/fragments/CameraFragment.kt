@@ -90,7 +90,7 @@ class CameraFragment : Fragment() {
             _fragmentCameraBinding?.let { binding ->
                 val ipText = getString(R.string.ip_format, localIp)
                 binding.textView6.text = ipText
-                binding.textView6.contentDescription = "$ipText, ${getString(R.string.copy_ip_tooltip)}"
+                binding.textView6.contentDescription = getString(R.string.actionable_content_description_format, ipText, getString(R.string.copy_ip_tooltip))
                 binding.textView6.setOnClickListener {
                     // Copy the ip address to the clipboard
                     ClipboardUtil.copyToClipboard(context, "ip", binding.textView6.text.toString())

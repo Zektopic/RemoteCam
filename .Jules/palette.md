@@ -90,3 +90,7 @@
 ## 2026-05-18 - Mouse Hover States for Custom Selectors
 **Learning:** Custom drawable selectors (like `btn_ios_background.xml`) on Android often define `state_pressed` and `state_focused` but omit `state_hovered`. This strips visual feedback for users navigating with pointer devices (mice, trackpads) on environments like Chromebooks or Samsung DeX, degrading the user experience compared to native components.
 **Action:** Always include `android:state_hovered="true"` alongside focus and pressed states in custom interactive background selectors to ensure universal visual feedback across all input methods.
+
+## 2026-05-19 - Redundant Accessibility Announcements for Links
+**Learning:** Adding a static `android:contentDescription` to an `android:autoLink` `TextView` overrides TalkBack's ability to read the underlying text (the URL itself). When this is combined with a custom `AccessibilityDelegateCompat` that provides a descriptive action context (e.g., "Double tap to open GitHub repository"), it causes redundant and potentially confusing announcements (e.g., "Open GitHub repository. Double tap to open GitHub repository") while hiding the actual URL from the user.
+**Action:** Do not set a static `android:contentDescription` on auto-linked `TextView`s. Allow TalkBack to read the underlying URL naturally, and rely on the custom `AccessibilityDelegateCompat` to provide the descriptive interaction context for the link.
