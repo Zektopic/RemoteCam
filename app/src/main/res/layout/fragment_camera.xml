@@ -356,7 +356,6 @@
                         android:background="?attr/selectableItemBackground"
                         android:focusable="true"
                         android:clickable="true"
-                        android:contentDescription="@string/repo_desc"
                         android:tooltipText="@string/repo_desc"
                         android:minHeight="48dp"
                         android:padding="8dp"
