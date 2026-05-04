@@ -94,8 +94,10 @@ class CameraFragment : Fragment() {
                 binding.textView6.setOnClickListener {
                     // Copy the ip address to the clipboard
                     ClipboardUtil.copyToClipboard(context, "ip", binding.textView6.text.toString())
-                    // Toast to notify the user
-                    Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+                    // Toast to notify the user (avoid redundant system toast on Android 13+)
+                    if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.S_V2) {
+                        Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+                    }
                 }
 
                 ViewCompat.setAccessibilityDelegate(binding.textView6, object : AccessibilityDelegateCompat() {
