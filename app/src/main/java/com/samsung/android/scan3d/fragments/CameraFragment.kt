@@ -25,6 +25,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.SurfaceHolder
 import android.view.View
@@ -94,8 +95,10 @@ class CameraFragment : Fragment() {
                 binding.textView6.setOnClickListener {
                     // Copy the ip address to the clipboard
                     ClipboardUtil.copyToClipboard(context, "ip", binding.textView6.text.toString())
-                    // Toast to notify the user
-                    Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+                    // Toast to notify the user only on Android 12 and below, since Android 13+ has built-in UI for clipboard
+                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+                        Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+                    }
                 }
 
                 ViewCompat.setAccessibilityDelegate(binding.textView6, object : AccessibilityDelegateCompat() {
