@@ -39,6 +39,10 @@
         <item name="android:paddingEnd">16dp</item>
     </style>
 
+    <style name="Widget.Button.Destructive" parent="Widget.Button.iOS">
+        <item name="android:background">@drawable/btn_ios_background_destructive</item>
+    </style>
+
     <!--   Color for the app bar and other primary UI elements. -->
     <color name="colorPrimary">#FFFF00</color>
 

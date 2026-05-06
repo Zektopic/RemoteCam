@@ -98,3 +98,7 @@
 ## 2026-05-20 - Redundant Custom Clipboard Toasts
 **Learning:** On Android 13 (API 33) and above, the system automatically displays a standard visual confirmation UI when text is copied to the clipboard. Showing a custom `Toast` message for this action results in redundant, stacked visual feedback that clutters the UI.
 **Action:** Always conditionally check the API level (e.g., `Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2`) before showing custom clipboard confirmation `Toast` messages to ensure a clean experience on modern Android devices.
+
+## 2026-05-21 - Visual Styling for Destructive Actions
+**Learning:** While destructive action buttons (like stopping a server and closing an app) might have accessible descriptions and tooltips, using the primary app color (e.g., standard blue) for them fails to visually communicate their severity to sighted users, increasing the risk of accidental activation.
+**Action:** Always visually differentiate destructive action buttons from primary actions by applying a distinct, culturally understood destructive color (e.g., red) across all interactive states (normal, pressed, hovered, focused) using a custom style and drawable selector.
