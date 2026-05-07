@@ -102,3 +102,6 @@
 ## 2026-05-21 - Visual Styling for Destructive Actions
 **Learning:** While destructive action buttons (like stopping a server and closing an app) might have accessible descriptions and tooltips, using the primary app color (e.g., standard blue) for them fails to visually communicate their severity to sighted users, increasing the risk of accidental activation.
 **Action:** Always visually differentiate destructive action buttons from primary actions by applying a distinct, culturally understood destructive color (e.g., red) across all interactive states (normal, pressed, hovered, focused) using a custom style and drawable selector.
+## 2024-05-07 - App Title Spacing
+**Learning:** Structural headings (like app titles) placed adjacent to interactive sibling controls within flexible layouts (like TableRow) can cause visual crowding and touch target overlap on narrow screens.
+**Action:** Always apply an explicit `marginEnd` (e.g., `16dp`) to headings when horizontally adjacent to interactive elements to guarantee minimum spacing.
