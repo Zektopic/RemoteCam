@@ -89,6 +89,7 @@
 
                         <Button
                             android:id="@+id/buttonKill"
+                            style="@style/Widget.Button.Destructive"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|fill_vertical"
