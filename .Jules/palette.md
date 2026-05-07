@@ -95,6 +95,10 @@
 **Learning:** Adding a static `android:contentDescription` to an `android:autoLink` `TextView` overrides TalkBack's ability to read the underlying text (the URL itself). When this is combined with a custom `AccessibilityDelegateCompat` that provides a descriptive action context (e.g., "Double tap to open GitHub repository"), it causes redundant and potentially confusing announcements (e.g., "Open GitHub repository. Double tap to open GitHub repository") while hiding the actual URL from the user.
 **Action:** Do not set a static `android:contentDescription` on auto-linked `TextView`s. Allow TalkBack to read the underlying URL naturally, and rely on the custom `AccessibilityDelegateCompat` to provide the descriptive interaction context for the link.
 
-## 2026-05-20 - Prevent Duplicate Clipboard Feedback
-**Learning:** On Android 13 (API 33) and above, the system automatically displays a standard visual confirmation UI when text is copied to the clipboard. Showing a custom Toast message for this action results in redundant, stacked visual feedback that degrades the user experience.
-**Action:** Always conditionally check the API level (`Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2`) before showing custom clipboard confirmation Toasts to ensure clean, native UX on modern devices while preserving feedback for older ones.
+## 2026-05-20 - Redundant Custom Clipboard Toasts
+**Learning:** On Android 13 (API 33) and above, the system automatically displays a standard visual confirmation UI when text is copied to the clipboard. Showing a custom `Toast` message for this action results in redundant, stacked visual feedback that clutters the UI.
+**Action:** Always conditionally check the API level (e.g., `Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2`) before showing custom clipboard confirmation `Toast` messages to ensure a clean experience on modern Android devices.
+
+## 2026-05-21 - Visual Styling for Destructive Actions
+**Learning:** While destructive action buttons (like stopping a server and closing an app) might have accessible descriptions and tooltips, using the primary app color (e.g., standard blue) for them fails to visually communicate their severity to sighted users, increasing the risk of accidental activation.
+**Action:** Always visually differentiate destructive action buttons from primary actions by applying a distinct, culturally understood destructive color (e.g., red) across all interactive states (normal, pressed, hovered, focused) using a custom style and drawable selector.
