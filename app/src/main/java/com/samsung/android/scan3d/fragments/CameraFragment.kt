@@ -97,6 +97,7 @@ class CameraFragment : Fragment() {
                     ClipboardUtil.copyToClipboard(context, "ip", binding.textView6.text.toString())
                     // Toast to notify the user only on Android 12 and below, since Android 13+ has built-in UI for clipboard
                     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+
                         Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
                     }
                 }
