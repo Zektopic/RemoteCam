@@ -105,3 +105,7 @@
 ## 2024-05-07 - App Title Spacing
 **Learning:** Structural headings (like app titles) placed adjacent to interactive sibling controls within flexible layouts (like TableRow) can cause visual crowding and touch target overlap on narrow screens.
 **Action:** Always apply an explicit `marginEnd` (e.g., `16dp`) to headings when horizontally adjacent to interactive elements to guarantee minimum spacing.
+
+## 2026-05-22 - Graceful Exit on Core Permission Denial
+**Learning:** When an app relies entirely on a core permission (like the camera for a streaming app) and requests it from a headless routing fragment (like `PermissionsFragment`), simply displaying a "permission denied" Toast upon refusal leaves the user stranded on a blank, un-interactive screen. This creates a broken app experience where the user is trapped without any path forward.
+**Action:** Always provide a graceful exit (e.g., `activity?.finish()`) immediately after notifying the user via Toast when a mandatory permission is denied in a headless or startup fragment, preventing the user from being stranded on an empty state.

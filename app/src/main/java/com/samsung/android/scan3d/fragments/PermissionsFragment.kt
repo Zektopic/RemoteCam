@@ -56,6 +56,7 @@ class PermissionsFragment : Fragment() {
                 navigateToCamera();
             } else {
                 Toast.makeText(context, R.string.permission_denied, Toast.LENGTH_LONG).show()
+                activity?.finish()
             }
         }
     }
