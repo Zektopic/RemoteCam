@@ -109,3 +109,7 @@
 ## 2026-05-22 - Graceful Exit on Core Permission Denial
 **Learning:** When an app relies entirely on a core permission (like the camera for a streaming app) and requests it from a headless routing fragment (like `PermissionsFragment`), simply displaying a "permission denied" Toast upon refusal leaves the user stranded on a blank, un-interactive screen. This creates a broken app experience where the user is trapped without any path forward.
 **Action:** Always provide a graceful exit (e.g., `activity?.finish()`) immediately after notifying the user via Toast when a mandatory permission is denied in a headless or startup fragment, preventing the user from being stranded on an empty state.
+
+## 2026-05-23 - TableRow Label Spacing
+**Learning:** Structural text labels (e.g., `TextView` acting as `labelFor` a `Spinner`) in the first column of a `TableLayout` can crowd adjacent interactive elements in the second column if they lack explicit margins, potentially causing touch target overlap on narrow screens. Furthermore, setting `android:layout_width="match_parent"` on a `wrap_content` TableRow item negates its margin behaviour and causes unnecessary scaling.
+**Action:** Always apply an explicit `android:layout_marginEnd="16dp"` and `android:layout_width="wrap_content"` to label views in the first column of a flex or table layout to ensure predictable sizing and guarantee sufficient visual padding and touch target separation from sibling controls.

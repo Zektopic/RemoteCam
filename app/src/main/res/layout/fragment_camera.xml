@@ -179,8 +179,9 @@
 
                     <TextView
                         android:id="@+id/textViewEncoding"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
                         android:layout_gravity="center_vertical"
                         android:labelFor="@+id/spinnerEncoding"
                         android:text="@string/encoding_label"
@@ -204,8 +205,9 @@
 
                     <TextView
                         android:id="@+id/textView4"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
                         android:layout_gravity="center_vertical"
                         android:labelFor="@+id/spinnerCam"
                         android:text="@string/sensor_label"
@@ -228,8 +230,9 @@
 
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
                         android:layout_gravity="center_vertical"
                         android:labelFor="@+id/spinnerRes"
                         android:text="@string/resolution_label"
@@ -253,8 +256,9 @@
 
                     <TextView
                         android:id="@+id/textView42"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
                         android:layout_gravity="center_vertical"
                         android:labelFor="@+id/spinnerQua"
                         android:text="@string/quality_label"
@@ -301,6 +305,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
                         android:layout_gravity="center_vertical"
                         android:labelFor="@+id/textView6"
                         android:text="@string/ip_label"
@@ -343,6 +348,7 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
                         android:layout_gravity="center_vertical"
                         android:labelFor="@+id/textView2"
                         android:text="@string/repo_label"
