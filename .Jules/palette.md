@@ -113,3 +113,7 @@
 ## 2026-05-23 - TableRow Label Spacing
 **Learning:** Structural text labels (e.g., `TextView` acting as `labelFor` a `Spinner`) in the first column of a `TableLayout` can crowd adjacent interactive elements in the second column if they lack explicit margins, potentially causing touch target overlap on narrow screens. Furthermore, setting `android:layout_width="match_parent"` on a `wrap_content` TableRow item negates its margin behaviour and causes unnecessary scaling.
 **Action:** Always apply an explicit `android:layout_marginEnd="16dp"` and `android:layout_width="wrap_content"` to label views in the first column of a flex or table layout to ensure predictable sizing and guarantee sufficient visual padding and touch target separation from sibling controls.
+
+## 2026-05-24 - Semantic Roles for Custom Clickable Views
+**Learning:** Using `AccessibilityDelegateCompat` to add an `ACTION_CLICK` with a descriptive label to a custom view (like a `TextView` acting as a link or copy button) provides the interaction context, but screen readers may still announce the view's base class (e.g., just reading the text without indicating it's a "Button" or interactive element type).
+**Action:** When creating custom clickable views with overridden accessibility delegates, explicitly assign a semantic role by setting `info.className` (e.g., `info.className = android.widget.Button::class.java.name`) in `onInitializeAccessibilityNodeInfo` so screen readers announce its correct interactive nature.
