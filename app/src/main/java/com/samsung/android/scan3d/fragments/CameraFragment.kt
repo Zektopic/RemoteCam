@@ -105,6 +105,7 @@ class CameraFragment : Fragment() {
                 ViewCompat.setAccessibilityDelegate(binding.textView6, object : AccessibilityDelegateCompat() {
                     override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
                         super.onInitializeAccessibilityNodeInfo(host, info)
+                        info.className = android.widget.Button::class.java.name
                         val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
                             AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
                             getString(R.string.copy_ip_tooltip)
@@ -116,6 +117,7 @@ class CameraFragment : Fragment() {
                 ViewCompat.setAccessibilityDelegate(binding.textView2, object : AccessibilityDelegateCompat() {
                     override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
                         super.onInitializeAccessibilityNodeInfo(host, info)
+                        info.className = android.widget.Button::class.java.name
                         val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
                             AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
                             getString(R.string.repo_desc)
