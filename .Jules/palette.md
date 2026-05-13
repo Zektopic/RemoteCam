@@ -123,3 +123,6 @@
 ## 2026-05-24 - Semantic Roles for Custom Interactive Views
 **Learning:** When creating custom clickable views (like a `TextView` acting as a button or link) and assigning them a custom `AccessibilityDelegateCompat` to define their action context, they will still be announced by screen readers according to their base class (e.g., as text rather than an actionable control). This lacks clear interaction affordances for the user.
 **Action:** Always explicitly assign a semantic role by setting `info.className` (e.g., `info.className = android.widget.Button::class.java.name`) within `onInitializeAccessibilityNodeInfo` to ensure screen readers accurately announce the interactive nature of the custom component.
+## 2026-05-25 - External Link Visual Affordance
+**Learning:** Interactive text views that navigate the user outside of the app (e.g., opening a GitHub repository URL in an external web browser) can cause disorientation if the user expects an in-app transition. While screen readers might announce the interaction context via `AccessibilityDelegateCompat`, sighted users lack a visual affordance.
+**Action:** Always provide a clear visual indicator, such as an "open in new" external link icon (e.g., using `android:drawableEnd`), on interactive elements that trigger external applications or browsers, ensuring users are not surprised by the context switch.
