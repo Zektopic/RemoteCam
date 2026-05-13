@@ -117,3 +117,6 @@
 ## 2026-05-11 - Semantic Roles for Custom Clickable Views
 **Learning:** When creating custom clickable views (like a `TextView` acting as a button or link) with overridden accessibility delegates, screen readers may not announce their interactive nature correctly, leaving users unaware that the element is clickable.
 **Action:** Explicitly assign a semantic role by setting `info.className` (e.g., `info.className = android.widget.Button::class.java.name`) in `onInitializeAccessibilityNodeInfo` to ensure screen readers announce its correct interactive nature.
+## 2026-05-24 - Semantic Roles for Custom Interactive Views
+**Learning:** When creating custom clickable views (like a `TextView` acting as a button or link) and assigning them a custom `AccessibilityDelegateCompat` to define their action context, they will still be announced by screen readers according to their base class (e.g., as text rather than an actionable control). This lacks clear interaction affordances for the user.
+**Action:** Always explicitly assign a semantic role by setting `info.className` (e.g., `info.className = android.widget.Button::class.java.name`) within `onInitializeAccessibilityNodeInfo` to ensure screen readers accurately announce the interactive nature of the custom component.
