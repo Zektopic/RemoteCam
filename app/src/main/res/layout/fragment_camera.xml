@@ -370,7 +370,10 @@
                         android:padding="8dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:text="@string/repo_url"
-                        android:textColorLink="@color/colorLink" />
+                        android:textColorLink="@color/colorLink"
+                        android:drawableEnd="@drawable/ic_open_in_new"
+                        android:drawableTint="@color/colorLink"
+                        android:drawablePadding="8dp" />
                 </TableRow>
 
 
