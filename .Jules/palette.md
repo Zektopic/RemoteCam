@@ -126,3 +126,7 @@
 ## 2026-05-25 - External Link Visual Affordance
 **Learning:** Interactive text views that navigate the user outside of the app (e.g., opening a GitHub repository URL in an external web browser) can cause disorientation if the user expects an in-app transition. While screen readers might announce the interaction context via `AccessibilityDelegateCompat`, sighted users lack a visual affordance.
 **Action:** Always provide a clear visual indicator, such as an "open in new" external link icon (e.g., using `android:drawableEnd`), on interactive elements that trigger external applications or browsers, ensuring users are not surprised by the context switch.
+
+## 2026-05-26 - Enable RTL Support
+**Learning:** Android apps must explicitly opt-in to Right-to-Left (RTL) layout support by adding `android:supportsRtl="true"` to the `<application>` tag in `AndroidManifest.xml`. Even if RTL-aware directional attributes (like `layout_marginEnd` or `paddingStart`) are used in XML layouts, the OS will ignore them and fall back to LTR rendering if this manifest flag is missing, breaking the layout for users of RTL languages like Arabic or Hebrew.
+**Action:** Always ensure `android:supportsRtl="true"` is declared in the manifest when using start/end directional attributes to guarantee proper RTL rendering.
