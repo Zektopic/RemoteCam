@@ -130,3 +130,7 @@
 ## 2026-05-26 - Enable RTL Support
 **Learning:** Android apps must explicitly opt-in to Right-to-Left (RTL) layout support by adding `android:supportsRtl="true"` to the `<application>` tag in `AndroidManifest.xml`. Even if RTL-aware directional attributes (like `layout_marginEnd` or `paddingStart`) are used in XML layouts, the OS will ignore them and fall back to LTR rendering if this manifest flag is missing, breaking the layout for users of RTL languages like Arabic or Hebrew.
 **Action:** Always ensure `android:supportsRtl="true"` is declared in the manifest when using start/end directional attributes to guarantee proper RTL rendering.
+
+## 2026-05-27 - Vertical Alignment for Enlarged Touch Targets
+**Learning:** When using `android:minHeight="48dp"` (or similar attributes) to increase the physical touch target size of text-based interactive elements (like `TextView`s acting as buttons or links), the inner text may float to the top of the bounded area, causing visual misalignment with vertically centered adjacent labels or sibling controls.
+**Action:** Always apply `android:gravity="center_vertical"` (or `gravity="center"`) to `TextView`s that use `minHeight` for touch target expansion to ensure the text content remains visually aligned within the expanded container.
