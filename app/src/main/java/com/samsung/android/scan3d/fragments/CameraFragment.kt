@@ -365,6 +365,8 @@ class CameraFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.i("onViewCreated", "onViewCreated")
 
+        fragmentCameraBinding.ftFeedback?.contentDescription = getString(R.string.default_frame_time_desc)
+        fragmentCameraBinding.qualFeedback?.contentDescription = getString(R.string.default_bitrate_desc)
 
         Cac.sendCam {
             it.action = "start_camera_engine"
