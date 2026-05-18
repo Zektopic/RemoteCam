@@ -134,3 +134,7 @@
 ## 2026-05-27 - Vertical Alignment for Enlarged Touch Targets
 **Learning:** When using `android:minHeight="48dp"` (or similar attributes) to increase the physical touch target size of text-based interactive elements (like `TextView`s acting as buttons or links), the inner text may float to the top of the bounded area, causing visual misalignment with vertically centered adjacent labels or sibling controls.
 **Action:** Always apply `android:gravity="center_vertical"` (or `gravity="center"`) to `TextView`s that use `minHeight` for touch target expansion to ensure the text content remains visually aligned within the expanded container.
+
+## 2026-05-28 - Initial Content Descriptions for Dynamic TextViews
+**Learning:** Dynamic text views that use placeholder text for their initial state (e.g., "-- ms") present a poor accessibility experience, as screen readers will literally announce the confusing placeholder punctuation (e.g., "dash dash ms"). While these views receive rich content descriptions upon dynamic updates, they remain inaccessible during the initial waiting period.
+**Action:** Always programmatically set a descriptive `contentDescription` (e.g., "Unknown frame latency") during view initialization for dynamic text elements to ensure their placeholder state is clearly communicated to screen reader users until the first data update occurs.

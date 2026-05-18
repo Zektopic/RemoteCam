@@ -62,6 +62,8 @@
 
     <string name="default_frame_time">-- ms</string>
     <string name="default_bitrate">-- kB/sec</string>
+    <string name="default_frame_time_desc">Unknown frame latency</string>
+    <string name="default_bitrate_desc">Unknown data transfer rate</string>
 
     <string name="frame_time_format">%1$d ms</string>
     <string name="bitrate_format">%1$d kB/sec</string>
