@@ -142,3 +142,7 @@
 ## 2026-05-29 - Typographic Affordances for Dimensions
 **Learning:** Using the default `Size.toString()` output (which generates e.g., "1920x1080" with a lowercase 'x') or hardcoding lowercase letters for dimensions degrades screen reader accessibility, as TalkBack will literally read "1920 eks 1080". Additionally, the lack of proper spacing reduces legibility for sighted users.
 **Action:** Always use a string resource format (e.g., `%1$d × %2$d`) featuring the proper typographic multiplication sign (`×`, U+00D7) and explicit spaces when displaying dimensional values. This ensures screen readers correctly pronounce "1920 by 1080" while providing superior typographic readability for all users.
+
+## 2026-05-20 - Mouse Hover States for Custom Selectors
+**Learning:** Custom drawable selectors (like `ic_shutter.xml`) on Android often define `state_pressed` and `state_focused` but omit `state_hovered`. This strips visual feedback for users navigating with pointer devices (mice, trackpads) on environments like Chromebooks or Samsung DeX, degrading the user experience compared to native components.
+**Action:** Always include `android:state_hovered="true"` alongside focus and pressed states in custom interactive background selectors to ensure universal visual feedback across all input methods.
