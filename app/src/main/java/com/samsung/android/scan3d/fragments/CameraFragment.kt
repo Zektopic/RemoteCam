@@ -293,7 +293,7 @@ class CameraFragment : Fragment() {
 
                 val spinner = fragmentCameraBinding.spinnerRes
                 val spinnerDataList = ArrayList<Any>()
-                outputFormats.forEach { spinnerDataList.add(it.toString()) }
+                outputFormats.forEach { spinnerDataList.add(getString(R.string.resolution_format, it.width, it.height)) }
                 // Initialize the ArrayAdapter
                 val spinnerAdapter =
                     ArrayAdapter(

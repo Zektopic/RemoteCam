@@ -138,3 +138,7 @@
 ## 2026-05-28 - Initial Content Descriptions for Dynamic TextViews
 **Learning:** Dynamic text views that use placeholder text for their initial state (e.g., "-- ms") present a poor accessibility experience, as screen readers will literally announce the confusing placeholder punctuation (e.g., "dash dash ms"). While these views receive rich content descriptions upon dynamic updates, they remain inaccessible during the initial waiting period.
 **Action:** Always programmatically set a descriptive `contentDescription` (e.g., "Unknown frame latency") during view initialization for dynamic text elements to ensure their placeholder state is clearly communicated to screen reader users until the first data update occurs.
+
+## 2026-05-29 - Typographic Affordances for Dimensions
+**Learning:** Using the default `Size.toString()` output (which generates e.g., "1920x1080" with a lowercase 'x') or hardcoding lowercase letters for dimensions degrades screen reader accessibility, as TalkBack will literally read "1920 eks 1080". Additionally, the lack of proper spacing reduces legibility for sighted users.
+**Action:** Always use a string resource format (e.g., `%1$d × %2$d`) featuring the proper typographic multiplication sign (`×`, U+00D7) and explicit spaces when displaying dimensional values. This ensures screen readers correctly pronounce "1920 by 1080" while providing superior typographic readability for all users.
