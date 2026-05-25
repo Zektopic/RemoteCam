@@ -47,6 +47,13 @@
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="error_no_browser">No web browser found. Please install a browser to view the repository.</string>
 
+    <!-- Foreground Service Strings -->
+    <string name="notification_channel_name">Remote Camera Service</string>
+    <string name="notification_channel_desc">Maintains the camera stream in the background</string>
+    <string name="notification_title">RemoteCam (active)</string>
+    <string name="notification_text">Tap to open</string>
+    <string name="notification_action_stop">Stop</string>
+
     <!-- Stop Confirmation Dialog -->
     <string name="stop_confirmation_title">Stop Server?</string>
     <string name="stop_confirmation_message">This will stop the camera stream and close the application.</string>

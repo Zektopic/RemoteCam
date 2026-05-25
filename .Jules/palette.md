@@ -146,3 +146,11 @@
 ## 2026-05-20 - Mouse Hover States for Custom Selectors
 **Learning:** Custom drawable selectors (like `ic_shutter.xml`) on Android often define `state_pressed` and `state_focused` but omit `state_hovered`. This strips visual feedback for users navigating with pointer devices (mice, trackpads) on environments like Chromebooks or Samsung DeX, degrading the user experience compared to native components.
 **Action:** Always include `android:state_hovered="true"` alongside focus and pressed states in custom interactive background selectors to ensure universal visual feedback across all input methods.
+
+## 2026-05-30 - User-Facing System Identifiers
+**Learning:** Using raw technical identifiers (like `CHANNEL_ID` or "RemoteCam run") as the name and description for Android `NotificationChannel`s exposes internal development terminology directly to users via the system notification settings. This degrades the perceived quality and professionalism of the app.
+**Action:** Always provide descriptive, human-readable localized string resources (e.g., "Remote Camera Service") for notification channel names and descriptions, as these are visible to users managing their device settings.
+
+## 2026-05-31 - Avoiding Aggressive UI Copy
+**Learning:** Hardcoding aggressive or highly technical terminology (like "Kill") for user-facing actions in foreground services can be alarming or confusing to users who are accustomed to standard UX phrasing.
+**Action:** Always utilize standard, gentle mobile UX phrasing (like "Stop") and extract the text to localized string resources to ensure a pleasant and professional user experience.
