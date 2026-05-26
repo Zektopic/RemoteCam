@@ -146,3 +146,7 @@
 ## 2026-05-20 - Mouse Hover States for Custom Selectors
 **Learning:** Custom drawable selectors (like `ic_shutter.xml`) on Android often define `state_pressed` and `state_focused` but omit `state_hovered`. This strips visual feedback for users navigating with pointer devices (mice, trackpads) on environments like Chromebooks or Samsung DeX, degrading the user experience compared to native components.
 **Action:** Always include `android:state_hovered="true"` alongside focus and pressed states in custom interactive background selectors to ensure universal visual feedback across all input methods.
+
+## 2026-05-26 - Localizing System Notifications
+**Learning:** System notifications, especially for foreground services, expose internal app strings directly to the OS notification shade. Using hardcoded technical terms (like 'CHANNEL_ID' or 'Kill') creates a jarring, unpolished experience that cannot be localized.
+**Action:** Always extract foreground service notification titles, descriptions, and action labels to `strings.xml` and use standard mobile UX terminology (e.g., 'Stop' instead of 'Kill', 'Tap' instead of 'Click') before passing them to `NotificationCompat.Builder`.
