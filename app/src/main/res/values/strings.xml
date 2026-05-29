@@ -69,4 +69,7 @@
     <string name="frame_time_format">%1$d ms</string>
     <string name="bitrate_format">%1$d kB/sec</string>
     <string name="quality_format">%1$d%%</string>
+
+    <string name="notification_channel_name">RemoteCam Service</string>
+    <string name="notification_channel_desc">Background service running RemoteCam</string>
 </resources>

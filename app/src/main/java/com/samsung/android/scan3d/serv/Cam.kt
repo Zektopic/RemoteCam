@@ -45,10 +45,10 @@ class Cam : Service() {
             "start" -> {
                 val channel = NotificationChannel(
                     CHANNEL_ID,
-                    CHANNEL_ID,
+                    getString(R.string.notification_channel_name),
                     NotificationManager.IMPORTANCE_DEFAULT
                 )
-                channel.description = "RemoteCam run"
+                channel.description = getString(R.string.notification_channel_desc)
                 val notificationManager = getSystemService(NotificationManager::class.java)
                 notificationManager.createNotificationChannel(channel)
 

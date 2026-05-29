@@ -146,3 +146,7 @@
 ## 2026-05-20 - Mouse Hover States for Custom Selectors
 **Learning:** Custom drawable selectors (like `ic_shutter.xml`) on Android often define `state_pressed` and `state_focused` but omit `state_hovered`. This strips visual feedback for users navigating with pointer devices (mice, trackpads) on environments like Chromebooks or Samsung DeX, degrading the user experience compared to native components.
 **Action:** Always include `android:state_hovered="true"` alongside focus and pressed states in custom interactive background selectors to ensure universal visual feedback across all input methods.
+
+## 2026-05-29 - Localized Notification Channels
+**Learning:** Using raw technical identifiers like `CHANNEL_ID` for an Android `NotificationChannel` exposes non-user-friendly strings directly in the Android System Settings under App Notifications.
+**Action:** Always provide descriptive, localized string resources for Notification Channel names and descriptions, as these labels are exposed directly to users in the system settings.
