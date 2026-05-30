@@ -146,3 +146,7 @@
 ## 2026-05-20 - Mouse Hover States for Custom Selectors
 **Learning:** Custom drawable selectors (like `ic_shutter.xml`) on Android often define `state_pressed` and `state_focused` but omit `state_hovered`. This strips visual feedback for users navigating with pointer devices (mice, trackpads) on environments like Chromebooks or Samsung DeX, degrading the user experience compared to native components.
 **Action:** Always include `android:state_hovered="true"` alongside focus and pressed states in custom interactive background selectors to ensure universal visual feedback across all input methods.
+
+## 2026-05-30 - User-Facing Notification Terminology
+**Learning:** Hardcoded, technical, or aggressive terminology (like "Kill" for stopping a service or "Click" when tapping a touchscreen) in user-facing system notifications and foreground service controls creates a jarring and confusing experience. Sighted users are exposed to technical jargon, and screen readers read aggressive language out of context.
+**Action:** Always avoid hardcoded technical phrasing in notification titles, descriptions, and actions. Utilize standard mobile UX phrasing (e.g., "Stop", "Tap to open") and ensure all notification text is extracted to localized string resources.
