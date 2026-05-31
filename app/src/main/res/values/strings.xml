@@ -69,4 +69,11 @@
     <string name="frame_time_format">%1$d ms</string>
     <string name="bitrate_format">%1$d kB/sec</string>
     <string name="quality_format">%1$d%%</string>
+
+    <!-- Foreground Service Notification Strings -->
+    <string name="notification_channel_name">Camera Service</string>
+    <string name="notification_channel_desc">Active remote camera stream</string>
+    <string name="notification_title">RemoteCam (active)</string>
+    <string name="notification_content">Tap to open</string>
+    <string name="notification_action_stop">Stop</string>
 </resources>
