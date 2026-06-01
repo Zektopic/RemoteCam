@@ -48,6 +48,13 @@
     <string name="error_no_browser">No web browser found. Please install a browser to view the repository.</string>
 
     <!-- Stop Confirmation Dialog -->
+    <!-- Notification Strings -->
+    <string name="notification_channel_name">Camera Service</string>
+    <string name="notification_channel_desc">Background service to keep the remote camera running</string>
+    <string name="notification_title">RemoteCam (active)</string>
+    <string name="notification_text">Tap to open</string>
+    <string name="notification_action_stop">Stop</string>
+
     <string name="stop_confirmation_title">Stop Server?</string>
     <string name="stop_confirmation_message">This will stop the camera stream and close the application.</string>
     <string name="stop_confirmation_positive">Stop</string>
