@@ -43,12 +43,13 @@ class Cam : Service() {
 
         when (intent.action) {
             "start" -> {
+                val channelName = getString(R.string.notification_channel_name)
                 val channel = NotificationChannel(
                     CHANNEL_ID,
-                    CHANNEL_ID,
+                    channelName,
                     NotificationManager.IMPORTANCE_DEFAULT
                 )
-                channel.description = "RemoteCam run"
+                channel.description = getString(R.string.notification_channel_desc)
                 val notificationManager = getSystemService(NotificationManager::class.java)
                 notificationManager.createNotificationChannel(channel)
 
@@ -72,9 +73,9 @@ class Cam : Service() {
 
                 val builder =
                     NotificationCompat.Builder(this, CHANNEL_ID)
-                        .setContentTitle("RemoteCam (active)")
-                        .setContentText("Click to open").setOngoing(true)
-                        .setSmallIcon(R.drawable.ic_linked_camera).addAction(R.drawable.ic_close, "Kill",pendingIntentKill)
+                        .setContentTitle(getString(R.string.notification_title))
+                        .setContentText(getString(R.string.notification_text)).setOngoing(true)
+                        .setSmallIcon(R.drawable.ic_linked_camera).addAction(R.drawable.ic_close, getString(R.string.notification_action_stop), pendingIntentKill)
                         .setContentIntent(pendingIntent)
 
 
