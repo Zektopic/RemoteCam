@@ -85,6 +85,9 @@ class CameraFragment : Fragment() {
     ): View {
         _fragmentCameraBinding = FragmentCameraBinding.inflate(inflater, container, false)
 
+        val defaultIpText = getString(R.string.default_ip)
+        _fragmentCameraBinding?.textView6?.contentDescription = getString(R.string.actionable_content_description_format, defaultIpText, getString(R.string.copy_ip_tooltip))
+
         // Get the local ip address
         viewLifecycleOwner.lifecycleScope.launch {
             val localIp = IpUtil.getLocalIpAddress()
