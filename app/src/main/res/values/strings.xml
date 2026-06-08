@@ -76,4 +76,5 @@
     <string name="frame_time_format">%1$d ms</string>
     <string name="bitrate_format">%1$d kB/sec</string>
     <string name="quality_format">%1$d%%</string>
+    <string name="ip_loading_message">Loading IP address, please wait&#8230;</string>
 </resources>

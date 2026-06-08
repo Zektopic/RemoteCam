@@ -85,6 +85,38 @@ class CameraFragment : Fragment() {
     ): View {
         _fragmentCameraBinding = FragmentCameraBinding.inflate(inflater, container, false)
 
+        _fragmentCameraBinding?.let { binding ->
+            // Set initial state before async operation completes
+            binding.textView6.contentDescription = getString(R.string.actionable_content_description_format, getString(R.string.default_ip), getString(R.string.copy_ip_tooltip))
+            binding.textView6.setOnClickListener {
+                Toast.makeText(context, R.string.ip_loading_message, Toast.LENGTH_SHORT).show()
+            }
+
+            ViewCompat.setAccessibilityDelegate(binding.textView6, object : AccessibilityDelegateCompat() {
+                override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                    super.onInitializeAccessibilityNodeInfo(host, info)
+                    info.className = android.widget.Button::class.java.name
+                    val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                        AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
+                        getString(R.string.copy_ip_tooltip)
+                    )
+                    info.addAction(clickAction)
+                }
+            })
+
+            ViewCompat.setAccessibilityDelegate(binding.textView2, object : AccessibilityDelegateCompat() {
+                override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                    super.onInitializeAccessibilityNodeInfo(host, info)
+                    info.className = android.widget.Button::class.java.name
+                    val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                        AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
+                        getString(R.string.repo_desc)
+                    )
+                    info.addAction(clickAction)
+                }
+            })
+        }
+
         // Get the local ip address
         viewLifecycleOwner.lifecycleScope.launch {
             val localIp = IpUtil.getLocalIpAddress()
@@ -102,29 +134,7 @@ class CameraFragment : Fragment() {
                     }
                 }
 
-                ViewCompat.setAccessibilityDelegate(binding.textView6, object : AccessibilityDelegateCompat() {
-                    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
-                        super.onInitializeAccessibilityNodeInfo(host, info)
-                        info.className = android.widget.Button::class.java.name
-                        val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
-                            AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
-                            getString(R.string.copy_ip_tooltip)
-                        )
-                        info.addAction(clickAction)
-                    }
-                })
 
-                ViewCompat.setAccessibilityDelegate(binding.textView2, object : AccessibilityDelegateCompat() {
-                    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
-                        super.onInitializeAccessibilityNodeInfo(host, info)
-                        info.className = android.widget.Button::class.java.name
-                        val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
-                            AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
-                            getString(R.string.repo_desc)
-                        )
-                        info.addAction(clickAction)
-                    }
-                })
 
                 binding.textView2.setOnClickListener {
                     val url = getString(R.string.repo_url)
