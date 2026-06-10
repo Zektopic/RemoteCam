@@ -72,6 +72,8 @@
     <string name="default_bitrate">-- kB/sec</string>
     <string name="default_frame_time_desc">Unknown frame latency</string>
     <string name="default_bitrate_desc">Unknown data transfer rate</string>
+    <string name="default_ip_desc">Fetching IP address, Copy IP to clipboard</string>
+    <string name="loading_ip_toast">Fetching IP address, please wait</string>
 
     <string name="frame_time_format">%1$d ms</string>
     <string name="bitrate_format">%1$d kB/sec</string>
