@@ -158,3 +158,6 @@
 ## 2026-06-10 - Force LTR on Network Addresses
 **Learning:** When an app supports RTL locales, the OS bidirectionality algorithms can mangle technical network strings like IP addresses and URLs (e.g., rendering `0.0.0.0:8080/cam.mjpeg` as `cam.mjpeg/8080:0.0.0.0`), destroying their readability and copy-paste accuracy.
 **Action:** Always apply `android:textDirection="ltr"` to text views displaying URLs, IP addresses, or code snippets to guarantee they are rendered properly left-to-right, regardless of the user's localized system reading direction.
+## 2024-06-11 - RTL Text Direction for Network Strings
+**Learning:** When an Android app supports RTL locales, the OS bidirectionality algorithms can mangle technical network strings like URLs or IP addresses when rendered in standard TextViews, making them unreadable or confusing.
+**Action:** Always apply `android:textDirection="ltr"` to text views displaying technical network strings like URLs, IP addresses, or code snippets to prevent OS bidirectionality algorithms from mangling them.
