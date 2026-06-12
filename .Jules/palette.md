@@ -154,3 +154,7 @@
 ## 2026-05-31 - Synchronous Interactive Initialization
 **Learning:** Interactive elements with dynamic text and secondary actions (like links or copy to clipboard) must have their full actionable `contentDescription` and custom `AccessibilityDelegateCompat` set synchronously during view initialization (not inside asynchronous blocks like coroutines). If delayed, screen readers lack context before the first data update. Furthermore, attaching an initial `OnClickListener` providing explicit feedback (e.g., a loading Toast) is essential if a user interacts with the UI element while it is functionally disabled during a loading state.
 **Action:** Always initialize accessibility properties and add temporary feedback listeners synchronously outside of asynchronous data fetching blocks to ensure complete accessibility and responsive feedback from the moment the view is created.
+
+## 2024-06-11 - RTL Text Direction for Network Strings
+**Learning:** When an Android app supports RTL locales, the OS bidirectionality algorithms can mangle technical network strings like URLs or IP addresses when rendered in standard TextViews, making them unreadable or confusing.
+**Action:** Always apply `android:textDirection="ltr"` to text views displaying technical network strings like URLs, IP addresses, or code snippets to prevent OS bidirectionality algorithms from mangling them.
