@@ -176,3 +176,7 @@
 ## 2024-06-11 - RTL Text Direction for Network Strings
 **Learning:** When an Android app supports RTL locales, the OS bidirectionality algorithms can mangle technical network strings like URLs or IP addresses when rendered in standard TextViews, making them unreadable or confusing.
 **Action:** Always apply `android:textDirection="ltr"` to text views displaying technical network strings like URLs, IP addresses, or code snippets to prevent OS bidirectionality algorithms from mangling them.
+
+## 2024-06-13 - Optimize CameraCharacteristics retrieval loop
+**Learning:** When querying expensive Android system services like `CameraManager.getCameraCharacteristics` inside a loop, combining filter and map operations into a single pass (e.g., using `mapNotNull`) prevents redundant IPC calls and noticeably improves execution speed.
+**Action:** Replaced a `filter {} .forEach {}` pipeline containing duplicated `getCameraCharacteristics` calls with a single `mapNotNull` pass that pairs valid camera IDs with their retrieved characteristics, eliminating 50% of the overhead.
