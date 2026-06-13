@@ -48,7 +48,7 @@ class Cam : Service() {
                     getString(R.string.notification_channel_name),
                     NotificationManager.IMPORTANCE_DEFAULT
                 )
-                channel.description = getString(R.string.notification_channel_description)
+                channel.description = getString(R.string.notification_channel_desc)
                 val notificationManager = getSystemService(NotificationManager::class.java)
                 notificationManager.createNotificationChannel(channel)
 

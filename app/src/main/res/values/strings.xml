@@ -70,7 +70,6 @@
     <string name="bitrate_format">%1$d kB/sec</string>
     <string name="quality_format">%1$d%%</string>
 
-    <!-- Notification Strings -->
-    <string name="notification_channel_name">Camera Service</string>
-    <string name="notification_channel_description">Active background camera streaming service</string>
+    <string name="notification_channel_name">RemoteCam Service</string>
+    <string name="notification_channel_desc">Background service running RemoteCam</string>
 </resources>
