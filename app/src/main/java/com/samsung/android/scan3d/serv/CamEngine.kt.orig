@@ -31,6 +31,7 @@ import kotlinx.parcelize.Parcelize
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
+import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.Locale
 
@@ -50,6 +51,8 @@ class CamEngine(val context: Context) {
         Selector.enumerateCameras(cameraManager)
 
     val camOutPutFormat = ImageFormat.JPEG // ImageFormat.YUV_420_888// ImageFormat.JPEG
+
+    val executor = Executors.newSingleThreadExecutor()
 
     fun getEncoder(mimeType: String, resW: Int, resH: Int): MediaCodec? {
         fun selectCodec(mimeType: String): MediaCodecInfo? {
@@ -267,6 +270,7 @@ class CamEngine(val context: Context) {
                     kodd += 1
 
                     if (camOutPutFormat == ImageFormat.JPEG) {
+                        // executor.execute(Runnable {
                         val buffer = img.planes[0].buffer
                         val bytes = ByteArray(buffer.remaining()).apply { buffer.get(this) }
 
@@ -303,7 +307,7 @@ class CamEngine(val context: Context) {
     }
 
     private val supportedEncodings: List<String> by lazy {
-        val supported = mutableSetOf<String>()
+        val supported = ArrayList<String>()
         supported.add("JPEG")
 
         val list = cachedCodecInfos
@@ -320,11 +324,13 @@ class CamEngine(val context: Context) {
                 val lowerType = type.lowercase(Locale.ROOT)
                 if (targetTypes.containsKey(lowerType)) {
                     val friendlyName = targetTypes[lowerType]!!
-                    supported.add(friendlyName)
+                    if (!supported.contains(friendlyName)) {
+                        supported.add(friendlyName)
+                    }
                 }
             }
         }
-        supported.toList()
+        supported
     }
 
     fun updateView() {
