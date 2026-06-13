@@ -34,6 +34,7 @@
     <string name="encoding_tooltip">Select video encoding format</string>
     <string name="sensor_tooltip">Select camera sensor</string>
     <string name="resolution_tooltip">Select video resolution</string>
+    <string name="resolution_format">%1$d × %2$d</string>
     <string name="quality_tooltip">Select compression quality</string>
     <string name="ip_label">IPs</string>
     <string name="default_ip">0.0.0.0:8080/cam.mjpeg</string>
@@ -45,6 +46,13 @@
     <string name="repo_desc">Open GitHub repository</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="error_no_browser">No web browser found. Please install a browser to view the repository.</string>
+
+    <!-- Foreground Service Notifications -->
+    <string name="notification_channel_name">RemoteCam Service</string>
+    <string name="notification_channel_desc">Active background camera streaming</string>
+    <string name="notification_title">RemoteCam (active)</string>
+    <string name="notification_text">Tap to open controls</string>
+    <string name="notification_action_stop">Stop</string>
 
     <!-- Stop Confirmation Dialog -->
     <string name="stop_confirmation_title">Stop Server?</string>
@@ -62,8 +70,11 @@
 
     <string name="default_frame_time">-- ms</string>
     <string name="default_bitrate">-- kB/sec</string>
+    <string name="default_frame_time_desc">Unknown frame latency</string>
+    <string name="default_bitrate_desc">Unknown data transfer rate</string>
 
     <string name="frame_time_format">%1$d ms</string>
     <string name="bitrate_format">%1$d kB/sec</string>
     <string name="quality_format">%1$d%%</string>
+    <string name="ip_loading_message">Loading IP address, please wait&#8230;</string>
 </resources>
