@@ -15,7 +15,7 @@ import android.view.Surface
 import androidx.core.app.NotificationCompat
 import com.samsung.android.scan3d.CameraActivity
 import com.samsung.android.scan3d.R
-import com.samsung.android.scan3d.fragments.CameraFragment
+import com.samsung.android.scan3d.fragments.ViewState
 import com.samsung.android.scan3d.http.HttpService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -119,7 +119,7 @@ class Cam : Service() {
             }
 
             "new_view_state" -> {
-                val new : CameraFragment.Companion.ViewState = intent.extras?.getParcelable("data")!!
+                val new : ViewState = intent.extras?.getParcelable("data")!!
                 Log.i("CAM", "new_view_state: " + new)
 
                 serviceScope.launch {

@@ -21,7 +21,7 @@ import android.os.Parcelable
 import android.util.Log
 import android.util.Size
 import android.view.Surface
-import com.samsung.android.scan3d.fragments.CameraFragment
+import com.samsung.android.scan3d.fragments.ViewState
 import com.samsung.android.scan3d.http.HttpService
 import com.samsung.android.scan3d.util.Selector
 import kotlinx.coroutines.Dispatchers
@@ -85,7 +85,7 @@ class CamEngine(val context: Context) {
     }
 
 
-    var viewState: CameraFragment.Companion.ViewState = CameraFragment.Companion.ViewState(
+    var viewState: ViewState = ViewState(
         true,
         stream = false,
         cameraId = "0",
