@@ -1,0 +1,26 @@
+--- app/src/main/java/com/samsung/android/scan3d/serv/CamEngine.kt
++++ app/src/main/java/com/samsung/android/scan3d/serv/CamEngine.kt
+@@ -29,7 +29,6 @@
+ import kotlin.coroutines.resume
+ import kotlin.coroutines.resumeWithException
+ import kotlin.coroutines.suspendCoroutine
+-import java.util.concurrent.Executors
+ import java.util.concurrent.atomic.AtomicInteger
+ import java.util.Locale
+
+@@ -52,8 +51,6 @@
+
+     val camOutPutFormat = ImageFormat.JPEG // ImageFormat.YUV_420_888// ImageFormat.JPEG
+
+-    val executor = Executors.newSingleThreadExecutor()
+-
+     fun getEncoder(mimeType: String, resW: Int, resH: Int): MediaCodec? {
+         fun selectCodec(mimeType: String): MediaCodecInfo? {
+             val list = cachedCodecInfos
+@@ -269,7 +266,6 @@
+                     kodd += 1
+
+                     if (camOutPutFormat == ImageFormat.JPEG) {
+-                        // executor.execute(Runnable {
+                         val buffer = img.planes[0].buffer
+                         val bytes = ByteArray(buffer.remaining()).apply { buffer.get(this) }
