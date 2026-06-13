@@ -85,6 +85,48 @@ class CameraFragment : Fragment() {
     ): View {
         _fragmentCameraBinding = FragmentCameraBinding.inflate(inflater, container, false)
 
+        _fragmentCameraBinding?.let { binding ->
+            binding.textView6.contentDescription = getString(R.string.default_ip_desc)
+            binding.textView6.setOnClickListener {
+                Toast.makeText(context, R.string.loading_ip_toast, Toast.LENGTH_SHORT).show()
+            }
+
+            ViewCompat.setAccessibilityDelegate(binding.textView6, object : AccessibilityDelegateCompat() {
+                override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                    super.onInitializeAccessibilityNodeInfo(host, info)
+                    info.className = android.widget.Button::class.java.name
+                    val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                        AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
+                        getString(R.string.copy_ip_tooltip)
+                    )
+                    info.addAction(clickAction)
+                }
+            })
+
+            ViewCompat.setAccessibilityDelegate(binding.textView2, object : AccessibilityDelegateCompat() {
+                override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
+                    super.onInitializeAccessibilityNodeInfo(host, info)
+                    info.className = android.widget.Button::class.java.name
+                    val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                        AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
+                        getString(R.string.repo_desc)
+                    )
+                    info.addAction(clickAction)
+                }
+            })
+
+            binding.textView2.setOnClickListener {
+                val url = getString(R.string.repo_url)
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(url)
+                try {
+                    startActivity(intent)
+                } catch (e: android.content.ActivityNotFoundException) {
+                    Toast.makeText(context, getString(R.string.error_no_browser), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
         // Get the local ip address
         viewLifecycleOwner.lifecycleScope.launch {
             val localIp = IpUtil.getLocalIpAddress()
@@ -99,41 +141,6 @@ class CameraFragment : Fragment() {
                     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
 
                         Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                ViewCompat.setAccessibilityDelegate(binding.textView6, object : AccessibilityDelegateCompat() {
-                    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
-                        super.onInitializeAccessibilityNodeInfo(host, info)
-                        info.className = android.widget.Button::class.java.name
-                        val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
-                            AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
-                            getString(R.string.copy_ip_tooltip)
-                        )
-                        info.addAction(clickAction)
-                    }
-                })
-
-                ViewCompat.setAccessibilityDelegate(binding.textView2, object : AccessibilityDelegateCompat() {
-                    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfoCompat) {
-                        super.onInitializeAccessibilityNodeInfo(host, info)
-                        info.className = android.widget.Button::class.java.name
-                        val clickAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat(
-                            AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK.id,
-                            getString(R.string.repo_desc)
-                        )
-                        info.addAction(clickAction)
-                    }
-                })
-
-                binding.textView2.setOnClickListener {
-                    val url = getString(R.string.repo_url)
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data = Uri.parse(url)
-                    try {
-                        startActivity(intent)
-                    } catch (e: android.content.ActivityNotFoundException) {
-                        Toast.makeText(context, getString(R.string.error_no_browser), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
