@@ -150,3 +150,7 @@
 ## 2026-05-30 - User-Facing System Notifications
 **Learning:** Foreground service notifications and channels are exposed directly to users within their system drawer and app settings. Hardcoding technical or aggressive terminology (e.g., naming a channel ID as the visible name or using "Kill" as an action button) degrades the user experience and violates UX standards. Furthermore, failing to extract these strings to `strings.xml` prevents localization and accessibility optimizations.
 **Action:** Always avoid hardcoded, technical, or aggressive terminology in user-facing system notifications and foreground service controls. Utilize standard mobile UX phrasing (e.g., "Stop", "Tap") and ensure all notification text (titles, descriptions, actions) is extracted to localized string resources.
+
+## 2026-06-03 - TableLayout dynamic text element wrapping
+**Learning:** Using `match_parent` for elements (like `LinearLayout`s or `TextView`s) containing dynamically generated strings (like an IP address) inside a `TableLayout` column can cause layout constraints to act unexpectedly, leading to horizontal text clipping instead of correctly wrapping or expanding as intended.
+**Action:** Always use `android:layout_width="wrap_content"` for containers and `TextView`s inside a `TableLayout` when the elements hold or adjoin dynamically sizing text to prevent horizontal clipping.
