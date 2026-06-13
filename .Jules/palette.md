@@ -147,6 +147,10 @@
 **Learning:** Custom drawable selectors (like `ic_shutter.xml`) on Android often define `state_pressed` and `state_focused` but omit `state_hovered`. This strips visual feedback for users navigating with pointer devices (mice, trackpads) on environments like Chromebooks or Samsung DeX, degrading the user experience compared to native components.
 **Action:** Always include `android:state_hovered="true"` alongside focus and pressed states in custom interactive background selectors to ensure universal visual feedback across all input methods.
 
+## 2026-05-30 - Localized Notification Content
+**Learning:** Hardcoding notification strings (e.g. "RemoteCam run", "RemoteCam (active)", "Click to open", "Kill") in code circumvents localization systems and exposes untranslated, potentially technical text to the user. Using harsh phrasing like "Kill" for user-facing actions is a poor UX practice compared to standard terminology like "Stop".
+**Action:** Always extract foreground service notification content, including channel names, descriptions, titles, text, and action labels, to localized string resources. Additionally, use standard mobile UX phrasing (e.g. "Stop" rather than "Kill") for action buttons to ensure clear and approachable communication.
+
 ## 2026-05-30 - User-Friendly Notification Phrasing
 **Learning:** Hardcoded, technical, or aggressive terminology (e.g., using a raw "CHANNEL_ID" for the channel name, or words like "Kill" and "Click" for actions) in user-facing system notifications creates an abrasive and confusing experience. Notification channels and content are exposed directly to users in the Android system settings and status bar, so they must be descriptive and localized.
 **Action:** Always extract foreground service notification and channel text (titles, descriptions, actions) into localized string resources (`strings.xml`). Utilize standard mobile UX phrasing (e.g., "Stop" instead of "Kill", "Tap" instead of "Click") to ensure clear, polite, and universally understood interactions.
