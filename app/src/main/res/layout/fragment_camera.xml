@@ -316,13 +316,13 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/textView6"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="?attr/selectableItemBackground"
                             android:clickable="true"
@@ -330,8 +330,10 @@
                             android:minHeight="48dp"
                             android:gravity="center_vertical"
                             android:padding="8dp"
+                            android:textDirection="ltr"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:text="@string/default_ip"
+                            android:textDirection="ltr"
                             android:textColor="@color/colorLink"
                             android:drawableEnd="@drawable/ic_content_copy"
                             android:drawableTint="@color/colorLink"
@@ -372,8 +374,10 @@
                         android:minHeight="48dp"
                         android:gravity="center_vertical"
                         android:padding="8dp"
+                        android:textDirection="ltr"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:text="@string/repo_url"
+                        android:textDirection="ltr"
                         android:textColorLink="@color/colorLink"
                         android:drawableEnd="@drawable/ic_open_in_new"
                         android:drawableTint="@color/colorLink"

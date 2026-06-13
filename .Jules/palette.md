@@ -149,3 +149,21 @@
 ## 2024-05-22 - Tone and Voice in System Notifications
 **Learning:** Hardcoding technical or aggressive terminology like "Kill" for destructive actions in user-facing system notifications (like foreground service controls) degrades the user experience by using unnecessarily alarming language instead of standard, culturally understood UX terms.
 **Action:** Always avoid aggressive technical jargon in UI copy. Opt for standard UX phrasing like "Stop" instead of "Kill", and "Tap" instead of "Click" for mobile contexts, and ensure all notification text is extracted to localized string resources.
+
+## 2026-05-30 - User-Facing System Notifications
+**Learning:** Foreground service notifications and channels are exposed directly to users within their system drawer and app settings. Hardcoding technical or aggressive terminology (e.g., naming a channel ID as the visible name or using "Kill" as an action button) degrades the user experience and violates UX standards. Furthermore, failing to extract these strings to `strings.xml` prevents localization and accessibility optimizations.
+**Action:** Always avoid hardcoded, technical, or aggressive terminology in user-facing system notifications and foreground service controls. Utilize standard mobile UX phrasing (e.g., "Stop", "Tap") and ensure all notification text (titles, descriptions, actions) is extracted to localized string resources.
+
+## 2026-06-03 - TableLayout dynamic text element wrapping
+**Learning:** Using `match_parent` for elements (like `LinearLayout`s or `TextView`s) containing dynamically generated strings (like an IP address) inside a `TableLayout` column can cause layout constraints to act unexpectedly, leading to horizontal text clipping instead of correctly wrapping or expanding as intended.
+**Action:** Always use `android:layout_width="wrap_content"` for containers and `TextView`s inside a `TableLayout` when the elements hold or adjoin dynamically sizing text to prevent horizontal clipping.
+## 2026-05-31 - Synchronous Interactive Initialization
+**Learning:** Interactive elements with dynamic text and secondary actions (like links or copy to clipboard) must have their full actionable `contentDescription` and custom `AccessibilityDelegateCompat` set synchronously during view initialization (not inside asynchronous blocks like coroutines). If delayed, screen readers lack context before the first data update. Furthermore, attaching an initial `OnClickListener` providing explicit feedback (e.g., a loading Toast) is essential if a user interacts with the UI element while it is functionally disabled during a loading state.
+**Action:** Always initialize accessibility properties and add temporary feedback listeners synchronously outside of asynchronous data fetching blocks to ensure complete accessibility and responsive feedback from the moment the view is created.
+
+## 2026-06-10 - Force LTR on Network Addresses
+**Learning:** When an app supports RTL locales, the OS bidirectionality algorithms can mangle technical network strings like IP addresses and URLs (e.g., rendering `0.0.0.0:8080/cam.mjpeg` as `cam.mjpeg/8080:0.0.0.0`), destroying their readability and copy-paste accuracy.
+**Action:** Always apply `android:textDirection="ltr"` to text views displaying URLs, IP addresses, or code snippets to guarantee they are rendered properly left-to-right, regardless of the user's localized system reading direction.
+## 2024-06-11 - RTL Text Direction for Network Strings
+**Learning:** When an Android app supports RTL locales, the OS bidirectionality algorithms can mangle technical network strings like URLs or IP addresses when rendered in standard TextViews, making them unreadable or confusing.
+**Action:** Always apply `android:textDirection="ltr"` to text views displaying technical network strings like URLs, IP addresses, or code snippets to prevent OS bidirectionality algorithms from mangling them.
