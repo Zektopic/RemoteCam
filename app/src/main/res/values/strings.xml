@@ -5,6 +5,7 @@
     <!-- APPLICATION CORE           -->
     <!-- ========================== -->
     <string name="app_name">RemoteCam</string>
+<<<<<<< HEAD
 
     <!-- ========================== -->
     <!-- NOTIFICATIONS              -->
@@ -238,3 +239,68 @@
 
 
 </resources>
+=======
+    <string name="capture">Capture</string>
+
+    <!-- Camera Fragment Strings -->
+    <string name="app_title">RemoteCam</string>
+    <string name="stop_button">STOP</string>
+    <string name="stop_button_desc">Stop camera server</string>
+    <string name="preview_label">Preview</string>
+    <string name="stream_label">Stream</string>
+    <string name="rtsp_label">RTSP</string>
+    <string name="preview_tooltip">Toggle local camera preview</string>
+    <string name="stream_tooltip">Toggle MJPEG video stream</string>
+    <string name="rtsp_tooltip">Toggle RTSP video stream</string>
+    <string name="encoding_label">Encoding</string>
+    <string name="sensor_label">Sensor</string>
+    <string name="resolution_label">Resolution</string>
+    <string name="quality_label">Quality</string>
+    <string name="encoding_tooltip">Select video encoding format</string>
+    <string name="sensor_tooltip">Select camera sensor</string>
+    <string name="resolution_tooltip">Select video resolution</string>
+    <string name="resolution_format">%1$d × %2$d</string>
+    <string name="quality_tooltip">Select compression quality</string>
+    <string name="ip_label">IPs</string>
+    <string name="default_ip">0.0.0.0:8080/cam.mjpeg</string>
+    <string name="ip_format">%1$s:8080/cam.mjpeg</string>
+    <string name="actionable_content_description_format">%1$s, %2$s</string>
+    <string name="copy_ip_tooltip">Copy IP to clipboard</string>
+    <string name="repo_label">Source</string>
+    <string name="repo_url">https://github.com/Ruddle/RemoteCam</string>
+    <string name="repo_desc">Open GitHub repository</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="error_no_browser">No web browser found. Please install a browser to view the repository.</string>
+
+    <!-- Foreground Service Notifications -->
+    <string name="notification_channel_name">RemoteCam Service</string>
+    <string name="notification_channel_desc">Active background camera streaming</string>
+    <string name="notification_title">RemoteCam (active)</string>
+    <string name="notification_text">Tap to open controls</string>
+    <string name="notification_action_stop">Stop</string>
+
+    <!-- Stop Confirmation Dialog -->
+    <string name="stop_confirmation_title">Stop Server?</string>
+    <string name="stop_confirmation_message">This will stop the camera stream and close the application.</string>
+    <string name="stop_confirmation_positive">Stop</string>
+    <string name="stop_confirmation_negative">Cancel</string>
+
+    <string name="permission_denied">Camera permission is required to stream video</string>
+
+    <!-- Feedback Tooltips and Content Descriptions -->
+    <string name="frame_time_tooltip">Frame latency</string>
+    <string name="bitrate_tooltip">Data transfer rate</string>
+    <string name="frame_time_desc">%1$d milliseconds latency</string>
+    <string name="bitrate_desc">%1$d kilobytes per second</string>
+
+    <string name="default_frame_time">-- ms</string>
+    <string name="default_bitrate">-- kB/sec</string>
+    <string name="default_frame_time_desc">Unknown frame latency</string>
+    <string name="default_bitrate_desc">Unknown data transfer rate</string>
+
+    <string name="frame_time_format">%1$d ms</string>
+    <string name="bitrate_format">%1$d kB/sec</string>
+    <string name="quality_format">%1$d%%</string>
+    <string name="ip_loading_message">Loading IP address, please wait&#8230;</string>
+</resources>
+>>>>>>> main

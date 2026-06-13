@@ -23,17 +23,23 @@ import android.view.Surface
 import com.samsung.android.scan3d.ViewState
 import com.samsung.android.scan3d.http.HttpService
 import com.samsung.android.scan3d.util.Selector
+<<<<<<< HEAD
 import com.samsung.android.scan3d.util.SettingsManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.android.asCoroutineDispatcher
 import kotlinx.coroutines.launch
+=======
+import kotlinx.coroutines.Dispatchers
+>>>>>>> main
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 import kotlinx.parcelize.Parcelize
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
+<<<<<<< HEAD
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -46,6 +52,13 @@ class CamEngine(
     private var currentNoiseReductionMode: Int,
     private var isStabilizationOff: Boolean
 ) {
+=======
+import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.Locale
+
+class CamEngine(val context: Context) {
+>>>>>>> main
 
     var http: HttpService? = null
     var resW = 1280
@@ -66,12 +79,44 @@ class CamEngine(
     @Volatile
     private var isShuttingDown = false
 
+<<<<<<< HEAD
     private var lastQuickUpdateTime = 0L
     private val quickUpdateIntervalMs = 1200L
 
     private var currentSmoothingDelay: Int = SettingsManager.loadZoomSmoothingDelay(context)
     private var zoomAnimatorJob: Job? = null
     private val zoomAnimationSteps = 10
+=======
+    fun getEncoder(mimeType: String, resW: Int, resH: Int): MediaCodec? {
+        fun selectCodec(mimeType: String): MediaCodecInfo? {
+            val list = cachedCodecInfos
+            list.forEach {
+                if (it.isEncoder) {
+                    Log.i(
+                        "CODECS",
+                        "We got type " + it.name + " " + it.supportedTypes.contentToString()
+                    )
+                    if (it.supportedTypes.any { e -> e.equals(mimeType, ignoreCase = true) }) {
+                        return it
+                    }
+                }
+            }
+            return null
+        }
+
+        val codec = selectCodec(mimeType) ?: return null
+        val format = MediaFormat.createVideoFormat(mimeType, resW, resH)
+        format.setString(MediaFormat.KEY_MIME, mimeType)
+        format.setInteger(MediaFormat.KEY_FRAME_RATE, 30)
+        format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 5)
+        format.setInteger(MediaFormat.KEY_BIT_RATE, 2_000_000)
+        Log.i("CODECS", "$mimeType: $codec")
+        val encoder = MediaCodec.createByCodecName(codec.name)
+        encoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
+        encoder.start()
+        return encoder
+    }
+>>>>>>> main
 
     // --- H.264 / Codec Variables ---
     private var mediaCodec: MediaCodec? = null
@@ -158,6 +203,15 @@ class CamEngine(
         }
     }
 
+<<<<<<< HEAD
+=======
+    suspend fun restart() {
+        stopRunning()
+        initializeCamera()
+
+    }
+
+>>>>>>> main
     @SuppressLint("MissingPermission")
     private suspend fun openCamera(manager: CameraManager, cameraId: String, handler: Handler? = null): CameraDevice = suspendCancellableCoroutine { cont ->
         try {
@@ -206,6 +260,7 @@ class CamEngine(
         }
     }
 
+<<<<<<< HEAD
     private suspend fun initializeCameraInternal() {
         if (isShuttingDown) return
         stopRunning()
@@ -252,6 +307,14 @@ class CamEngine(
         val selectedSize = sizes[viewState.resolutionIndex ?: (sizes.size - 1)]
         resW = selectedSize.width
         resH = selectedSize.height
+=======
+    suspend fun initializeCamera() = withContext(Dispatchers.IO) {
+        Log.i("CAMERA", "initializeCamera")
+        Log.i("CAMERA", "RTSP: ${viewState.rtsp}, Encoding: ${viewState.encoding}")
+
+        // TODO: Implement RTSP stream and MediaCodec configuration using viewState.encoding
+        // Currently only MJPEG over HTTP is supported.
+>>>>>>> main
 
         val showLiveSurface = viewState.preview && !insidePause && previewSurface != null
         isShowingPreview = showLiveSurface
@@ -329,8 +392,93 @@ class CamEngine(
             }
         }
 
+<<<<<<< HEAD
         session?.setRepeatingRequest(captureRequestBuilder!!.build(), sessionCallback!!, cameraHandler)
         if (viewState.streamFormat == SettingsManager.FORMAT_H264) startH264EncoderLoop()
+=======
+
+
+        camera = openCamera(cameraManager, viewState.cameraId, cameraHandler)
+        imageReader = ImageReader.newInstance(
+            resW, resH, camOutPutFormat, 4
+        )
+        var targets = listOf(imageReader.surface)
+        if (showLiveSurface) {
+
+
+            targets = targets.plus(previewSurface!!)
+        }
+        session = createCaptureSession(camera, targets, cameraHandler)
+        val captureRequest = camera.createCaptureRequest(
+            CameraDevice.TEMPLATE_RECORD //TEMPLATE_PREVIEW
+        )
+        if (showLiveSurface) {
+            captureRequest.addTarget(previewSurface!!)
+        }
+        captureRequest.addTarget(imageReader.surface)
+        captureRequest.set(CaptureRequest.JPEG_QUALITY, viewState.quality.toByte())
+        var lastTime = System.currentTimeMillis()
+
+
+        var kodd = 0
+        val acquired = AtomicInteger(0)
+        session!!.setRepeatingRequest(
+            captureRequest.build(),
+            object : CameraCaptureSession.CaptureCallback() {
+
+                override fun onCaptureCompleted(
+                    session: CameraCaptureSession,
+                    request: CaptureRequest,
+                    result: TotalCaptureResult
+                ) {
+                    super.onCaptureCompleted(session, request, result)
+
+
+                    var lastImg = imageReader.acquireNextImage()
+
+                    if (acquired.get() > 1 && lastImg != null) {
+                        lastImg.close()
+                        Log.i("COM", "EARLY CLOSE")
+                        lastImg = null
+                    }
+
+                    val img = lastImg ?: return
+                    acquired.incrementAndGet()
+                    var curTime = System.currentTimeMillis()
+                    val delta = curTime - lastTime
+                    lastTime = curTime
+                    kodd += 1
+
+                    if (camOutPutFormat == ImageFormat.JPEG) {
+                        // executor.execute(Runnable {
+                        val buffer = img.planes[0].buffer
+                        val bytes = ByteArray(buffer.remaining()).apply { buffer.get(this) }
+
+                        if (kodd % 10 == 0) {
+                            updateViewQuick(
+                                DataQuick(
+                                    delta.toInt(),
+                                    (30 * bytes.size / 1000)
+                                )
+                            )
+                        }
+
+                        img.close()
+                        acquired.decrementAndGet()
+                        if (viewState.stream) {
+
+                            http?.channel?.trySend(
+                                bytes
+                            )
+
+                        }
+
+                    }
+                }
+            },
+            cameraHandler
+        )
+>>>>>>> main
         updateView()
     }
 
@@ -367,6 +515,7 @@ class CamEngine(
         }
     }
 
+<<<<<<< HEAD
     fun setStreamFormat(f: Int) { if (viewState.streamFormat != f) { viewState = viewState.copy(streamFormat = f); SettingsManager.saveStreamFormat(context, f); restart(true) } }
     fun setH264Bitrate(b: Int) { if (viewState.h264Bitrate != b) { viewState = viewState.copy(h264Bitrate = b); SettingsManager.saveH264Bitrate(context, b); restart(false) } }
     fun setH264Mode(m: Int) { if (viewState.h264Mode != m) { viewState = viewState.copy(h264Mode = m); SettingsManager.saveH264Mode(context, m); restart(false) } }
@@ -497,6 +646,49 @@ class CamEngine(
         val sensor = cameraList.find { it.cameraId == viewState.cameraId } ?: return
         val data = Data(cameraList, sensor, sizes.map { ParcelableSize(it.width, it.height) }, viewState.resolutionIndex ?: (sizes.size - 1), currentZoomRatio, minZoom, maxZoom, hasFlash, maxFlashLevel, viewState.quality, viewState.flash, viewState.flashLevel, sensorOrientation)
         context.sendBroadcast(Intent("UpdateFromCameraEngine").setPackage(context.packageName).putExtra("data", data))
+=======
+    private val supportedEncodings: List<String> by lazy {
+        val supported = ArrayList<String>()
+        supported.add("JPEG")
+
+        val list = cachedCodecInfos
+        val targetTypes = mapOf(
+            "video/avc" to "H.264",
+            "video/hevc" to "H.265",
+            "video/av01" to "AV1",
+            "video/x-vnd.on2.vp9" to "VP9"
+        )
+
+        for (codec in list) {
+            if (!codec.isEncoder) continue
+            for (type in codec.supportedTypes) {
+                val lowerType = type.lowercase(Locale.ROOT)
+                if (targetTypes.containsKey(lowerType)) {
+                    val friendlyName = targetTypes[lowerType]!!
+                    if (!supported.contains(friendlyName)) {
+                        supported.add(friendlyName)
+                    }
+                }
+            }
+        }
+        supported
+    }
+
+    fun updateView() {
+        val intent = Intent("UpdateFromCameraEngine") //FILTER is a string to identify this intent
+        intent.putExtra(
+            "data",
+            Data(
+                cameraList,
+                cameraList.find { it.cameraId == viewState.cameraId }!!,
+                resolutions = sizes,
+                resolutionSelected = viewState.resolutionIndex!!,
+                supportedEncodings = supportedEncodings,
+                encodingSelected = viewState.encoding
+            )
+        )
+        context.sendBroadcast(intent)
+>>>>>>> main
     }
 
     fun updateViewQuick(dq: DataQuick) {
@@ -508,8 +700,30 @@ class CamEngine(
     fun destroy() { isShuttingDown = true; cameraScope.launch { stopRunning(); cameraThread.quitSafely() } }
 
     companion object {
+<<<<<<< HEAD
         @Parcelize data class ParcelableSize(val width: Int, val height: Int) : Parcelable { override fun toString() = "$width x $height" }
         @Parcelize data class Data(val sensors: List<Selector.SensorDesc>, val sensorSelected: Selector.SensorDesc, val resolutions: List<ParcelableSize>, val resolutionSelected: Int, val currentZoom: Float, val minZoom: Float, val maxZoom: Float, val hasFlash: Boolean, val maxFlashLevel: Int, val quality: Int, val flashState: Boolean, val flashLevel: Int, val sensorOrientation: Int) : Parcelable
         @Parcelize data class DataQuick(val ms: Int, val rateKbs: Int) : Parcelable
+=======
+        private val cachedCodecInfos: Array<MediaCodecInfo> by lazy {
+            MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
+        }
+
+        @Parcelize
+        data class Data(
+            val sensors: List<Selector.SensorDesc>,
+            val sensorSelected: Selector.SensorDesc,
+            val resolutions: List<Size>,
+            val resolutionSelected: Int,
+            val supportedEncodings: List<String>,
+            val encodingSelected: String
+        ) : Parcelable
+
+        @Parcelize
+        data class DataQuick(
+            val ms: Int,
+            val rateKbs: Int
+        ) : Parcelable
+>>>>>>> main
     }
 }

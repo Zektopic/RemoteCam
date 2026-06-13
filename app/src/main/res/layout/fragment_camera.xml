@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2020 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:backgroundTint="#000000">
+
+            <com.example.android.camera.utils.AutoFitSurfaceView
+                android:id="@+id/view_finder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:overScrollMode="ifContentScrolls"
+                android:padding="4pt">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/app_title"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:accessibilityHeading="true" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ftFeedback"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center_vertical"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="16dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:focusable="true"
+                            android:minHeight="48dp"
+                            android:gravity="center_vertical"
+                            android:padding="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/colorPrimary"
+                            android:text="@string/default_frame_time"
+                            android:tooltipText="@string/frame_time_tooltip" />
+
+                        <Button
+                            android:id="@+id/buttonKill"
+                            style="@style/Widget.Button.Destructive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|fill_vertical"
+                            android:layout_marginEnd="16dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/stop_button"
+                            android:contentDescription="@string/stop_button_desc"
+                            android:tooltipText="@string/stop_button_desc" />
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:id="@+id/divider"
+                        android:importantForAccessibility="no"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="0pt"
+                        android:layout_marginBottom="4pt"
+                        android:layout_span="2"
+                        android:background="#FFAA00"
+                        android:paddingTop="5pt" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:background="#393939"
+                    android:padding="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_span="2"
+                        android:orientation="horizontal">
+
+                        <Switch
+                            android:id="@+id/switch1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:minHeight="48dp"
+                            android:layout_gravity="start"
+                            android:checked="true"
+                            android:splitTrack="false"
+                            android:text="@string/preview_label"
+                            android:tooltipText="@string/preview_tooltip"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <Switch
+                            android:id="@+id/switch2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:minHeight="48dp"
+                            android:layout_gravity="start"
+                            android:checked="false"
+                            android:text="@string/stream_label"
+                            android:tooltipText="@string/stream_tooltip"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <Switch
+                            android:id="@+id/switchRTSP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:minHeight="48dp"
+                            android:layout_gravity="start"
+                            android:checked="false"
+                            android:text="@string/rtsp_label"
+                            android:tooltipText="@string/rtsp_tooltip"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:background="#393939"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/textViewEncoding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:labelFor="@+id/spinnerEncoding"
+                        android:text="@string/encoding_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <Spinner
+                        android:id="@+id/spinnerEncoding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tooltipText="@string/encoding_tooltip"
+                            android:minHeight="48dp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:background="#393939"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:labelFor="@+id/spinnerCam"
+                        android:text="@string/sensor_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <Spinner
+                        android:id="@+id/spinnerCam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tooltipText="@string/sensor_tooltip"
+                            android:minHeight="48dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:background="#393939"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:labelFor="@+id/spinnerRes"
+                        android:text="@string/resolution_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <Spinner
+                        android:id="@+id/spinnerRes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tooltipText="@string/resolution_tooltip"
+                            android:minHeight="48dp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:background="#393939"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/textView42"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:labelFor="@+id/spinnerQua"
+                        android:text="@string/quality_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/spinnerQua"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:tooltipText="@string/quality_tooltip"
+                            android:minHeight="48dp" />
+
+                        <TextView
+                            android:id="@+id/qual_feedback"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="16dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:focusable="true"
+                            android:minHeight="48dp"
+                            android:gravity="center_vertical"
+                            android:padding="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/colorPrimary"
+                            android:text="@string/default_bitrate"
+                            android:tooltipText="@string/bitrate_tooltip" />
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:background="#393939"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:labelFor="@+id/textView6"
+                        android:text="@string/ip_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:minHeight="48dp"
+                            android:gravity="center_vertical"
+                            android:padding="8dp"
+                            android:textDirection="ltr"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:text="@string/default_ip"
+                            android:textDirection="ltr"
+                            android:textColor="@color/colorLink"
+                            android:drawableEnd="@drawable/ic_content_copy"
+                            android:drawableTint="@color/colorLink"
+                            android:drawablePadding="8dp"
+                            android:tooltipText="@string/copy_ip_tooltip" />
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:background="#393939"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:labelFor="@+id/textView2"
+                        android:text="@string/repo_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:autoLink="web"
+                        android:background="?attr/selectableItemBackground"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:tooltipText="@string/repo_desc"
+                        android:minHeight="48dp"
+                        android:gravity="center_vertical"
+                        android:padding="8dp"
+                        android:textDirection="ltr"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@string/repo_url"
+                        android:textDirection="ltr"
+                        android:textColorLink="@color/colorLink"
+                        android:drawableEnd="@drawable/ic_open_in_new"
+                        android:drawableTint="@color/colorLink"
+                        android:drawablePadding="8dp" />
+                </TableRow>
+
+
+            </TableLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</FrameLayout>

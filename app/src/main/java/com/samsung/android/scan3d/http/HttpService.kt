@@ -19,6 +19,7 @@ import io.netty.bootstrap.ServerBootstrap
 import java.net.BindException
 import java.util.concurrent.CopyOnWriteArrayList
 
+<<<<<<< HEAD
 data class H264Frame(val data: ByteArray, val isKeyFrame: Boolean)
 
 class ClientSession {
@@ -42,6 +43,20 @@ class HttpService(private val context: Context) {
                 outputStream.flush()
             }
         } catch (_: Exception) {}
+=======
+class HttpService {
+    lateinit var engine: NettyApplicationEngine
+    var channel = Channel<ByteArray>(2)
+    fun producer(): suspend OutputStream.() -> Unit = {
+        val o = this
+        channel = Channel()
+        val header = "--FRAME\r\nContent-Type: image/jpeg\r\n\r\n".toByteArray()
+        channel.consumeEach {
+            o.write(header)
+            o.write(it)
+            o.flush()
+        }
+>>>>>>> main
     }
 
     fun start() {

@@ -6,10 +6,15 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+<<<<<<< HEAD
 import androidx.activity.compose.setContent
+=======
+import android.util.Log
+>>>>>>> main
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+<<<<<<< HEAD
 import androidx.core.os.LocaleListCompat
 import androidx.core.view.WindowCompat
 import android.view.KeyEvent
@@ -37,6 +42,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import android.content.BroadcastReceiver
 import android.content.IntentFilter
+=======
+import com.samsung.android.scan3d.databinding.ActivityCameraBinding
+import com.samsung.android.scan3d.serv.Cam
+
+>>>>>>> main
 
 class CameraActivity : AppCompatActivity() {
 
@@ -68,6 +78,7 @@ class CameraActivity : AppCompatActivity() {
         return permissions.all {
             ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
         }
+<<<<<<< HEAD
     }
 
     /**
@@ -197,6 +208,9 @@ class CameraActivity : AppCompatActivity() {
         super.onResume()
         resetDimTimer()
         sendCam { it.action = "onResume" }
+=======
+        ContextCompat.registerReceiver(this, receiver, IntentFilter("KILL"), ContextCompat.RECEIVER_NOT_EXPORTED)
+>>>>>>> main
     }
 
     override fun onPause() {
@@ -206,10 +220,20 @@ class CameraActivity : AppCompatActivity() {
         // Don't release the WakeLock here, the service handles it
     }
 
+<<<<<<< HEAD
     // --- onKeyDown FUNCTION (UPDATED) ---
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (isInputLocked) {
             return true
+=======
+    fun sendCam(extra: (Intent) -> Unit) {
+        val intent = Intent(this, Cam::class.java)
+        extra(intent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent)
+        } else {
+            startService(intent)
+>>>>>>> main
         }
         // Load the setting
         val action = SettingsManager.loadVolumeAction(this)

@@ -16,20 +16,39 @@ import com.samsung.android.scan3d.CameraActivity
 import com.samsung.android.scan3d.R
 import com.samsung.android.scan3d.ViewState
 import com.samsung.android.scan3d.http.HttpService
+<<<<<<< HEAD
 import com.samsung.android.scan3d.util.SettingsManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
+=======
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+>>>>>>> main
 
 class Cam : Service(), CoroutineScope {
     var engine: CamEngine? = null
     var http: HttpService? = null
+<<<<<<< HEAD
     private val channelId = "REMOTE_CAM"
     private val job = Job()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
+=======
+    val CHANNEL_ID = "REMOTE_CAM"
+
+    private val serviceScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    private val cameraMutex = Mutex()
+
+>>>>>>> main
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.i("cam", "onstartcommand " + intent?.action)
@@ -44,6 +63,7 @@ class Cam : Service(), CoroutineScope {
 
         when (intent.action) {
             "start" -> {
+<<<<<<< HEAD
                 if (http == null) {
                     val channel = NotificationChannel(
                         channelId,
@@ -53,6 +73,16 @@ class Cam : Service(), CoroutineScope {
                     channel.description = "remotecam run"
                     val notificationManager = getSystemService(NotificationManager::class.java)
                     notificationManager.createNotificationChannel(channel)
+=======
+                val channel = NotificationChannel(
+                    CHANNEL_ID,
+                    getString(R.string.notification_channel_name),
+                    NotificationManager.IMPORTANCE_DEFAULT
+                )
+                channel.description = getString(R.string.notification_channel_desc)
+                val notificationManager = getSystemService(NotificationManager::class.java)
+                notificationManager.createNotificationChannel(channel)
+>>>>>>> main
 
                     val notificationIntent = Intent(this, CameraActivity::class.java)
                     val pendingIntent = PendingIntent.getActivity(
@@ -72,6 +102,7 @@ class Cam : Service(), CoroutineScope {
                         FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT
                     )
 
+<<<<<<< HEAD
                     val builder =
                         NotificationCompat.Builder(this, channelId)
                             .setContentTitle(getString(R.string.notif_title))
@@ -80,11 +111,20 @@ class Cam : Service(), CoroutineScope {
                             .setSmallIcon(R.drawable.ic_linked_camera)
                             .addAction(R.drawable.ic_close, getString(R.string.notif_kill), pendingIntentKill)
                             .setContentIntent(pendingIntent)
+=======
+                val builder =
+                    NotificationCompat.Builder(this, CHANNEL_ID)
+                        .setContentTitle(getString(R.string.notification_title))
+                        .setContentText(getString(R.string.notification_text)).setOngoing(true)
+                        .setSmallIcon(R.drawable.ic_linked_camera).addAction(R.drawable.ic_close, getString(R.string.notification_action_stop), pendingIntentKill)
+                        .setContentIntent(pendingIntent)
+>>>>>>> main
 
                     val notification: Notification = builder.build()
 
                     startForeground(123, notification)
 
+<<<<<<< HEAD
                     http = HttpService(this)
                     // engine?.http = http // Will be assigned when the engine is created
 
@@ -97,12 +137,35 @@ class Cam : Service(), CoroutineScope {
             "onPause" -> {
                 val allowBackground = SettingsManager.loadBackgroundStreaming(this)
                 engine?.insidePause = !allowBackground
+=======
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    //      builder.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
+                }
+                val notification: Notification = builder.build()
+                startForeground(123, notification) // Start the foreground service
+
+                http = HttpService()
+                http?.main()
+
+            }
+
+            "onPause" -> {
+                serviceScope.launch {
+                    cameraMutex.withLock {
+                        engine?.insidePause = true
+                        if (engine?.isShowingPreview == true) {
+                            engine?.restart()
+                        }
+                    }
+                }
+>>>>>>> main
             }
 
             "onResume" -> {
                 engine?.insidePause = false
             }
 
+<<<<<<< HEAD
             "start_engine_with_surface" -> {
                 val surface: Surface? = intent.extras?.getParcelable("surface", Surface::class.java)
 
@@ -162,16 +225,60 @@ class Cam : Service(), CoroutineScope {
                             eng.restart(disconnectClients = false)
                         } else {
                             eng.updateRepeatingRequest()
+=======
+            "start_camera_engine" -> {
+                serviceScope.launch {
+                    cameraMutex.withLock {
+                        val newEngine = withContext(Dispatchers.IO) {
+                            CamEngine(this@Cam)
+                        }
+                        newEngine.http = http
+                        engine = newEngine
+                        newEngine.initializeCamera()
+                    }
+                }
+            }
+
+            "new_view_state" -> {
+                val new : CameraFragment.Companion.ViewState = intent.extras?.getParcelable("data")!!
+                Log.i("CAM", "new_view_state: " + new)
+
+                serviceScope.launch {
+                    cameraMutex.withLock {
+                        val old = engine?.viewState
+                        if (old == null) {
+                            // Engine not ready or null
+                            return@withLock
+                        }
+                        Log.i("CAM", "from:           " + old)
+                        engine?.viewState = new
+                        if (old != new) {
+                            Log.i("CAM", "diff")
+                            engine?.restart()
+>>>>>>> main
                         }
                     }
                 }
             }
 
+<<<<<<< HEAD
             "preview_surface_destroyed" -> {
                 engine?.previewSurface = null
                 if (engine?.isShowingPreview == true) {
                     // We don't disconnect clients when the local preview dies (e.g. going to settings)
                     engine?.restart(disconnectClients = false)
+=======
+            "new_preview_surface" -> {
+                val surface: Surface? = intent.extras?.getParcelable("surface")
+                serviceScope.launch {
+                    cameraMutex.withLock {
+                        // Toast.makeText(this, "SURFACE", Toast.LENGTH_SHORT).show()
+                        engine?.previewSurface = surface
+                        if (engine?.viewState?.preview == true) {
+                            engine?.initializeCamera()
+                        }
+                    }
+>>>>>>> main
                 }
             }
 
@@ -280,7 +387,12 @@ class Cam : Service(), CoroutineScope {
 
     override fun onDestroy() {
         super.onDestroy()
+<<<<<<< HEAD
         Log.i("cam", "ondestroy")
+=======
+        Log.i("CAM", "OnDestroy")
+        serviceScope.cancel()
+>>>>>>> main
         kill()
         job.cancel()
     }

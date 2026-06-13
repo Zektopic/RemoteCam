@@ -1,0 +1,8 @@
+<<<<<<< SEARCH
+        fragmentCameraBinding.viewFinder.holder.addCallback(object : SurfaceHolder.Callback {
+=======
+        fragmentCameraBinding.ftFeedback?.contentDescription = getString(R.string.unknown_frame_time)
+        fragmentCameraBinding.qualFeedback?.contentDescription = getString(R.string.unknown_bitrate)
+
+        fragmentCameraBinding.viewFinder.holder.addCallback(object : SurfaceHolder.Callback {
+>>>>>>> REPLACE

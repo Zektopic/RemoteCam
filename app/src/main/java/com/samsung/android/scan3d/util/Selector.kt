@@ -26,11 +26,19 @@ object Selector {
     fun enumerateCameras(cameraManager: CameraManager): List<SensorDesc> {
         val availableCameras: MutableList<SensorDesc> = mutableListOf()
 
+<<<<<<< HEAD
         val cameraIds = try {
             cameraManager.cameraIdList.toList()
         } catch (e: Exception) {
             Log.e("SELECTOR", "Fatal error getting camera ID list", e)
             return emptyList()
+=======
+        // Get list of all compatible cameras
+        val cameraIds = try {
+            cameraManager.cameraIdList.toList()
+        } catch (e: Exception) {
+            emptyList<String>()
+>>>>>>> main
         }
 
         // Iterate through all cameras provided by the system, without any prior filtering.
@@ -75,6 +83,65 @@ object Selector {
                 // This is often a system or virtual camera not intended for third-party apps.
                 Log.w("SELECTOR", "Could not process camera $id, skipping. Error: ${e.message}")
             }
+<<<<<<< HEAD
+=======
+        }.forEach { cameraIds2.add(it) }
+
+
+        // Iterate over the list of cameras and return all the compatible ones
+        cameraIds2.forEach { id ->
+
+            Log.i("SELECTOR", "id: " + id)
+            val characteristics = cameraManager.getCameraCharacteristics(id)
+            val orientation = lensOrientationString(
+                characteristics.get(CameraCharacteristics.LENS_FACING)!!
+            )
+
+            // Query the available capabilities and output formats
+            val capabilities = characteristics.get(
+                CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES
+            )!!
+
+            capabilities.forEach { Log.i("CAP", "" + getCapStringAtIndex(it)) }
+
+
+            val outputFormats = characteristics.get(
+                CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP
+            )!!.outputFormats
+
+            val outputSizes = characteristics.get(
+                CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP
+            )!!.getOutputSizes(ImageFormat.JPEG)
+
+
+            val focalMm = characteristics.get(
+                CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS
+            )!![0]
+            val foc = ("" + focalMm + "mm").padEnd(6, ' ')
+            val ape = ("f" + characteristics.get(
+                CameraCharacteristics.LENS_INFO_AVAILABLE_APERTURES
+            )!![0] + "").padEnd(4, ' ')
+
+            val sensorSize = characteristics.get(
+                CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE
+            )!!
+
+            val vfov =(( 2.0*(180.0 / 3.141592) * atan(sensorSize.height / (2.0 * focalMm))).roundToInt().toString()+"°").padEnd(4,' ')
+
+            // All cameras *must* support JPEG output so we don't need to check characteristics
+
+            val title=  "vfov:$vfov $foc $ape $orientation"
+            if(!availableCameras.any {it-> it.title==title } ){
+                availableCameras.add(
+                    SensorDesc(
+                        title, id, ImageFormat.JPEG
+                    )
+                )
+            }
+
+
+
+>>>>>>> main
         }
 
         // Sort the final list by camera ID for a consistent order.

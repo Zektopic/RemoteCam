@@ -1,0 +1,15 @@
+<<<<<<< SEARCH
+    <string name="frame_time_desc">%1$d milliseconds latency</string>
+    <string name="bitrate_desc">%1$d kilobytes per second</string>
+
+    <string name="default_frame_time">-- ms</string>
+    <string name="default_bitrate">-- kB/sec</string>
+=======
+    <string name="frame_time_desc">%1$d milliseconds latency</string>
+    <string name="bitrate_desc">%1$d kilobytes per second</string>
+
+    <string name="default_frame_time">-- ms</string>
+    <string name="default_bitrate">-- kB/sec</string>
+    <string name="unknown_frame_time">Unknown frame latency</string>
+    <string name="unknown_bitrate">Unknown data transfer rate</string>
+>>>>>>> REPLACE
