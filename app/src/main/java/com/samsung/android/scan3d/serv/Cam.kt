@@ -77,11 +77,6 @@ class Cam : Service() {
                         .setSmallIcon(R.drawable.ic_linked_camera).addAction(R.drawable.ic_close, getString(R.string.notification_action_stop), pendingIntentKill)
                         .setContentIntent(pendingIntent)
 
-
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    //      builder.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
-                }
                 val notification: Notification = builder.build()
                 startForeground(123, notification) // Start the foreground service
 
