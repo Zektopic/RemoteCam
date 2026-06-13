@@ -43,10 +43,9 @@ class Cam : Service() {
 
         when (intent.action) {
             "start" -> {
-                val channelName = getString(R.string.notification_channel_name)
                 val channel = NotificationChannel(
                     CHANNEL_ID,
-                    channelName,
+                    getString(R.string.notification_channel_name),
                     NotificationManager.IMPORTANCE_DEFAULT
                 )
                 channel.description = getString(R.string.notification_channel_desc)
