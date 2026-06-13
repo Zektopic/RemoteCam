@@ -154,3 +154,13 @@
 ## 2026-06-03 - TableLayout dynamic text element wrapping
 **Learning:** Using `match_parent` for elements (like `LinearLayout`s or `TextView`s) containing dynamically generated strings (like an IP address) inside a `TableLayout` column can cause layout constraints to act unexpectedly, leading to horizontal text clipping instead of correctly wrapping or expanding as intended.
 **Action:** Always use `android:layout_width="wrap_content"` for containers and `TextView`s inside a `TableLayout` when the elements hold or adjoin dynamically sizing text to prevent horizontal clipping.
+## 2026-05-31 - Synchronous Interactive Initialization
+**Learning:** Interactive elements with dynamic text and secondary actions (like links or copy to clipboard) must have their full actionable `contentDescription` and custom `AccessibilityDelegateCompat` set synchronously during view initialization (not inside asynchronous blocks like coroutines). If delayed, screen readers lack context before the first data update. Furthermore, attaching an initial `OnClickListener` providing explicit feedback (e.g., a loading Toast) is essential if a user interacts with the UI element while it is functionally disabled during a loading state.
+**Action:** Always initialize accessibility properties and add temporary feedback listeners synchronously outside of asynchronous data fetching blocks to ensure complete accessibility and responsive feedback from the moment the view is created.
+
+## 2026-06-10 - Force LTR on Network Addresses
+**Learning:** When an app supports RTL locales, the OS bidirectionality algorithms can mangle technical network strings like IP addresses and URLs (e.g., rendering `0.0.0.0:8080/cam.mjpeg` as `cam.mjpeg/8080:0.0.0.0`), destroying their readability and copy-paste accuracy.
+**Action:** Always apply `android:textDirection="ltr"` to text views displaying URLs, IP addresses, or code snippets to guarantee they are rendered properly left-to-right, regardless of the user's localized system reading direction.
+## 2024-06-11 - RTL Text Direction for Network Strings
+**Learning:** When an Android app supports RTL locales, the OS bidirectionality algorithms can mangle technical network strings like URLs or IP addresses when rendered in standard TextViews, making them unreadable or confusing.
+**Action:** Always apply `android:textDirection="ltr"` to text views displaying technical network strings like URLs, IP addresses, or code snippets to prevent OS bidirectionality algorithms from mangling them.
