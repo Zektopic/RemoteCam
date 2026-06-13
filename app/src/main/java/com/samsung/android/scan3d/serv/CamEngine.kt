@@ -307,7 +307,7 @@ class CamEngine(val context: Context) {
     }
 
     private val supportedEncodings: List<String> by lazy {
-        val supported = ArrayList<String>()
+        val supported = mutableSetOf<String>()
         supported.add("JPEG")
 
         val list = cachedCodecInfos
@@ -324,13 +324,11 @@ class CamEngine(val context: Context) {
                 val lowerType = type.lowercase(Locale.ROOT)
                 if (targetTypes.containsKey(lowerType)) {
                     val friendlyName = targetTypes[lowerType]!!
-                    if (!supported.contains(friendlyName)) {
-                        supported.add(friendlyName)
-                    }
+                    supported.add(friendlyName)
                 }
             }
         }
-        supported
+        supported.toList()
     }
 
     fun updateView() {
