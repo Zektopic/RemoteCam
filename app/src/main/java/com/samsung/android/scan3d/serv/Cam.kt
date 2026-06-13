@@ -74,8 +74,8 @@ class Cam : Service() {
                 val builder =
                     NotificationCompat.Builder(this, CHANNEL_ID)
                         .setContentTitle(getString(R.string.notification_title))
-                        .setContentText(getString(R.string.notification_text)).setOngoing(true)
-                        .setSmallIcon(R.drawable.ic_linked_camera).addAction(R.drawable.ic_close, getString(R.string.notification_action_stop), pendingIntentKill)
+                        .setContentText(getString(R.string.notification_content)).setOngoing(true)
+                        .setSmallIcon(R.drawable.ic_linked_camera).addAction(R.drawable.ic_close, getString(R.string.stop_button), pendingIntentKill)
                         .setContentIntent(pendingIntent)
 
 

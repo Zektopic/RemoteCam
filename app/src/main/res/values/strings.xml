@@ -48,10 +48,11 @@
     <string name="error_no_browser">No web browser found. Please install a browser to view the repository.</string>
 
     <!-- Notification Strings -->
-    <string name="notification_channel_name">RemoteCam Service</string>
-    <string name="notification_channel_desc">Shows active status of the remote camera server</string>
+    <string name="notification_channel_name">Camera Service</string>
+    <string name="notification_channel_desc">Maintains the camera connection and streaming service in the background</string>
     <string name="notification_title">RemoteCam (active)</string>
     <string name="notification_text">Tap to open app</string>
+    <string name="notification_content">Tap to open controls</string>
     <string name="notification_action_stop">Stop</string>
 
     <!-- Stop Confirmation Dialog -->
@@ -78,4 +79,5 @@
     <string name="frame_time_format">%1$d ms</string>
     <string name="bitrate_format">%1$d kB/sec</string>
     <string name="quality_format">%1$d%%</string>
+
 </resources>

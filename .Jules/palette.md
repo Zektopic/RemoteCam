@@ -146,6 +146,11 @@
 ## 2026-05-20 - Mouse Hover States for Custom Selectors
 **Learning:** Custom drawable selectors (like `ic_shutter.xml`) on Android often define `state_pressed` and `state_focused` but omit `state_hovered`. This strips visual feedback for users navigating with pointer devices (mice, trackpads) on environments like Chromebooks or Samsung DeX, degrading the user experience compared to native components.
 **Action:** Always include `android:state_hovered="true"` alongside focus and pressed states in custom interactive background selectors to ensure universal visual feedback across all input methods.
+
+## 2026-05-30 - User-Friendly Notification Phrasing
+**Learning:** Hardcoded, technical, or aggressive terminology (e.g., using a raw "CHANNEL_ID" for the channel name, or words like "Kill" and "Click" for actions) in user-facing system notifications creates an abrasive and confusing experience. Notification channels and content are exposed directly to users in the Android system settings and status bar, so they must be descriptive and localized.
+**Action:** Always extract foreground service notification and channel text (titles, descriptions, actions) into localized string resources (`strings.xml`). Utilize standard mobile UX phrasing (e.g., "Stop" instead of "Kill", "Tap" instead of "Click") to ensure clear, polite, and universally understood interactions.
+
 ## 2024-05-22 - Tone and Voice in System Notifications
 **Learning:** Hardcoding technical or aggressive terminology like "Kill" for destructive actions in user-facing system notifications (like foreground service controls) degrades the user experience by using unnecessarily alarming language instead of standard, culturally understood UX terms.
 **Action:** Always avoid aggressive technical jargon in UI copy. Opt for standard UX phrasing like "Stop" instead of "Kill", and "Tap" instead of "Click" for mobile contexts, and ensure all notification text is extracted to localized string resources.
@@ -156,7 +161,7 @@
 
 ## 2026-06-03 - TableLayout dynamic text element wrapping
 **Learning:** Using `match_parent` for elements (like `LinearLayout`s or `TextView`s) containing dynamically generated strings (like an IP address) inside a `TableLayout` column can cause layout constraints to act unexpectedly, leading to horizontal text clipping instead of correctly wrapping or expanding as intended.
-**Action:** Always use `android:layout_width="wrap_content"` for containers and `TextView`s inside a `TableLayout` when the elements hold or adjoin dynamically sizing text to prevent horizontal clipping.
+**Action:** Always use `android:layout_width="wrap_content"` for containers and `TextView`s inside a`TableLayout` when the elements hold or adjoin dynamically sizing text to prevent horizontal clipping.
 ## 2026-05-31 - Synchronous Interactive Initialization
 **Learning:** Interactive elements with dynamic text and secondary actions (like links or copy to clipboard) must have their full actionable `contentDescription` and custom `AccessibilityDelegateCompat` set synchronously during view initialization (not inside asynchronous blocks like coroutines). If delayed, screen readers lack context before the first data update. Furthermore, attaching an initial `OnClickListener` providing explicit feedback (e.g., a loading Toast) is essential if a user interacts with the UI element while it is functionally disabled during a loading state.
 **Action:** Always initialize accessibility properties and add temporary feedback listeners synchronously outside of asynchronous data fetching blocks to ensure complete accessibility and responsive feedback from the moment the view is created.
