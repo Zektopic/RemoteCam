@@ -1,0 +1,19 @@
+<<<<<<< SEARCH
+    @SuppressLint("MissingPermission")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.i("onViewCreated", "onViewCreated")
+
+
+        Cac.sendCam {
+=======
+    @SuppressLint("MissingPermission")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.i("onViewCreated", "onViewCreated")
+
+        fragmentCameraBinding.ftFeedback?.contentDescription = getString(R.string.unknown_frame_time)
+        fragmentCameraBinding.qualFeedback?.contentDescription = getString(R.string.unknown_bitrate)
+
+        Cac.sendCam {
+>>>>>>> REPLACE
