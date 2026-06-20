@@ -70,43 +70,35 @@ object Selector {
             emptyList<String>()
         }
 
-        val cameraIds2 = mutableListOf<String>()
-        cameraIds.filter {
-
+        // Iterate over the list of cameras and return all the compatible ones
+        cameraIds.mapNotNull { id ->
             try {
-                val characteristics = cameraManager.getCameraCharacteristics(it)
+                val characteristics = cameraManager.getCameraCharacteristics(id)
                 val capabilities = characteristics.get(
                     CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES
                 )
 
                 if (capabilities == null) {
-                    false
+                    null
                 } else if (capabilities.contains(
                         CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA
                     )
                 ) {
-                    false
+                    null
                 } else if (capabilities.contains(
                         CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_BACKWARD_COMPATIBLE
                     )
                 ) {
-                    true
+                    Pair(id, characteristics)
                 } else {
-                    false
+                    null
                 }
-
-
             } catch (e: Exception) {
-                false
+                null
             }
-        }.forEach { cameraIds2.add(it) }
-
-
-        // Iterate over the list of cameras and return all the compatible ones
-        cameraIds2.forEach { id ->
+        }.forEach { (id, characteristics) ->
 
             Log.i("SELECTOR", "id: " + id)
-            val characteristics = cameraManager.getCameraCharacteristics(id)
             val orientation = lensOrientationString(
                 characteristics.get(CameraCharacteristics.LENS_FACING)!!
             )
