@@ -11,6 +11,7 @@ object IpUtil {
         try {
             val interfaces: List<NetworkInterface> = Collections.list(NetworkInterface.getNetworkInterfaces())
             for (networkInterface in interfaces) {
+                if (!networkInterface.isUp || networkInterface.isLoopback) continue
                 val addresses = networkInterface.inetAddresses
                 for (address in addresses) {
                     if (!address.isLoopbackAddress && address.isSiteLocalAddress) {
