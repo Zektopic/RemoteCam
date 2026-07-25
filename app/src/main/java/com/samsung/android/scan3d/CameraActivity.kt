@@ -36,7 +36,6 @@ class CameraActivity : AppCompatActivity() {
     private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             finish()
-            //      android.os.Process.killProcess(android.os.Process.myPid())
         }
     }
 
