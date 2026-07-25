@@ -48,6 +48,8 @@ class CamEngine(val context: Context) {
         context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
     private var cameraList: List<Selector.SensorDesc> =
         Selector.enumerateCameras(cameraManager)
+    private var cameraMap: Map<String, Selector.SensorDesc> =
+        cameraList.associateBy { it.cameraId }
 
     val camOutPutFormat = ImageFormat.JPEG // ImageFormat.YUV_420_888// ImageFormat.JPEG
 
@@ -333,7 +335,7 @@ class CamEngine(val context: Context) {
             "data",
             Data(
                 cameraList,
-                cameraList.find { it.cameraId == viewState.cameraId }!!,
+                cameraMap[viewState.cameraId]!!,
                 resolutions = sizes,
                 resolutionSelected = viewState.resolutionIndex!!,
                 supportedEncodings = supportedEncodings,
