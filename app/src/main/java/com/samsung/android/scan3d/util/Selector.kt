@@ -70,6 +70,8 @@ object Selector {
             emptyList<String>()
         }
 
+        val seenTitles = mutableSetOf<String>()
+
         // Iterate over the list of cameras and return all the compatible ones
         cameraIds.mapNotNull { id ->
             try {
@@ -137,7 +139,7 @@ object Selector {
             // All cameras *must* support JPEG output so we don't need to check characteristics
 
             val title=  "vfov:$vfov $foc $ape $orientation"
-            if(!availableCameras.any {it-> it.title==title } ){
+            if(seenTitles.add(title)){
                 availableCameras.add(
                     SensorDesc(
                         title, id, ImageFormat.JPEG
