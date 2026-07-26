@@ -23,6 +23,7 @@ class IpUtilTest {
                 val mockInterface = mock(NetworkInterface::class.java)
                 val mockAddress = mock(InetAddress::class.java)
 
+                `when`(mockInterface.isUp).thenReturn(true)
                 `when`(mockAddress.isLoopbackAddress).thenReturn(false)
                 `when`(mockAddress.isSiteLocalAddress).thenReturn(true)
                 `when`(mockAddress.hostAddress).thenReturn("192.168.1.100")
@@ -46,6 +47,7 @@ class IpUtilTest {
                 val loopbackAddress = mock(InetAddress::class.java)
                 val validAddress = mock(InetAddress::class.java)
 
+                `when`(mockInterface.isUp).thenReturn(true)
                 `when`(loopbackAddress.isLoopbackAddress).thenReturn(true)
                 `when`(loopbackAddress.isSiteLocalAddress).thenReturn(true)
                 `when`(loopbackAddress.hostAddress).thenReturn("127.0.0.1")
@@ -73,6 +75,7 @@ class IpUtilTest {
                 val publicAddress = mock(InetAddress::class.java)
                 val validAddress = mock(InetAddress::class.java)
 
+                `when`(mockInterface.isUp).thenReturn(true)
                 `when`(publicAddress.isLoopbackAddress).thenReturn(false)
                 `when`(publicAddress.isSiteLocalAddress).thenReturn(false)
                 `when`(publicAddress.hostAddress).thenReturn("8.8.8.8")
@@ -99,6 +102,7 @@ class IpUtilTest {
                 val mockInterface = mock(NetworkInterface::class.java)
                 val publicAddress = mock(InetAddress::class.java)
 
+                `when`(mockInterface.isUp).thenReturn(true)
                 `when`(publicAddress.isLoopbackAddress).thenReturn(false)
                 `when`(publicAddress.isSiteLocalAddress).thenReturn(false)
 
