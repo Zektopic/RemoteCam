@@ -25,12 +25,14 @@ class SelectorTest {
     fun getCapStringAtIndex_negativeIndex_returnsInvalidIndex() {
         assertEquals("Invalid index", Selector.getCapStringAtIndex(-1))
         assertEquals("Invalid index", Selector.getCapStringAtIndex(-100))
+        assertEquals("Invalid index", Selector.getCapStringAtIndex(Int.MIN_VALUE))
     }
 
     @Test
     fun getCapStringAtIndex_outOfBoundsPositiveIndex_returnsInvalidIndex() {
         assertEquals("Invalid index", Selector.getCapStringAtIndex(21))
         assertEquals("Invalid index", Selector.getCapStringAtIndex(100))
+        assertEquals("Invalid index", Selector.getCapStringAtIndex(Int.MAX_VALUE))
     }
 
     @Test
