@@ -1,7 +1,11 @@
 package com.samsung.android.scan3d.util
 
+import android.hardware.camera2.CameraManager
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 
 class SelectorTest {
 
@@ -27,5 +31,15 @@ class SelectorTest {
     fun getCapStringAtIndex_outOfBoundsPositiveIndex_returnsInvalidIndex() {
         assertEquals("Invalid index", Selector.getCapStringAtIndex(21))
         assertEquals("Invalid index", Selector.getCapStringAtIndex(100))
+    }
+
+    @Test
+    fun enumerateCameras_cameraManagerThrowsException_returnsEmptyList() {
+        val cameraManager = mock(CameraManager::class.java)
+        `when`(cameraManager.cameraIdList).thenThrow(RuntimeException("Camera access failed"))
+
+        val result = Selector.enumerateCameras(cameraManager)
+
+        assertTrue(result.isEmpty())
     }
 }
