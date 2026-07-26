@@ -25,39 +25,33 @@ object Selector {
         else -> "Unknown"
     }
 
+    private val CAPABILITIES = arrayOf(
+        "BACKWARD_COMPATIBLE",
+        "MANUAL_SENSOR",
+        "MANUAL_POST_PROCESSING",
+        "RAW",
+        "PRIVATE_REPROCESSING",
+        "READ_SENSOR_SETTINGS",
+        "BURST_CAPTURE",
+        "YUV_REPROCESSING",
+        "DEPTH_OUTPUT",
+        "CONSTRAINED_HIGH_SPEED_VIDEO",
+        "MOTION_TRACKING",
+        "LOGICAL_MULTI_CAMERA",
+        "MONOCHROME",
+        "SECURE_IMAGE_DATA",
+        "SYSTEM_CAMERA",
+        "OFFLINE_PROCESSING",
+        "ULTRA_HIGH_RESOLUTION_SENSOR",
+        "REMOSAIC_REPROCESSING",
+        "DYNAMIC_RANGE_TEN_BIT",
+        "STREAM_USE_CASE",
+        "COLOR_SPACE_PROFILES"
+    )
+
     /** Helper function used to list all compatible cameras and supported pixel formats */
 
-    fun getCapStringAtIndex(index: Int): String {
-        val strings = listOf(
-            "BACKWARD_COMPATIBLE",
-            "MANUAL_SENSOR",
-            "MANUAL_POST_PROCESSING",
-            "RAW",
-            "PRIVATE_REPROCESSING",
-            "READ_SENSOR_SETTINGS",
-            "BURST_CAPTURE",
-            "YUV_REPROCESSING",
-            "DEPTH_OUTPUT",
-            "CONSTRAINED_HIGH_SPEED_VIDEO",
-            "MOTION_TRACKING",
-            "LOGICAL_MULTI_CAMERA",
-            "MONOCHROME",
-            "SECURE_IMAGE_DATA",
-            "SYSTEM_CAMERA",
-            "OFFLINE_PROCESSING",
-            "ULTRA_HIGH_RESOLUTION_SENSOR",
-            "REMOSAIC_REPROCESSING",
-            "DYNAMIC_RANGE_TEN_BIT",
-            "STREAM_USE_CASE",
-            "COLOR_SPACE_PROFILES"
-        )
-
-        if (index in 0 until strings.size) {
-            return strings[index]
-        } else {
-            return "Invalid index"
-        }
-    }
+    fun getCapStringAtIndex(index: Int): String = CAPABILITIES.getOrElse(index) { "Invalid index" }
 
     @SuppressLint("InlinedApi")
     fun enumerateCameras(cameraManager: CameraManager): List<SensorDesc> {
