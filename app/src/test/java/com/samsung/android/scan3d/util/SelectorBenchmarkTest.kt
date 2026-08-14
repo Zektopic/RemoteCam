@@ -8,7 +8,6 @@ import android.hardware.camera2.params.StreamConfigurationMap
 import android.util.Log
 import android.util.Size
 import android.util.SizeF
-import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
