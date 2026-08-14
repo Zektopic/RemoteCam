@@ -107,15 +107,6 @@ object Selector {
             capabilities.forEach { Log.i("CAP", "" + getCapStringAtIndex(it)) }
 
 
-            val outputFormats = characteristics.get(
-                CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP
-            )!!.outputFormats
-
-            val outputSizes = characteristics.get(
-                CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP
-            )!!.getOutputSizes(ImageFormat.JPEG)
-
-
             val focalMm = characteristics.get(
                 CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS
             )!![0]
