@@ -309,20 +309,14 @@ class CamEngine(val context: Context) {
         supported.add("JPEG")
 
         val list = cachedCodecInfos
-        val targetTypes = mapOf(
-            "video/avc" to "H.264",
-            "video/hevc" to "H.265",
-            "video/av01" to "AV1",
-            "video/x-vnd.on2.vp9" to "VP9"
-        )
-
         for (codec in list) {
             if (!codec.isEncoder) continue
             for (type in codec.supportedTypes) {
-                val lowerType = type.lowercase(Locale.ROOT)
-                if (targetTypes.containsKey(lowerType)) {
-                    val friendlyName = targetTypes[lowerType]!!
-                    supported.add(friendlyName)
+                when {
+                    type.equals("video/avc", ignoreCase = true) -> supported.add("H.264")
+                    type.equals("video/hevc", ignoreCase = true) -> supported.add("H.265")
+                    type.equals("video/av01", ignoreCase = true) -> supported.add("AV1")
+                    type.equals("video/x-vnd.on2.vp9", ignoreCase = true) -> supported.add("VP9")
                 }
             }
         }
