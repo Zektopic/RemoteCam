@@ -44,8 +44,10 @@ class CameraActivity : AppCompatActivity() {
         Log.i("CAMERAACTIVITY", "CAMERAACTIVITY onCreate")
         activityCameraBinding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(activityCameraBinding.root)
-        sendCam {
-            it.action = "start"
+        if (intent?.action == Intent.ACTION_MAIN) {
+            sendCam {
+                it.action = "start"
+            }
         }
         ContextCompat.registerReceiver(this, receiver, IntentFilter("KILL"), ContextCompat.RECEIVER_NOT_EXPORTED)
     }
