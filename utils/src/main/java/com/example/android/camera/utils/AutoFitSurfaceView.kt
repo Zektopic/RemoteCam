@@ -20,7 +20,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.SurfaceView
-import kotlin.math.roundToInt
 
 /**
  * A [SurfaceView] that can be adjusted to a specified aspect ratio and
