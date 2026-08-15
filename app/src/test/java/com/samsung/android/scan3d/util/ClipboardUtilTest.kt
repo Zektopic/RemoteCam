@@ -8,7 +8,6 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Mockito.*
 import org.junit.Assert.assertEquals
 import org.junit.Assert.fail
-import org.mockito.MockedStatic
 
 class ClipboardUtilTest {
     @Test
