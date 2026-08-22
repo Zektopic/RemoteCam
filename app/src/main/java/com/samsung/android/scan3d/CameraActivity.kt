@@ -29,13 +29,21 @@ import com.samsung.android.scan3d.databinding.ActivityCameraBinding
 import com.samsung.android.scan3d.serv.Cam
 
 
+import java.util.UUID
+
 class CameraActivity : AppCompatActivity() {
+
+    companion object {
+        val KILL_TOKEN = UUID.randomUUID().toString()
+    }
 
     private lateinit var activityCameraBinding: ActivityCameraBinding
 
     private val receiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            finish()
+            if (intent.getStringExtra("kill_token") == KILL_TOKEN) {
+                finish()
+            }
         }
     }
 
@@ -49,7 +57,7 @@ class CameraActivity : AppCompatActivity() {
                 it.action = "start"
             }
         }
-        ContextCompat.registerReceiver(this, receiver, IntentFilter("KILL"), ContextCompat.RECEIVER_NOT_EXPORTED)
+        ContextCompat.registerReceiver(this, receiver, IntentFilter("com.samsung.android.scan3d.action.KILL"), ContextCompat.RECEIVER_NOT_EXPORTED)
     }
 
     override fun onPause() {
