@@ -60,7 +60,10 @@ class Cam : Service() {
                     FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT
                 )
 
-                val intentKill = Intent("KILL")
+                val intentKill = Intent("com.samsung.android.scan3d.action.KILL").apply {
+                    setPackage(packageName)
+                    putExtra("kill_token", CameraActivity.KILL_TOKEN)
+                }
                 val pendingIntentKill = PendingIntent.getBroadcast(
                     this,
                     System.currentTimeMillis().toInt(),
