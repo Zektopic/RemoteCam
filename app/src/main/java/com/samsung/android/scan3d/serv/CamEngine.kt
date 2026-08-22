@@ -51,7 +51,7 @@ class CamEngine(val context: Context) {
     private var cameraMap: Map<String, Selector.SensorDesc> =
         cameraList.associateBy { it.cameraId }
 
-    val camOutPutFormat = ImageFormat.JPEG // ImageFormat.YUV_420_888// ImageFormat.JPEG
+    val camOutPutFormat = ImageFormat.JPEG
 
     fun getEncoder(mimeType: String, resW: Int, resH: Int): MediaCodec? {
         fun selectCodec(mimeType: String): MediaCodecInfo? {
