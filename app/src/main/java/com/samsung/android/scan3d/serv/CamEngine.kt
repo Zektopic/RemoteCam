@@ -30,7 +30,6 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.Locale
 
 class CamEngine(val context: Context) {
 
