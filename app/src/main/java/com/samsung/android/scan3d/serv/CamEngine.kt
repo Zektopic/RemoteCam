@@ -272,24 +272,6 @@ class CamEngine(val context: Context) {
         cameraThread.quitSafely()
     }
 
-    private val supportedEncodings: List<String> by lazy {
-        val supported = mutableSetOf<String>()
-        supported.add("JPEG")
-
-        val list = cachedCodecInfos
-        for (codec in list) {
-            if (!codec.isEncoder) continue
-            for (type in codec.supportedTypes) {
-                when {
-                    type.equals("video/avc", ignoreCase = true) -> supported.add("H.264")
-                    type.equals("video/hevc", ignoreCase = true) -> supported.add("H.265")
-                    type.equals("video/av01", ignoreCase = true) -> supported.add("AV1")
-                    type.equals("video/x-vnd.on2.vp9", ignoreCase = true) -> supported.add("VP9")
-                }
-            }
-        }
-        supported.toList()
-    }
 
     fun updateView() {
         val intent = Intent("UpdateFromCameraEngine") //FILTER is a string to identify this intent
@@ -316,6 +298,26 @@ class CamEngine(val context: Context) {
     }
 
     companion object {
+        private val supportedEncodings: List<String> by lazy {
+            val supported = mutableSetOf<String>()
+            supported.add("JPEG")
+
+            val list = cachedCodecInfos
+            for (codec in list) {
+                if (!codec.isEncoder) continue
+                for (type in codec.supportedTypes) {
+                    when {
+                        type.equals("video/avc", ignoreCase = true) -> supported.add("H.264")
+                        type.equals("video/hevc", ignoreCase = true) -> supported.add("H.265")
+                        type.equals("video/av01", ignoreCase = true) -> supported.add("AV1")
+                        type.equals("video/x-vnd.on2.vp9", ignoreCase = true) -> supported.add("VP9")
+                    }
+                }
+            }
+            supported.toList()
+        }
+
+
         private val cachedCodecInfos: Array<MediaCodecInfo> by lazy {
             MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
         }
