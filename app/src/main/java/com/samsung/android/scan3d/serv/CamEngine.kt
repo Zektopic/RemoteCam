@@ -298,14 +298,16 @@ class CamEngine(val context: Context) {
     }
 
     companion object {
-        private val supportedEncodings: List<String> by lazy {
-            val supported = mutableSetOf<String>()
-            supported.add("JPEG")
-
-            val list = cachedCodecInfos
-            for (codec in list) {
+        internal fun computeSupportedEncodings(codecInfos: Array<MediaCodecInfo>): List<String> {
+            val supported = mutableSetOf("JPEG")
+            val codecCount = codecInfos.size
+            for (i in 0 until codecCount) {
+                val codec = codecInfos[i]
                 if (!codec.isEncoder) continue
-                for (type in codec.supportedTypes) {
+                val types = codec.supportedTypes
+                val typeCount = types.size
+                for (j in 0 until typeCount) {
+                    val type = types[j]
                     when {
                         type.equals("video/avc", ignoreCase = true) -> supported.add("H.264")
                         type.equals("video/hevc", ignoreCase = true) -> supported.add("H.265")
@@ -314,7 +316,11 @@ class CamEngine(val context: Context) {
                     }
                 }
             }
-            supported.toList()
+            return supported.toList()
+        }
+
+        private val supportedEncodings: List<String> by lazy {
+            computeSupportedEncodings(cachedCodecInfos)
         }
 
 
