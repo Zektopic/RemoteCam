@@ -11,10 +11,8 @@ import android.hardware.camera2.CameraManager
 import android.hardware.camera2.CaptureRequest
 import android.hardware.camera2.TotalCaptureResult
 import android.media.ImageReader
-import android.media.MediaCodec
 import android.media.MediaCodecInfo
 import android.media.MediaCodecList
-import android.media.MediaFormat
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.Parcelable
@@ -52,36 +50,6 @@ class CamEngine(val context: Context) {
         cameraList.associateBy { it.cameraId }
 
     val camOutPutFormat = ImageFormat.JPEG // ImageFormat.YUV_420_888// ImageFormat.JPEG
-
-    fun getEncoder(mimeType: String, resW: Int, resH: Int): MediaCodec? {
-        fun selectCodec(mimeType: String): MediaCodecInfo? {
-            val list = cachedCodecInfos
-            list.forEach {
-                if (it.isEncoder) {
-                    Log.i(
-                        "CODECS",
-                        "We got type " + it.name + " " + it.supportedTypes.contentToString()
-                    )
-                    if (it.supportedTypes.any { e -> e.equals(mimeType, ignoreCase = true) }) {
-                        return it
-                    }
-                }
-            }
-            return null
-        }
-
-        val codec = selectCodec(mimeType) ?: return null
-        val format = MediaFormat.createVideoFormat(mimeType, resW, resH)
-        format.setString(MediaFormat.KEY_MIME, mimeType)
-        format.setInteger(MediaFormat.KEY_FRAME_RATE, 30)
-        format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 5)
-        format.setInteger(MediaFormat.KEY_BIT_RATE, 2_000_000)
-        Log.i("CODECS", "$mimeType: $codec")
-        val encoder = MediaCodec.createByCodecName(codec.name)
-        encoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
-        encoder.start()
-        return encoder
-    }
 
 
     var viewState: ViewState = ViewState(
