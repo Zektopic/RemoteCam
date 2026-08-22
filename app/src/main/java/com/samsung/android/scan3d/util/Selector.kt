@@ -104,7 +104,7 @@ object Selector {
                 CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES
             )!!
 
-            capabilities.forEach { Log.i("CAP", "" + getCapStringAtIndex(it)) }
+            Log.i("CAP", capabilities.joinToString { getCapStringAtIndex(it) })
 
 
             val focalMm = characteristics.get(
