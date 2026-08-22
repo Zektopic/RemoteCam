@@ -229,7 +229,7 @@ class CamEngine(val context: Context) {
         }
         session = createCaptureSession(camera, targets, cameraHandler)
         val captureRequest = camera.createCaptureRequest(
-            CameraDevice.TEMPLATE_RECORD //TEMPLATE_PREVIEW
+            CameraDevice.TEMPLATE_RECORD
         )
         if (showLiveSurface) {
             captureRequest.addTarget(previewSurface!!)
