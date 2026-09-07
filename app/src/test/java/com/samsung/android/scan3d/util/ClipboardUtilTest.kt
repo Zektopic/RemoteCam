@@ -8,7 +8,14 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Mockito.*
 import org.junit.Assert.assertEquals
 import org.junit.Assert.fail
+import android.widget.Toast
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
+import org.robolectric.annotation.Config
+
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE)
 class ClipboardUtilTest {
     @Test
     fun testCopyToClipboard_success() {
@@ -16,6 +23,7 @@ class ClipboardUtilTest {
         val mockClipboard = mock(ClipboardManager::class.java)
         val mockClipData = mock(ClipData::class.java)
 
+        `when`(mockContext.getString(com.samsung.android.scan3d.R.string.copied_to_clipboard)).thenReturn("Copied to clipboard")
         `when`(mockContext.getSystemService(Context.CLIPBOARD_SERVICE)).thenReturn(mockClipboard)
 
         mockStatic(ClipData::class.java).use { mockedStatic ->

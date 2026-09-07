@@ -180,3 +180,6 @@
 ## 2024-06-13 - Optimize CameraCharacteristics retrieval loop
 **Learning:** When querying expensive Android system services like `CameraManager.getCameraCharacteristics` inside a loop, combining filter and map operations into a single pass (e.g., using `mapNotNull`) prevents redundant IPC calls and noticeably improves execution speed.
 **Action:** Replaced a `filter {} .forEach {}` pipeline containing duplicated `getCameraCharacteristics` calls with a single `mapNotNull` pass that pairs valid camera IDs with their retrieved characteristics, eliminating 50% of the overhead.
+## 2026-06-14 - Clipboard Copy Feedback Compatibility
+**Learning:** When adding custom visual feedback (e.g., a Toast) for clipboard copy actions in Android, providing it unconditionally causes duplicate feedback on Android 13+, as the OS provides a native system-level clipboard overlay confirmation. This is a common accessibility issue where screen readers might read out the same confirmation twice.
+**Action:** Always restrict custom clipboard feedback to Android 12 and below (`Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2`) to ensure a streamlined UX and avoid duplicate accessibility announcements.
