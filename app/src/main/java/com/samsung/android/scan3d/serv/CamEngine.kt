@@ -331,6 +331,7 @@ class CamEngine(val context: Context) {
 
     fun updateView() {
         val intent = Intent("UpdateFromCameraEngine") //FILTER is a string to identify this intent
+        intent.setPackage(context.packageName)
         intent.putExtra(
             "data",
             Data(
@@ -347,6 +348,7 @@ class CamEngine(val context: Context) {
 
     fun updateViewQuick(dq: DataQuick) {
         val intent = Intent("UpdateFromCameraEngine") //FILTER is a string to identify this intent
+        intent.setPackage(context.packageName)
         intent.putExtra(
             "dataQuick", dq
         )
