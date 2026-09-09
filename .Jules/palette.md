@@ -180,6 +180,3 @@
 ## 2024-06-13 - Optimize CameraCharacteristics retrieval loop
 **Learning:** When querying expensive Android system services like `CameraManager.getCameraCharacteristics` inside a loop, combining filter and map operations into a single pass (e.g., using `mapNotNull`) prevents redundant IPC calls and noticeably improves execution speed.
 **Action:** Replaced a `filter {} .forEach {}` pipeline containing duplicated `getCameraCharacteristics` calls with a single `mapNotNull` pass that pairs valid camera IDs with their retrieved characteristics, eliminating 50% of the overhead.
-## 2026-06-25 - RTL Support Consistency Across Modules
-**Learning:** To ensure Right-to-Left (RTL) layout support is consistently applied and functions correctly across an entire Android project, the `android:supportsRtl="true"` attribute must be explicitly declared within the `<application>` tag of every module's `AndroidManifest.xml` file, not just the main application module.
-**Action:** Always verify that `android:supportsRtl="true"` is declared in the manifest of all library and utility modules to guarantee proper RTL rendering.
