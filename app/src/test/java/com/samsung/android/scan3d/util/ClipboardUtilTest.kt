@@ -3,6 +3,8 @@ package com.samsung.android.scan3d.util
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.os.Build
+import android.widget.Toast
 import org.junit.Test
 import org.mockito.ArgumentCaptor
 import org.mockito.Mockito.*
@@ -15,18 +17,23 @@ class ClipboardUtilTest {
         val mockContext = mock(Context::class.java)
         val mockClipboard = mock(ClipboardManager::class.java)
         val mockClipData = mock(ClipData::class.java)
+        val mockToast = mock(Toast::class.java)
 
         `when`(mockContext.getSystemService(Context.CLIPBOARD_SERVICE)).thenReturn(mockClipboard)
 
-        mockStatic(ClipData::class.java).use { mockedStatic ->
-            mockedStatic.`when`<ClipData> { ClipData.newPlainText("test_label", "test_text") }.thenReturn(mockClipData)
+        mockStatic(Toast::class.java).use { mockedToastStatic ->
+            mockedToastStatic.`when`<Toast> { Toast.makeText(any(Context::class.java), anyInt(), anyInt()) }.thenReturn(mockToast)
 
-            ClipboardUtil.copyToClipboard(mockContext, "test_label", "test_text")
+            mockStatic(ClipData::class.java).use { mockedStatic ->
+                mockedStatic.`when`<ClipData> { ClipData.newPlainText("test_label", "test_text") }.thenReturn(mockClipData)
 
-            val clipCaptor = ArgumentCaptor.forClass(ClipData::class.java)
-            verify(mockClipboard).setPrimaryClip(clipCaptor.capture())
+                ClipboardUtil.copyToClipboard(mockContext, "test_label", "test_text")
 
-            assertEquals(mockClipData, clipCaptor.value)
+                val clipCaptor = ArgumentCaptor.forClass(ClipData::class.java)
+                verify(mockClipboard).setPrimaryClip(clipCaptor.capture())
+
+                assertEquals(mockClipData, clipCaptor.value)
+            }
         }
     }
 
@@ -36,13 +43,8 @@ class ClipboardUtilTest {
         mockStatic(ClipData::class.java).use { mockedStatic ->
             mockedStatic.`when`<ClipData> { ClipData.newPlainText("test_label", "test_text") }.thenReturn(mockClipData)
 
-            try {
-                ClipboardUtil.copyToClipboard(null, "test_label", "test_text")
-                fail("Expected Exception when context is null")
-            } catch (e: Exception) {
-                // If context is null, it throws NullPointerException because of `as android.content.ClipboardManager`
-                assertEquals(NullPointerException::class.java, e::class.java)
-            }
+            // Since context is null, it returns early now due to the safe cast and null check `?: return`
+            ClipboardUtil.copyToClipboard(null, "test_label", "test_text")
         }
     }
 }
