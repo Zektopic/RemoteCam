@@ -180,3 +180,7 @@
 ## 2024-06-13 - Optimize CameraCharacteristics retrieval loop
 **Learning:** When querying expensive Android system services like `CameraManager.getCameraCharacteristics` inside a loop, combining filter and map operations into a single pass (e.g., using `mapNotNull`) prevents redundant IPC calls and noticeably improves execution speed.
 **Action:** Replaced a `filter {} .forEach {}` pipeline containing duplicated `getCameraCharacteristics` calls with a single `mapNotNull` pass that pairs valid camera IDs with their retrieved characteristics, eliminating 50% of the overhead.
+
+## 2026-09-09 - Copy to clipboard toast UX
+**Learning:** Native clipboard feedback was added in Android 13, but custom implementations for older versions are often forgotten. When implementing copy actions using `ClipboardManager`, you must explicitly check the API version (`Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2`) and only provide manual visual feedback (like Toasts) on older OS versions to prevent annoying duplicate overlays on newer devices.
+**Action:** Always condition custom copy-to-clipboard visual feedback on the target OS version to defer to native OS behavior when available.
