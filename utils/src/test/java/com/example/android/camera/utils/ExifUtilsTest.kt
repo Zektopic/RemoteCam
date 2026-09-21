@@ -42,17 +42,10 @@ class ExifUtilsTest {
     }
 
     @Test
-    fun computeExifOrientation_270_notMirrored_isTransverse() {
-        assertEquals(ExifInterface.ORIENTATION_TRANSVERSE, computeExifOrientation(270, false))
+    fun computeExifOrientation_270_notMirrored_isRotate270() {
+        assertEquals(ExifInterface.ORIENTATION_ROTATE_270, computeExifOrientation(270, false))
     }
 
-    // Bug in the main code where 270 and mirrored occurs twice.
-    // However, looking at the code, it returns TRANSVERSE for 270 and mirrored, and then ROTATE_270 later.
-    // Actually the code does this:
-    // rotationDegrees == 270 && mirrored -> ExifInterface.ORIENTATION_TRANSVERSE
-    // ...
-    // rotationDegrees == 270 && mirrored -> ExifInterface.ORIENTATION_ROTATE_270
-    // So the first one matches.
     @Test
     fun computeExifOrientation_270_mirrored_isTransverse() {
         assertEquals(ExifInterface.ORIENTATION_TRANSVERSE, computeExifOrientation(270, true))
