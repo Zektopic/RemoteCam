@@ -16,14 +16,14 @@ import java.io.OutputStream
 
 class HttpService {
     lateinit var engine: NettyApplicationEngine
-    var channel = Channel<ByteArray>(2)
+    var channel = Channel<Pair<ByteArray, Int>>(2)
     fun producer(): suspend OutputStream.() -> Unit = {
         val o = this
         channel = Channel()
         val header = "--FRAME\r\nContent-Type: image/jpeg\r\n\r\n".toByteArray()
-        channel.consumeEach {
+        channel.consumeEach { (bytes, len) ->
             o.write(header)
-            o.write(it)
+            o.write(bytes, 0, len)
             o.flush()
         }
     }

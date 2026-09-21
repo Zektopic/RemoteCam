@@ -205,6 +205,8 @@ class CamEngine(val context: Context) {
         captureRequest.set(CaptureRequest.JPEG_QUALITY, viewState.quality.toByte())
         var lastTime = System.currentTimeMillis()
 
+        val bufferPool = Array(3) { ByteArray(1024 * 1024) }
+        var poolIndex = 0
 
         var kodd = 0
         val acquired = AtomicInteger(0)
@@ -237,13 +239,20 @@ class CamEngine(val context: Context) {
 
                     if (camOutPutFormat == ImageFormat.JPEG) {
                         val buffer = img.planes[0].buffer
-                        val bytes = ByteArray(buffer.remaining()).apply { buffer.get(this) }
+                        val size = buffer.remaining()
+                        var bytes = bufferPool[poolIndex]
+                        if (bytes.size < size) {
+                            bytes = ByteArray(size)
+                            bufferPool[poolIndex] = bytes
+                        }
+                        buffer.get(bytes, 0, size)
+                        poolIndex = (poolIndex + 1) % bufferPool.size
 
                         if (kodd % 10 == 0) {
                             updateViewQuick(
                                 DataQuick(
                                     delta.toInt(),
-                                    (30 * bytes.size / 1000)
+                                    (30 * size / 1000)
                                 )
                             )
                         }
@@ -253,7 +262,7 @@ class CamEngine(val context: Context) {
                         if (viewState.stream) {
 
                             http?.channel?.trySend(
-                                bytes
+                                Pair(bytes, size)
                             )
 
                         }
